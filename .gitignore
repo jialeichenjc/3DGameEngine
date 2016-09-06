@@ -1,2 +1,11 @@
 .gitignore
-.gitattributes
+*.gitattributes
+*.exe
+*ilk
+*.log
+*.pdb
+Debug/
+*.db
+*.suo
+*.opendb
+
