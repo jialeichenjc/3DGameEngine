@@ -4,7 +4,7 @@ class Player : public Game_character {
 public:
 	Player();
 	void init_pos() override;
-	void move() override;
+	void move(int input);
 	~Player();
 };
 

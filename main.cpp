@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <conio.h>
+#include <ctype.h>
 #include "Monster.h"
 #include "Player.h"
 
@@ -20,7 +21,25 @@ int main() {
 		monster.set_name(monster_name);
 		printf("monster %s is at position [%d, %d]\n", monster.get_name(), monster.position[0], monster.position[1]);
 	}
+
+	Player player;
+	char player_name[30];
+	printf("Please enter your name for the player: \n");
+	scanf_s("%s", player_name, sizeof(player_name));
+	player.set_name(player_name);
 	printf("\n");
-	//cout << num_monsters;
+	printf("Player %s is at position [%d, %d]\n", player.get_name(), player.position[0], player.position[1]);
+
+	// main game loop
+	int input;
+	while (input = toupper(_getch()) != 'Q') {
+		printf("Move your player. Left: A, Right: D, Up: W, Down: S\n");
+		input = toupper(_getch());
+		player.move(input);
+		printf("\nPlayer %s is at position [%d, %d]\n", player.get_name(), player.position[0], player.position[1]);
+	}
+	
+
+	// cout << num_monsters;
 	return 0;
 }

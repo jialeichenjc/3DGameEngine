@@ -4,6 +4,7 @@
 
 Player::Player()
 {
+	init_pos();
 }
 
 // For the Player, the initial position is set to [0,0]
@@ -12,8 +13,8 @@ void Player::init_pos() {
 	position[1] = 0;
 }
 
-void Player::move() {
-	int input = toupper(_getch());
+void Player::move(int input) {
+	//int input = toupper(_getch());
 	switch (input) {
 		case 'W' : // move up
 			move_next(0, 1);
