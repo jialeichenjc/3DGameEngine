@@ -19,6 +19,7 @@ int main() {
 		printf("Please enter your name for monster number %d: ", i);
 		scanf_s("%s", monster_name, sizeof(monster_name));
 		monster.set_name(monster_name);
+		monsters[i] = monster;
 		printf("monster %s is at position [%d, %d]\n", monster.get_name(), monster.position[0], monster.position[1]);
 	}
 
@@ -37,9 +38,13 @@ int main() {
 		input = toupper(_getch());
 		player.move(input);
 		printf("\nPlayer %s is at position [%d, %d]\n", player.get_name(), player.position[0], player.position[1]);
+		// TODO: other ways to get size of dynamic array besides hard-coding?
+		for (int i = 0; i < num_monsters; i++) {
+			monsters[i].move();
+			printf("monster %s is at position [%d, %d]\n", monsters[i].get_name(), monsters[i].position[0], monsters[i].position[1]);
+		}
 	}
 	
-
 	// cout << num_monsters;
 	return 0;
 }
