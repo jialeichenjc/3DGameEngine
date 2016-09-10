@@ -1,16 +1,16 @@
 #include "Monster.h"
 #include <stdlib.h>
+#include <stdio.h>
 #include <time.h>
 
 
 Monster::Monster()
-{
+{	
 	init_pos();
 }
 
 // For Monsters, the initial position is randomly generated
 void Monster::init_pos() {
-	srand(time(NULL));
 	int x = rand() % 100 + 1;
 	int y = rand() % 100 + 1;
 	position[0] = x;
@@ -19,9 +19,7 @@ void Monster::init_pos() {
 
 // Randomly move the monster in four directions
 void Monster::move() {
-	srand(time(NULL));
-	int direction = rand() % 4 + 1;
-	
+	int direction = rand() % 4 + 1;	
 	switch (direction) {
 		case 1: // move up
 			move_next(0, 1);
