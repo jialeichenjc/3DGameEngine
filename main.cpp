@@ -87,7 +87,7 @@ void destroy_monster(Monster *monsters, int& num_monsters) {
 
 bool should_delete_monster(int& num_monsters) {
 	int chance = rand() % 8 + 1;
-	if (chance == 1 && num_monsters > 1) {
+	if (chance == 4 && num_monsters > 1) {
 		return true;
 	}
 	else
