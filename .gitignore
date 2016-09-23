@@ -8,4 +8,8 @@ Debug/
 *.db
 *.suo
 *.opendb
-
+MonsterChase/ipch
+MonsterChase/ReadMe.txt
+*~
+MonsterChase/Engine/stdafx.h
+MonsterChase/MonsterChase/targetver.h
