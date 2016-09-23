@@ -16,7 +16,7 @@ int main() {
 	int num_monsters;
 	printf("Please enter the number of monsters you'd like to create:\n");
 	scanf_s("%d", &num_monsters);
-	
+
 	Monster *monsters = new Monster[num_monsters];
 	for (int i = 0; i < num_monsters; i++) {
 		Monster monster;
@@ -60,14 +60,14 @@ int main() {
 
 Monster* add_monster(Monster *monsters, int& num_monsters) {
 	Monster *new_monsters = new Monster[++num_monsters];
-	
+
 	for (int i = 0; i < num_monsters - 1; i++) {
 		new_monsters[i] = monsters[i];
 	}
 	Monster added_monster;
 	added_monster.set_name("Machine Added");
-	new_monsters[num_monsters-1] = added_monster;
-	
+	new_monsters[num_monsters - 1] = added_monster;
+
 	return new_monsters;
 }
 
@@ -101,3 +101,5 @@ void print_monsters(Monster *monsters, int& num_monsters) {
 		printf("monster %s is at position [%d, %d]\n", monsters[i].get_name(), monster_pos[0], monster_pos[1]);
 	}
 }
+
+

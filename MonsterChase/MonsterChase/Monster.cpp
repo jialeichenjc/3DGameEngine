@@ -5,7 +5,7 @@
 
 
 Monster::Monster()
-{	
+{
 	init_pos();
 }
 
@@ -19,22 +19,22 @@ void Monster::init_pos() {
 
 // Randomly move the monster in four directions
 void Monster::move() {
-	int direction = rand() % 4 + 1;	
+	int direction = rand() % 4 + 1;
 	switch (direction) {
-		case 1: // move up
-			move_next(0, 1);
-			break;
-		case 2: // move down
-			move_next(0, -1);
-			break;
-		case 3: // move left
-			move_next(-1, 0);
-			break;
-		case 4: // move right
-			move_next(1, 0);
-			break;
-		default:
-			break;
+	case 1: // move up
+		move_next(0, 1);
+		break;
+	case 2: // move down
+		move_next(0, -1);
+		break;
+	case 3: // move left
+		move_next(-1, 0);
+		break;
+	case 4: // move right
+		move_next(1, 0);
+		break;
+	default:
+		break;
 	}
 }
 

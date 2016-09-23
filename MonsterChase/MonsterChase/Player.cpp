@@ -16,23 +16,23 @@ void Player::init_pos() {
 void Player::move(int input) {
 	//int input = toupper(_getch());
 	switch (input) {
-		case 'W' : // move up
-			move_next(0, 1);
-			break;
-		case 'S' : // move down
-			move_next(0, -1);
-			break;
-		case 'A': // move left
-			move_next(-1, 0);
-			break;
-		case 'D': // move right
-			move_next(1, 0);
-			break;
-		default:
-			break;
+	case 'W': // move up
+		move_next(0, 1);
+		break;
+	case 'S': // move down
+		move_next(0, -1);
+		break;
+	case 'A': // move left
+		move_next(-1, 0);
+		break;
+	case 'D': // move right
+		move_next(1, 0);
+		break;
+	default:
+		break;
 	}
 }
 
-Player::~Player()  
+Player::~Player()
 {
 }

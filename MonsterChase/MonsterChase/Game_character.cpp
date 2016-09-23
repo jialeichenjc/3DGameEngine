@@ -32,3 +32,4 @@ void Game_character::move_next(int delta_x, int delta_y) {
 Game_character::~Game_character()
 {
 }
+
