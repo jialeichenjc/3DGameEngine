@@ -1,6 +1,6 @@
 #pragma once
-#include "Game_character.h"
-class Player : public Game_character {
+#include "GameObject.h"
+class Player : public GameObject {
 public:
 	Player();
 	void init_pos() override;

@@ -15,3 +15,7 @@ MonsterChase/Engine/stdafx.h
 MonsterChase/MonsterChase/targetver.h
 MonsterChase/Release/*.tlog
 MonsterChase/Release/*.obj
+MonsterChase/MonsterChase/Release/MonsterChaseGame.tlog/
+MonsterChase/Engine/x64/
+MonsterChase/MonsterChase/x64/
+MonsterChase/x64/

@@ -30,7 +30,7 @@ int main() {
 	printf("Please enter your name for the player: ");
 	scanf_s("%s", player_name, sizeof(player_name));
 	player.set_name(player_name);
-	printf("\nPlayer %s is at position [%d, %d]\n", player.get_name(), player.get_position()[0], player.get_position()[1]);
+	printf("\nPlayer %s is at position [%.2f, %.2f]\n", player.get_name(), player.get_position().x(), player.get_position().y());
 	print_monsters(monsters, num_monsters);
 	printf("Press Enter to continue...\n");
 
@@ -38,10 +38,9 @@ int main() {
 	int input;
 	while (input = toupper(_getch()) != 'Q') {
 		printf("Move your player. Left: A, Right: D, Up: W, Down: S\n");
-		printf("Or press Q to quit game.\n");
 		input = toupper(_getch());
 		player.move(input);
-		printf("\nPlayer %s is at position [%d, %d]\n", player.get_name(), player.get_position()[0], player.get_position()[1]);
+		printf("\nPlayer %s is at position [%.2f, %.2f]\n", player.get_name(), player.get_position().x(), player.get_position().y());
 		print_monsters(monsters, num_monsters);
 
 		if (should_add_monster()) {
@@ -54,6 +53,7 @@ int main() {
 			destroy_monster(monsters, num_monsters);
 		}
 		printf("\nPress Enter to continue...\n");
+		printf("Or press Q to quit game.\n");
 	}
 	return 0;
 }
@@ -98,7 +98,7 @@ void print_monsters(Monster *monsters, int& num_monsters) {
 	for (int i = 0; i < num_monsters; i++) {
 		Vector2D monster_pos = monsters[i].get_position();
 		monsters[i].move();
-		printf("monster %s is at position [%d, %d]\n", monsters[i].get_name(), monster_pos.x(), monster_pos.y());
+		printf("monster %s is at position [%.2f, %.2f]\n", monsters[i].get_name(), monster_pos.x(), monster_pos.y());
 	}
 }
 
