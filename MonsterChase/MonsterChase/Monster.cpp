@@ -4,8 +4,7 @@
 #include <time.h>
 
 
-Monster::Monster()
-{
+Monster::Monster() {
 	init_pos();
 }
 
@@ -39,6 +38,5 @@ void Monster::move() {
 }
 
 
-Monster::~Monster()
-{
+Monster::~Monster() {
 }

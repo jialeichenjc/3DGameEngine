@@ -1,7 +1,8 @@
 #pragma once
 #include "Game_character.h"
+#include "GameObject.h"
 class Monster :
-	public Game_character
+	public GameObject
 {
 public:
 	Monster(); // create a new monster with a random initial position
