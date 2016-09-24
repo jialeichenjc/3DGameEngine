@@ -1,5 +1,4 @@
 #pragma once
-#include "Game_character.h"
 #include "GameObject.h"
 class Monster :
 	public GameObject

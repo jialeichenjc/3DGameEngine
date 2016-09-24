@@ -13,3 +13,5 @@ MonsterChase/ReadMe.txt
 *~
 MonsterChase/Engine/stdafx.h
 MonsterChase/MonsterChase/targetver.h
+MonsterChase/Release/*.tlog
+MonsterChase/Release/*.obj

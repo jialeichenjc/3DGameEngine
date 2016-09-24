@@ -16,6 +16,10 @@ Vector2D GameObject::get_position() {
 	return position;
 }
 
+void GameObject::set_position(Vector2D vec) {
+	this->position = vec;
+}
+
 void GameObject::init_pos() {
 }
 

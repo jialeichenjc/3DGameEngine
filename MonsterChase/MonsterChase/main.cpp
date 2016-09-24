@@ -96,9 +96,9 @@ bool should_delete_monster(int& num_monsters) {
 
 void print_monsters(Monster *monsters, int& num_monsters) {
 	for (int i = 0; i < num_monsters; i++) {
-		int* monster_pos = monsters[i].get_position();
+		Vector2D monster_pos = monsters[i].get_position();
 		monsters[i].move();
-		printf("monster %s is at position [%d, %d]\n", monsters[i].get_name(), monster_pos[0], monster_pos[1]);
+		printf("monster %s is at position [%d, %d]\n", monsters[i].get_name(), monster_pos.x(), monster_pos.y());
 	}
 }
 
