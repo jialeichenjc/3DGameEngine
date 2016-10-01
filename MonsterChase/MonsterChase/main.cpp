@@ -5,6 +5,7 @@
 #include "Monster.h"
 #include "Player.h"
 #include "MonsterController.h"
+#include "Debug.h"
 #include "time.h"
 
 int main() {
@@ -12,6 +13,7 @@ int main() {
 	int num_monsters;
 	printf("Please enter the number of monsters you'd like to create:\n");
 	scanf_s("%d", &num_monsters);
+	assert(num_monsters > 0, "Invalid number of monsters");
 	MonsterController monster_controller;
 
 	Monster *monsters = new Monster[num_monsters];
@@ -36,6 +38,7 @@ int main() {
 	while (input = toupper(_getch()) != 'Q') {
 		printf("Move your player. Left: A, Right: D, Up: W, Down: S\n");
 		input = toupper(_getch());
+		assert((input == 'A' || input == 'W' || input == 'S' || input == 'D'), "Invalid input");
 		player.move(input);
 		printf("\nPlayer %s is at position [%.2f, %.2f]\n", player.get_name(), player.get_position().x(), player.get_position().y());
 
@@ -55,5 +58,3 @@ int main() {
 	}
 	return 0;
 }
-
-
