@@ -10,3 +10,8 @@ float Vector2D::dot(const Vector2D &lhs, const Vector2D &rhs) {
 Vector2D operator +(const Vector2D &lhs, const Vector2D &rhs) {
 	return Vector2D(lhs.x() + rhs.x(), lhs.y() + rhs.y());
 }
+
+void Vector2D::operator =(const Vector2D &vec) {
+	vec.x;
+	vec.y;
+}

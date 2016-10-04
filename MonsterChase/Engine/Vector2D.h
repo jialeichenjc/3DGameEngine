@@ -19,6 +19,9 @@ public:
 	// dot product (result is scalar value)
 	float dot(const Vector2D &lhs, const Vector2D &rhs);
 
+	// assignment operator
+	void operator =(const Vector2D &vec);
+
 	~Vector2D();
 
 private:
