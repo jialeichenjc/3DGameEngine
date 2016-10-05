@@ -16,9 +16,6 @@ public:
 	// set x coordination of vector
 	void set_y(const float i_y) { this->y_coord = i_y; }
 
-	// dot product (result is scalar value)
-	float dot(const Vector2D &lhs, const Vector2D &rhs);
-
 	// assignment operator
 	void operator =(const Vector2D &vec);
 
@@ -34,3 +31,5 @@ Vector2D operator +(const Vector2D &lhs, const Vector2D &rhs);
 bool operator ==(const Vector2D &lhs, const Vector2D &rhs);
 bool operator !=(const Vector2D &lhs, const Vector2D &rhs);
 float cross(const Vector2D &lhs, const Vector2D &rhs);
+// dot product (result is scalar value)
+float dot(const Vector2D &lhs, const Vector2D &rhs);
