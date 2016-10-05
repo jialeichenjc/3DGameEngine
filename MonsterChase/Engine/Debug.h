@@ -18,10 +18,6 @@
 #define assert(cond, error_str)	if(cond == false) {\
 						DEBUG_PRINT("%s occurred at File %s Line %d", error_str, __FILE__, __LINE__);\
 						BREAK_IN_DEBUGGER();}
-
-
-#else
-#define assert(cond) void(0)
 #endif
 #endif
 
