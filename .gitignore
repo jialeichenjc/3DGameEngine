@@ -11,6 +11,8 @@ MonsterChase/Engine/x64/
 MonsterChase/MonsterChase/Release/
 MonsterChase/MonsterChase/Debug/
 MonsterChase/MonsterChase/x64/
+MonsterChase/MonsterChase/*.user
+MonsterChase/Engine/*.user
 
 # Below Created by https://www.gitignore.io/api/windows,c++,visualstudio
 
