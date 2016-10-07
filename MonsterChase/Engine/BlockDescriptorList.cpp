@@ -2,10 +2,6 @@
 
 
 
-BlockDescriptorList::BlockDescriptorList()
-{
-}
-
 BlockDescriptorList::BlockDescriptorList(int num_total_bd) {
 	BlockDescriptor bd_head;
 	head = &bd_head;
@@ -25,6 +21,40 @@ BlockDescriptor* BlockDescriptorList::pop_head() {
 	head = head->next_bd;
 	head->prev_bd = NULL;
 	result->next_bd = NULL;
+
+	return result;
+}
+
+void BlockDescriptorList::insert_after(BlockDescriptor *pos, BlockDescriptor &bd) {
+	BlockDescriptor *pos_next = pos->next_bd;
+	pos->next_bd = &bd;
+	bd.prev_bd = pos;
+	if (pos_next != NULL) {
+		bd.next_bd = pos_next;
+		pos_next->prev_bd = &bd;
+	}	
+}
+
+void BlockDescriptorList::remove(BlockDescriptor *pos) {
+	BlockDescriptor *pos_next = pos->next_bd;
+	BlockDescriptor *pos_prev = pos->prev_bd;
+	if (pos_next == NULL && pos_prev == NULL) {
+		return;
+	}
+	else if (pos_next == NULL && pos_prev != NULL) {
+		pos_prev->next_bd = NULL;
+		pos->prev_bd = NULL;
+	}
+	else if (pos_prev == NULL && pos_next != NULL) {
+		pos_next->prev_bd = NULL;
+		pos->next_bd = NULL;
+	}
+	else {
+		pos_prev->next_bd = pos_next;
+		pos_next->prev_bd = pos_prev;
+		pos->next_bd = NULL;
+		pos->prev_bd = NULL;
+	}
 }
 
 
