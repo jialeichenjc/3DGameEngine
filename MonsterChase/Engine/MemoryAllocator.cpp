@@ -4,16 +4,17 @@
 // constructor                                                       
 MemoryAllocator::MemoryAllocator()
 {
-	// set up free block descriptor list
+	// create a list of block descriptors available to describe memory block
+	bd_idle = BlockDescriptorList(20);
 
 	// grab first item in the free list to describe entire block
-
-}
-
-void MemoryAllocator::set_up_bd_idle(int num_total_bd) {
-	for (int i = 0; i < num_total_bd; i++) {
-		//m_total
-	}
+	BlockDescriptor *total_block = bd_idle.pop_head();
+	total_block->block_size = MEMORY_TOTAL;
+	total_block->block_base_ptr = total_mem;
+	
+	// start with a list of free memory of the total block
+	mem_free = BlockDescriptorList(total_block);
+	mem_in_use = BlockDescriptorList();
 }
 
 

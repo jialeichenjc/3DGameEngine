@@ -16,6 +16,11 @@ BlockDescriptorList::BlockDescriptorList(int num_total_bd) {
 	}
 }
 
+// construct the list with just a head
+BlockDescriptorList::BlockDescriptorList(BlockDescriptor *init_head) {
+	head = init_head;
+}
+
 BlockDescriptor* BlockDescriptorList::pop_head() {
 	BlockDescriptor *result = head;
 	head = head->next_bd;
@@ -57,6 +62,20 @@ void BlockDescriptorList::remove(BlockDescriptor *pos) {
 	}
 }
 
+// add to the end of list
+void BlockDescriptorList::add(BlockDescriptor &bd) {
+	if (head == NULL) {
+		head = &bd;
+	}
+	else {
+		BlockDescriptor *curr = head;
+		while (curr->next_bd != NULL) {
+			curr = curr->next_bd;
+		}
+		curr->next_bd = &bd;
+		bd.prev_bd = curr;
+	}
+}
 
 BlockDescriptorList::~BlockDescriptorList()
 {
