@@ -3,15 +3,15 @@
 
 
 BlockDescriptorList::BlockDescriptorList(int num_total_bd) {
-	BlockDescriptor bd_head;
-	this->head = &bd_head;
+	BlockDescriptor bd_head = BlockDescriptor();
+	head = &bd_head;
 	// create a list of given number of BlockDescriptors
-	BlockDescriptor *curr = head;
+	BlockDescriptor curr = *head;
 	for (int i = 1; i < num_total_bd; i++) {
-		BlockDescriptor bd;
-		curr->next_bd = &bd;
-		bd.prev_bd = curr;
-		curr = curr->next_bd;
+		BlockDescriptor bd = BlockDescriptor();
+		curr.next_bd = &bd;
+		bd.prev_bd = &curr;
+		curr = *(curr.next_bd);
 	}
 	
 }

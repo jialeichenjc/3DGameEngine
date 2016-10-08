@@ -9,6 +9,7 @@
 #include "MemoryAllocator.h"
 #include "time.h"
 
+void printList(BlockDescriptorList);
 int main() {
 	/*
 	srand((unsigned int)time(NULL));
@@ -59,6 +60,7 @@ int main() {
 		printf("Or press Q to quit game.\n");
 	}
 	*/
+	/*
 	printf("Allocating Memory...\n");
 	MemoryAllocator mem_alloc;
 	printf("Now total number of bytes in memory is: %d \n", (int)mem_alloc.mem_free.head->block_size);
@@ -66,5 +68,22 @@ int main() {
 	mem_alloc.alloc_mem((size_t)12);
 	printf("Now total number of bytes available is: %d \n", (int)mem_alloc.mem_free.head->block_size);
 	printf("\n");
+	*/
+	BlockDescriptorList test_list = BlockDescriptorList(10);
+	printList(test_list);
 	return 0;
+}
+
+// TODO: delete this later
+void printList(BlockDescriptorList list) {
+	if (list.head == NULL) {
+		return;
+	}
+	else {
+		BlockDescriptor *curr = list.head;
+		while (curr != NULL) {
+			printf("size of block descriptor is %d and the memory pointer is %p", curr->block_size, curr->block_base_ptr);
+			curr = curr->next_bd;
+		}
+	}
 }
