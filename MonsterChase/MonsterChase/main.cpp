@@ -64,7 +64,7 @@ int main() {
 	printf("Now total number of bytes in memory is: %d \n", (int)mem_alloc.mem_free.head->block_size);
 	printf("Requesting 12 bytes of memory...\n");
 	mem_alloc.alloc_mem((size_t)12);
-
+	printf("Now total number of bytes available is: %d \n", (int)mem_alloc.mem_free.head->block_size);
 	printf("\n");
 	return 0;
 }
