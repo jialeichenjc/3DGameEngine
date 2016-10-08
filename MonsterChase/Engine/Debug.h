@@ -1,4 +1,4 @@
-//#include <stdio.h>
+#include <stdio.h>
 #ifndef __DEBUG_H
 #define __DEBUG_H
 #define EMIT_LOCATION() printf("Line: %d in File: %s", __FILE__, __LINE__);

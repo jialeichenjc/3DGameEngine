@@ -1,5 +1,6 @@
 #pragma once
 #include "BlockDescriptor.h"
+#include <stdio.h>
 class BlockDescriptorList
 {
 public:
@@ -12,8 +13,7 @@ public:
 	void remove(BlockDescriptor *pos);
 	// add to add of block descriptor list
 	void add(BlockDescriptor &bd);
-
-	BlockDescriptor* pop_head();
+	BlockDescriptor& pop_head();
 
 	BlockDescriptor *head;
 	BlockDescriptor *tail;

@@ -8,6 +8,7 @@ BlockDescriptor::BlockDescriptor()
 	prev_bd = NULL;
 	next_bd = NULL;
 	block_size = 0;
+	offset = 0;
 }
 
 

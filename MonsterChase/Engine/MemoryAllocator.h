@@ -9,9 +9,8 @@ public:
 	void* alloc_mem(size_t req_size);
 	void free_mem(void *mem_ptr);
 	~MemoryAllocator();
-	static char total_mem[MEMORY_TOTAL];
 	//void set_up_bd_idle(int num_total_bd);
-
+	//BlockDescriptor *total_block;
 	// A list of available BlockDescriptors
 	// They aren't currently describing a block of memory but available when new blocks are created
 	BlockDescriptorList bd_idle;

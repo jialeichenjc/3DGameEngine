@@ -9,7 +9,7 @@ public:
 	BlockDescriptor *prev_bd;
 
 	size_t block_size;
-
+	size_t offset; // distance from beginning of the memory block
 	~BlockDescriptor();
 };
 

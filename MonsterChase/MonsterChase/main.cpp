@@ -6,9 +6,11 @@
 #include "Player.h"
 #include "MonsterController.h"
 #include "Debug.h"
+#include "MemoryAllocator.h"
 #include "time.h"
 
 int main() {
+	/*
 	srand((unsigned int)time(NULL));
 	int num_monsters;
 	printf("Please enter the number of monsters you'd like to create:\n");
@@ -56,5 +58,13 @@ int main() {
 		printf("\nPress Enter to continue...\n");
 		printf("Or press Q to quit game.\n");
 	}
+	*/
+	printf("Allocating Memory...\n");
+	MemoryAllocator mem_alloc;
+	printf("Now total number of bytes in memory is: %d \n", (int)mem_alloc.mem_free.head->block_size);
+	printf("Requesting 12 bytes of memory...\n");
+	mem_alloc.alloc_mem((size_t)12);
+
+	printf("\n");
 	return 0;
 }
