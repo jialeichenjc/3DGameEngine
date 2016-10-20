@@ -62,6 +62,10 @@ void MemoryAllocator::free_mem(void *mem_ptr) {
 	*/
 }
 
+void set_Block_Descriptor_List() {
+	
+}
+
 MemoryAllocator::~MemoryAllocator()
 {
 }
