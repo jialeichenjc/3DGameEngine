@@ -81,11 +81,17 @@ int main() {
 	test_list.push(&bd_4);
 	test_list.push(&bd_5);
 	printList(test_list);
+<<<<<<< HEAD
 	BlockDescriptor bd_insert;
 	test_list.insert_after(&bd_2, bd_insert);
 	printf("inserting after bd_2\n");
 	//printf("popping head");
 	//test_list.pop_head();
+=======
+
+	printf("popping head");
+	test_list.pop_head();
+>>>>>>> 5614267513a73ad7a8f413e461a21eb5ca524adf
 	printList(test_list);
 	return 0;
 }
