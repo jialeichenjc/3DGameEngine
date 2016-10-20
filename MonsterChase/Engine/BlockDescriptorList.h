@@ -14,6 +14,7 @@ public:
 	// add to add of block descriptor list
 	void add(BlockDescriptor &bd);
 	BlockDescriptor& pop_head();
+	void print_block_list();
 
 	BlockDescriptor *head;
 	BlockDescriptor *tail;
