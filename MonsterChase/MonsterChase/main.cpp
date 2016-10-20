@@ -69,7 +69,23 @@ int main() {
 	printf("Now total number of bytes available is: %d \n", (int)mem_alloc.mem_free.head->block_size);
 	printf("\n");
 	*/
-	BlockDescriptorList test_list = BlockDescriptorList(10);
+	BlockDescriptorList test_list;
+	BlockDescriptor bd;
+	BlockDescriptor bd_2;
+	BlockDescriptor bd_3;
+	BlockDescriptor bd_4;
+	BlockDescriptor bd_5;
+	test_list.push(&bd);
+	test_list.push(&bd_2);
+	test_list.push(&bd_3);
+	test_list.push(&bd_4);
+	test_list.push(&bd_5);
+	printList(test_list);
+	BlockDescriptor bd_insert;
+	test_list.insert_after(&bd_2, bd_insert);
+	printf("inserting after bd_2\n");
+	//printf("popping head");
+	//test_list.pop_head();
 	printList(test_list);
 	return 0;
 }
@@ -82,7 +98,8 @@ void printList(BlockDescriptorList list) {
 	else {
 		BlockDescriptor *curr = list.head;
 		while (curr != NULL) {
-			printf("size of block descriptor is %d and the memory pointer is %p", curr->block_size, curr->block_base_ptr);
+			printf("size of block descriptor is %zu and the memory pointer is %p\n descriptor address is %p\n", 
+				curr->block_size, curr->block_base_ptr, curr);
 			curr = curr->next_bd;
 		}
 	}

@@ -1,19 +1,24 @@
 #include "BlockDescriptorList.h"
 
-
+BlockDescriptorList::BlockDescriptorList() {
+	head = NULL;
+	tail = NULL;
+}
 
 BlockDescriptorList::BlockDescriptorList(int num_total_bd) {
+	/*
 	BlockDescriptor bd_head = BlockDescriptor();
 	head = &bd_head;
 	// create a list of given number of BlockDescriptors
-	BlockDescriptor curr = *head;
+	BlockDescriptor *curr = head;
 	for (int i = 1; i < num_total_bd; i++) {
 		BlockDescriptor bd = BlockDescriptor();
-		curr.next_bd = &bd;
-		bd.prev_bd = &curr;
-		curr = *(curr.next_bd);
+		curr->next_bd = &bd;
+		bd.prev_bd = curr;
+		//curr = curr->next_bd;
+		curr = &bd;
 	}
-	
+	*/	
 }
 
 // construct the list with just a head
@@ -63,20 +68,42 @@ void BlockDescriptorList::remove(BlockDescriptor *pos) {
 }
 
 // add to the end of list
-void BlockDescriptorList::add(BlockDescriptor &bd) {
+void BlockDescriptorList::push(BlockDescriptor *bd) {
 	if (head == NULL) {
-		head = &bd;
+		head = bd;
+	}
+	else if (head != NULL && tail == NULL) {
+		tail = bd;
+		head->next_bd = tail;
+		tail->prev_bd = head;
 	}
 	else {
-		BlockDescriptor *curr = head;
-		while (curr->next_bd != NULL) {
-			curr = curr->next_bd;
-		}
-		curr->next_bd = &bd;
-		bd.prev_bd = curr;
+		BlockDescriptor * p_curr = tail;
+		p_curr->next_bd = bd;
+		bd->prev_bd = p_curr;
+		tail = bd;
 	}
 }
 
+/*
+void BlockDescriptorList::push(size_t size) {
+	BlockDescriptor bd;
+	bd.block_size = size;
+	BlockDescriptor *p_bd = &bd;
+	if (head == NULL) {
+		head = p_bd;
+	}
+	else if (head != NULL && tail == NULL) {
+		tail = p_bd;
+		head->next_bd = tail;
+		tail->prev_bd = head;
+	}
+	else {
+		tail->next_bd = p_bd;
+		p_bd->prev_bd = tail;
+	}
+}
+*/
 void BlockDescriptorList::print_block_list() {
 	BlockDescriptor *curr = head;
 	while (curr != NULL) {

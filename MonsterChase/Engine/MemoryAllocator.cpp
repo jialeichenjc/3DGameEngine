@@ -34,7 +34,7 @@ void* MemoryAllocator::alloc_mem(size_t req_size) {
 				mem_ptr = curr->block_base_ptr;
 				bd_alloc.block_base_ptr = mem_ptr;
 				// add it to the memory in use block descriptor list
-				mem_in_use.add(bd_alloc);
+				mem_in_use.push(&bd_alloc);
 			}
 
 			// shrink the block size of the current block descriptor
