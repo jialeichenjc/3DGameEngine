@@ -2,6 +2,7 @@
 #include "BlockDescriptor.h"
 #include "BlockDescriptorList.h"
 #include <malloc.h>
+#include <new>
 #define MEMORY_TOTAL 1024*1024
 class MemoryAllocator
 {
@@ -10,10 +11,6 @@ public:
 	void* alloc_mem(size_t req_size);
 	void free_mem(void *mem_ptr);
 	~MemoryAllocator();
-
-	//static const size_t heap_size = 1024 * 1024;
-	//static char heap[1024];
-	// A list of available BlockDescriptors
 
 	void printHeap();
 	

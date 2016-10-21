@@ -1,23 +1,19 @@
 #include "MemoryAllocator.h"
 #include "Debug.h"
+#define HEAP_SIZE 1024 * 256
 
-//static char total_mem[256];
 //static const size_t heap_size = 1024 * 1024;
-//static char heap[1024];
-
+static char *heap = (char*) malloc(HEAP_SIZE);
 MemoryAllocator::MemoryAllocator()
-{
-	// create a list of block descriptors available to describe memory block
-	//bd_idle = BlockDescriptorList(20);
-
-	// grab first item in the free list to describe entire block
-	//BlockDescriptor *total_block = &(bd_idle.pop_head());
-	//total_block->block_size = MEMORY_TOTAL;	
-	//total_block->block_base_ptr = heap;
-	//total_block->offset = 0;
-	
-	// start with a list of free memory of the total block
-	//mem_free = BlockDescriptorList(total_block);
+{	
+	// Allocate a list of block descirptors at the "top" of the heap
+	for (int i = 0; i < 30; i++) {
+		BlockDescriptor *bd = new (heap + i * sizeof(BlockDescriptor)) BlockDescriptor;
+		bd_idle.push(bd);
+	}
+	mem_free.head = &bd_idle.pop_head();
+	mem_free.head->block_base_ptr = &heap[30 * sizeof(BlockDescriptor)];
+	mem_free.head->block_size = HEAP_SIZE - 30 * sizeof(BlockDescriptor);
 	mem_in_use = BlockDescriptorList();
 }
 
@@ -66,7 +62,9 @@ void MemoryAllocator::free_mem(void *mem_ptr) {
 }
 
 void MemoryAllocator::printHeap() {
-	printf("head of heap is %p", heap);
+	printf("head of heap is %p size of heap is %zu\n", heap, sizeof(heap));
+	printf("size of block descriptor %zu\n", sizeof(BlockDescriptor));
+	printf("free block address at %p size is %zu\n", mem_free.head->block_base_ptr, mem_free.head->block_size);
 }
 
 void set_Block_Descriptor_List() {
@@ -75,4 +73,5 @@ void set_Block_Descriptor_List() {
 
 MemoryAllocator::~MemoryAllocator()
 {
+	free(heap);
 }

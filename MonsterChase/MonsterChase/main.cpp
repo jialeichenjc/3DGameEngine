@@ -90,22 +90,12 @@ int main() {
 	//printf("popping head");
 	//test_list.pop_head();
 	MemoryAllocator allocator;
-	//BlockDescriptor free_head = test_list.pop_head();
-	//free_head.block_base_ptr = MemoryAllocator::heap;
-	//allocator.mem_free.push(&free_head);
-	//printList(test_list);
-	//printList(allocator.mem_free);
-	BlockDescriptor bd;
-	BlockDescriptor bd_2;
-	BlockDescriptor bd_3;
-	BlockDescriptor bd_4;
-	BlockDescriptor bd_5;
-	allocator.bd_idle.push(&bd);
-	allocator.bd_idle.push(&bd_2);
-	allocator.bd_idle.push(&bd_3);
-	allocator.bd_idle.push(&bd_4);
-	allocator.bd_idle.push(&bd_5);
-
+	
+	allocator.printHeap();
+	printf("\n---available memory block descriptors in allcator---\n");
+	printList(allocator.bd_idle);
+	printf("\n---free memory in allcator---\n");
+	printList(allocator.mem_free);
 	return 0;
 }
 
