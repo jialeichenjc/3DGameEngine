@@ -1,6 +1,7 @@
 #pragma once
 #include "BlockDescriptor.h"
 #include "BlockDescriptorList.h"
+#include <malloc.h>
 #define MEMORY_TOTAL 1024*1024
 class MemoryAllocator
 {
@@ -10,9 +11,12 @@ public:
 	void free_mem(void *mem_ptr);
 	~MemoryAllocator();
 
+	//static const size_t heap_size = 1024 * 1024;
+	//static char heap[1024];
 	// A list of available BlockDescriptors
-	static const size_t heap_size = 1024 * 1024;
-	static char *heap[heap_size];
+
+	void printHeap();
+	
 	// They aren't currently describing a block of memory but available when new blocks are created
 	BlockDescriptorList bd_idle;
 

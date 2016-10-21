@@ -69,6 +69,7 @@ int main() {
 	printf("Now total number of bytes available is: %d \n", (int)mem_alloc.mem_free.head->block_size);
 	printf("\n");
 	*/
+	/*
 	BlockDescriptorList test_list;
 	BlockDescriptor bd;
 	BlockDescriptor bd_2;
@@ -80,19 +81,31 @@ int main() {
 	test_list.push(&bd_3);
 	test_list.push(&bd_4);
 	test_list.push(&bd_5);
-	printList(test_list);
-<<<<<<< HEAD
-	BlockDescriptor bd_insert;
-	test_list.insert_after(&bd_2, bd_insert);
-	printf("inserting after bd_2\n");
+	*/
+	//printList(test_list);
+
+	//BlockDescriptor bd_insert;
+	//test_list.insert_after(&bd_2, bd_insert);
+	//printf("inserting after bd_2\n");
 	//printf("popping head");
 	//test_list.pop_head();
-=======
+	MemoryAllocator allocator;
+	//BlockDescriptor free_head = test_list.pop_head();
+	//free_head.block_base_ptr = MemoryAllocator::heap;
+	//allocator.mem_free.push(&free_head);
+	//printList(test_list);
+	//printList(allocator.mem_free);
+	BlockDescriptor bd;
+	BlockDescriptor bd_2;
+	BlockDescriptor bd_3;
+	BlockDescriptor bd_4;
+	BlockDescriptor bd_5;
+	allocator.bd_idle.push(&bd);
+	allocator.bd_idle.push(&bd_2);
+	allocator.bd_idle.push(&bd_3);
+	allocator.bd_idle.push(&bd_4);
+	allocator.bd_idle.push(&bd_5);
 
-	printf("popping head");
-	test_list.pop_head();
->>>>>>> 5614267513a73ad7a8f413e461a21eb5ca524adf
-	printList(test_list);
 	return 0;
 }
 
