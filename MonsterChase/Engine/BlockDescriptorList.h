@@ -3,7 +3,7 @@
 #include <stdio.h>
 class BlockDescriptorList
 {
-public:
+public:	
 	BlockDescriptorList();
 	BlockDescriptorList(int num_total_bd);
 	BlockDescriptorList(BlockDescriptor *init_head);
@@ -19,6 +19,7 @@ public:
 
 	BlockDescriptor *head;
 	BlockDescriptor *tail;
+	size_t size;
 	~BlockDescriptorList();
 };
 

@@ -10,18 +10,24 @@ public:
 	MemoryAllocator();
 	void* alloc_mem(size_t req_size);
 	void free_mem(void *mem_ptr);
+	void coalesce_mem(); // acts like a garbage collector
+
 	~MemoryAllocator();
 
 	void printHeap();
 	
 	// They aren't currently describing a block of memory but available when new blocks are created
-	BlockDescriptorList bd_idle;
+	BlockDescriptorList available_bd_list;
 
 	// A list of BLockDescriptors describing blocks of memory available to allocate from
-	BlockDescriptorList mem_free;
+	BlockDescriptorList free_mem_bd_list;
 
 	// A list of BlockDescriptors describing blocks of memory outstanding, in use by the user
-	BlockDescriptorList mem_in_use;
+	BlockDescriptorList in_use_bd_list;
+
+	// a block descriptor for the heap, always points to the first memory address in the heap (after 
+	// the memory allocated to all the block descriptors
+	BlockDescriptor heap_mem_bd; 
 
 private:
 	//put the list of block descriptors at the beginning of the memory blocks.

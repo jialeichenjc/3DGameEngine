@@ -136,6 +136,7 @@
     <ClInclude Include="Debug.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="MemoryAllocator.h" />
+    <ClInclude Include="MemoryAllocatorTest.h" />
     <ClInclude Include="Vector2D.h" />
   </ItemGroup>
   <ItemGroup>
@@ -143,6 +144,7 @@
     <ClCompile Include="BlockDescriptorList.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="MemoryAllocator.cpp" />
+    <ClCompile Include="MemoryAllocatorTest.cpp" />
     <ClCompile Include="Vector2D.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
