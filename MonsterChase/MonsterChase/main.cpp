@@ -74,7 +74,7 @@ int main() {
 	*/
 	
 	MemoryAllocator allocator;
-	
+	srand((unsigned int)time(NULL));
 	printf("\n\n-------------TEST ALLOCATION-------------\n");
 	for (int i = 0; i < 10; i++) {
 		size_t requested_size = rand() % 100 + 1;
