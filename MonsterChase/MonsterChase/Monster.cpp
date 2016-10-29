@@ -10,8 +10,8 @@ Monster::Monster() {
 
 // For Monsters, the initial position is randomly generated
 void Monster::init_pos() {
-	float x = (float)(rand() % 100 + 1);
-	float y = (float)(rand() % 100 + 1);
+	float x = static_cast<float>(rand() % 100 + 1);
+	float y = static_cast<float>(rand() % 100 + 1);
 	set_position(Vector2D(x, y));
 }
 

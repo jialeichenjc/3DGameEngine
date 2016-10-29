@@ -1,9 +1,5 @@
-Assignment 1.02 
+Assignment 1.05 
 Name: Joyce Chen    Email: superbrainchen@gmail.com
-Gameplay remains the same as Assignment1.01
-Use Engine library to create GameObject and represent object's position
-
-Open MonsterChase.sln
-Please ignore the MonsterChase/Debug and MonsterChase/Release
-They are only supporting the builds
-All source fils are included in Engine and MonsterChase
+There is not much to do from Assignment1.04.02
+The project already builds in both 64-bit and 32-bit
+All variable types grow with CPU bit-depth
