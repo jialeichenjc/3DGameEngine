@@ -14,7 +14,6 @@
 
 void printList(BlockDescriptorList);
 int main() {
-	/*
 	srand((unsigned int)time(NULL));
 	int num_monsters;
 	printf("Please enter the number of monsters you'd like to create:\n");
@@ -62,7 +61,7 @@ int main() {
 		printf("\nPress Enter to continue...\n");
 		printf("Or press Q to quit game.\n");
 	}
-	*/
+	
 	/*
 	printf("Allocating Memory...\n");
 	MemoryAllocator mem_alloc;
@@ -71,7 +70,7 @@ int main() {
 	mem_alloc.alloc_mem((size_t)12);
 	printf("Now total number of bytes available is: %d \n", (int)mem_alloc.mem_free.head->block_size);
 	printf("\n");
-	*/
+	
 	
 	MemoryAllocator allocator;
 	srand((unsigned int)time(NULL));
@@ -107,6 +106,7 @@ int main() {
 	//MemoryAllocatorTest allocator_test;
 	//allocator_test.test_mem_alloc(50);
 	//allocator_test.test_free_alloc(50);
+	*/
 	_CrtDumpMemoryLeaks();
 	return 0;
 }

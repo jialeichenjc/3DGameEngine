@@ -8,22 +8,4 @@ void Vector2D::operator =(const Vector2D &vec) {
 	this->y_coord = vec.y();
 }
 
-Vector2D operator +(const Vector2D &lhs, const Vector2D &rhs) {
-	return Vector2D(lhs.x() + rhs.x(), lhs.y() + rhs.y());
-}
 
-bool operator ==(const Vector2D &lhs, const Vector2D &rhs) {
-	return lhs.x() == rhs.x() && lhs.y() == rhs.y();
-}
-
-bool operator !=(const Vector2D &lhs, const Vector2D &rhs) {
-	return lhs.x() != rhs.x() || lhs.y() != rhs.y();
-}
-
-float cross(const Vector2D &lhs, const Vector2D &rhs) {
-	return lhs.x()*rhs.y() - lhs.y()*rhs.x();
-}
-
-float dot(const Vector2D &lhs, const Vector2D &rhs) {
-	return lhs.x() * rhs.x() + lhs.y() * rhs.y();
-}

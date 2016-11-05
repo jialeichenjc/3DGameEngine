@@ -18,3 +18,23 @@ protected:
 private:
 	char *name;
 };
+
+inline void GameObject::set_name(char* name) {
+	this->name = name;
+}
+
+inline char* GameObject::get_name() {
+	return name;
+}
+
+inline Vector2D GameObject::get_position() {
+	return position;
+}
+
+inline void GameObject::set_position(Vector2D vec) {
+	this->position = vec;
+}
+
+inline void GameObject::move_next(Vector2D delta_vec) {
+	position = position + delta_vec;
+}
