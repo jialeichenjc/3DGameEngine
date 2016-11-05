@@ -10,10 +10,14 @@
 #include "Debug.h"
 #include "MemoryAllocator.h"
 #include "MemoryAllocatorTest.h"
+#include "EngineTestSuite.h"
 #include "time.h"
 
 void printList(BlockDescriptorList);
 int main() {
+	printf("Testing Vector 2D class with const paramters\n");
+	EngineTestSuite engine_test;
+	engine_test.testVector2D();
 	srand((unsigned int)time(NULL));
 	int num_monsters;
 	printf("Please enter the number of monsters you'd like to create:\n");

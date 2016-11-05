@@ -25,7 +25,7 @@ Monster* MonsterController::add_monster(Monster *monsters, int& num_monsters) {
 	return new_monsters;
 }
 
-void MonsterController::move_and_print_monsters(Monster *monsters, int& num_monsters) {
+void MonsterController::move_and_print_monsters(Monster *monsters, const int& num_monsters) {
 	for (int i = 0; i < num_monsters; i++) {
 		Vector2D monster_pos = monsters[i].get_position();
 		monsters[i].move();

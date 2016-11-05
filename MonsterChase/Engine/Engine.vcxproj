@@ -134,6 +134,7 @@
     <ClInclude Include="BlockDescriptor.h" />
     <ClInclude Include="BlockDescriptorList.h" />
     <ClInclude Include="Debug.h" />
+    <ClInclude Include="EngineTestSuite.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="MemoryAllocator.h" />
     <ClInclude Include="MemoryAllocatorTest.h" />
@@ -142,6 +143,7 @@
   <ItemGroup>
     <ClCompile Include="BlockDescriptor.cpp" />
     <ClCompile Include="BlockDescriptorList.cpp" />
+    <ClCompile Include="EngineTestSuite.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="MemoryAllocator.cpp" />
     <ClCompile Include="MemoryAllocatorTest.cpp" />

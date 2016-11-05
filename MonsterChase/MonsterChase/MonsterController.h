@@ -8,8 +8,8 @@ public:
 	Monster* add_monster(Monster *monsters, int& num_monsters);
 	bool should_add_monster();
 	void destroy_monster(Monster *monsters, int& num_monsters);
-	bool should_delete_monster(int& num_monsters);
-	void move_and_print_monsters(Monster *monsters, int& num_monsters);
+	bool should_delete_monster(const int& num_monsters);
+	void move_and_print_monsters(Monster *monsters, const int& num_monsters);
 	~MonsterController();
 };
 
@@ -27,7 +27,7 @@ inline void MonsterController::destroy_monster(Monster *monsters, int& num_monst
 	num_monsters--;
 }
 
-inline bool MonsterController::should_delete_monster(int& num_monsters) {
+inline bool MonsterController::should_delete_monster(const int& num_monsters) {
 	int chance = rand() % 8 + 1;
 	if (chance == 4 && num_monsters > 1) {
 		return true;

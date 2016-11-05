@@ -5,7 +5,7 @@ class BlockDescriptorList
 {
 public:	
 	BlockDescriptorList();
-	BlockDescriptorList(int num_total_bd);
+	BlockDescriptorList(const int num_total_bd);
 	BlockDescriptorList(BlockDescriptor *init_head);
 	void insert_after(BlockDescriptor *pos, BlockDescriptor &bd);
 
