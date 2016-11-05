@@ -8,13 +8,13 @@ class MemoryAllocator
 {
 public:
 	MemoryAllocator();
-	void* alloc_mem(size_t req_size);
+	void* alloc_mem(const size_t req_size);
 	void free_mem(void *mem_ptr);
 	void coalesce_mem(); // acts like a garbage collector
 
 	~MemoryAllocator();
 
-	void printHeap();
+	void printHeap() const;
 	
 	// They aren't currently describing a block of memory but available when new blocks are created
 	BlockDescriptorList available_bd_list;
@@ -28,9 +28,5 @@ public:
 	// a block descriptor for the heap, always points to the first memory address in the heap (after 
 	// the memory allocated to all the block descriptors
 	BlockDescriptor heap_mem_bd; 
-
-private:
-	//put the list of block descriptors at the beginning of the memory blocks.
-	void set_Block_Descriptor_List();
 };
 

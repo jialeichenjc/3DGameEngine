@@ -15,7 +15,7 @@ public:
 	void push(BlockDescriptor *bd);
 	//void push(size_t size);
 	BlockDescriptor& pop_head();
-	void print_block_list();
+	void print_block_list() const;
 
 	BlockDescriptor *head;
 	BlockDescriptor *tail;

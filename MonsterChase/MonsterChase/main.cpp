@@ -35,7 +35,7 @@ int main() {
 	scanf_s("%s", player_name, sizeof(player_name));
 	player.set_name(player_name);
 	printf("\nPlayer %s is at position [%.2f, %.2f]\n", player.get_name(), player.get_position().x(), player.get_position().y());
-	monster_controller.print_monsters(monsters, num_monsters);
+	monster_controller.move_and_print_monsters(monsters, num_monsters);
 	printf("Press Enter to continue...\n");
 
 	// Main game loop
@@ -47,7 +47,7 @@ int main() {
 		player.move(input);
 		printf("\nPlayer %s is at position [%.2f, %.2f]\n", player.get_name(), player.get_position().x(), player.get_position().y());
 
-		monster_controller.print_monsters(monsters, num_monsters);
+		monster_controller.move_and_print_monsters(monsters, num_monsters);
 
 		if (monster_controller.should_add_monster()) {
 			printf("A monster has been added to the game...\n");

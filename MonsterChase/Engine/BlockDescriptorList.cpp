@@ -88,7 +88,7 @@ void BlockDescriptorList::push(BlockDescriptor *bd) {
 	size++;
 }
 
-void BlockDescriptorList::print_block_list() {
+void BlockDescriptorList::print_block_list() const {
 	BlockDescriptor *curr = head;
 	while (curr != NULL) {
 		printf("block base pointer is %p size of memory block is %p", curr->block_base_ptr, curr->block_size);

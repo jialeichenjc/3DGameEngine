@@ -21,7 +21,7 @@ MemoryAllocator::MemoryAllocator()
 }
 
 
-void* MemoryAllocator::alloc_mem(size_t req_size) {
+void* MemoryAllocator::alloc_mem(const size_t req_size) {
 	void *mem_ptr = NULL;
 	BlockDescriptor *curr = free_mem_bd_list.head;
 	// go through the block descriptor list for free memory
@@ -113,7 +113,7 @@ void MemoryAllocator::free_mem(void *mem_ptr) {
 }
 
 
-void MemoryAllocator::printHeap() {
+void MemoryAllocator::printHeap() const {
 	printf("\n*****************head of heap is %p size of heap is %zu\n", heap, sizeof(heap));
 	printf("\n*****************heap block descriptor points to %p, heap memory size is %zu\n", heap_mem_bd.block_base_ptr,
 		heap_mem_bd.block_size);
