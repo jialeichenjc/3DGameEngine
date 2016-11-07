@@ -6,6 +6,7 @@
 #endif
 #define HEAP_SIZE 1024 * 1024
 #define TOTAL_NUM_BLOCK_DESCRIPTORS 1000
+#define ALIGNMENT_SIZE 4
 
 //static const size_t heap_size = 1024 * 1024;
 static char *heap = (char*) malloc(HEAP_SIZE);
@@ -26,7 +27,7 @@ MemoryAllocator::MemoryAllocator()
 
 // In Debug build, returns 8 bytes memory more than requested to create 4-byte guardbands on each end
 void* MemoryAllocator::alloc_mem(const size_t req_size) {
-	size_t allocated_size = req_size; // size of the memory to be allocated, equals req_size in non-debug build
+	size_t allocated_size = req_size + (ALIGNMENT_SIZE - req_size % ALIGNMENT_SIZE); // size of the memory to be allocated, equals req_size in non-debug build
 	void *mem_ptr = NULL;
 	BlockDescriptor *curr = free_mem_bd_list.head;
 	if (INCLUDE_GUARDBAND) {

@@ -22,5 +22,7 @@
 							BREAK_IN_DEBUGGER();
 
 #endif
+#define assert(cond, error_str) 
+#define log_error(error_str)
 #endif
 
