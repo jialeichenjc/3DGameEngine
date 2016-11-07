@@ -1,5 +1,9 @@
 #include "MemoryAllocator.h"
 #include "Debug.h"
+#define INCLUDE_GUARDBAND false
+#if defined(_DEBUG)
+#define INCLUDE_GUARDBAND true
+#endif
 #define HEAP_SIZE 1024 * 1024
 #define TOTAL_NUM_BLOCK_DESCRIPTORS 1000
 
@@ -20,20 +24,24 @@ MemoryAllocator::MemoryAllocator()
 	free_mem_bd_list.size = 1;
 }
 
-
+// In Debug build, returns 8 bytes memory more than requested to create 4-byte guardbands on each end
 void* MemoryAllocator::alloc_mem(const size_t req_size) {
+	size_t allocated_size = req_size; // size of the memory to be allocated, equals req_size in non-debug build
 	void *mem_ptr = NULL;
 	BlockDescriptor *curr = free_mem_bd_list.head;
+	if (INCLUDE_GUARDBAND) {
+		allocated_size += 8;
+	}
 	// go through the block descriptor list for free memory
 	// if any memory block has required size, then use that block.
 	while (curr != NULL) {
-		if (curr->block_size >= req_size) {
+		if (curr->block_size >= allocated_size) {
 			// grab a new block descriptor
 			assert(available_bd_list.head != NULL, "ERROR: Not enough block descriptors");
 			if (available_bd_list.head != NULL) {
 				BlockDescriptor &bd_alloc = available_bd_list.pop_head();
 				// have it describe the memeory to be allocated
-				bd_alloc.block_size = req_size;
+				bd_alloc.block_size = allocated_size;
 				// mem_ptr point to the memory block to be allocated
 				mem_ptr = curr->block_base_ptr;
 				bd_alloc.block_base_ptr = mem_ptr;
@@ -43,8 +51,8 @@ void* MemoryAllocator::alloc_mem(const size_t req_size) {
 
 			// shrink the block size of the current block descriptor
 			// also modify the pointer to memeory block
-			curr->block_size = curr->block_size - req_size;
-			curr->block_base_ptr = static_cast<char*>(curr->block_base_ptr) + req_size;
+			curr->block_size = curr->block_size - allocated_size;
+			curr->block_base_ptr = static_cast<char*>(curr->block_base_ptr) + allocated_size;
 
 			// if the block descriptor points to no memory after the allocation, remove it from the free memory list
 			if (curr->block_size == 0) {
@@ -55,6 +63,14 @@ void* MemoryAllocator::alloc_mem(const size_t req_size) {
 		curr = curr->next_bd;
 	}
 
+	// return the pointer 4 bytes into the allocated memory to include guardband at the front
+	if (INCLUDE_GUARDBAND) {
+		// write 4 bytes of special value into the guardbands
+		*static_cast<char*>(mem_ptr) = 0XFFFFFFFF;
+		mem_ptr = static_cast<char*>(mem_ptr) + 4;
+		// write to the other end of the guardband
+		*(static_cast<char*>(mem_ptr) + req_size) = 0XFFFFFFFF;
+	}
 	return mem_ptr;
 }
 
