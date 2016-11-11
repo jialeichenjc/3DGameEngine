@@ -21,8 +21,9 @@
 #define log_error(error_str) DEBUG_PRINT("The following error caused a line break at File %s Line %d", __FILE__, __LINE__);\
 							BREAK_IN_DEBUGGER();
 
-#endif
+#else
 #define assert(cond, error_str) 
 #define log_error(error_str)
+#endif
 #endif
 

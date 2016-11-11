@@ -42,6 +42,9 @@
     <ClInclude Include="EngineTestSuite.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="IGameObjectController.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameObject.cpp">
@@ -63,6 +66,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="EngineTestSuite.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="IGameObjectController.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
