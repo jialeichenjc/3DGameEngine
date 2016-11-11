@@ -1,6 +1,7 @@
 #pragma once
 #include "GameObject.h"
-class Player : public GameObject {
+#include "IGameObjectController.h"
+class Player : public IGameObjectController {
 public:
 	Player();
 	void init_pos() override;
