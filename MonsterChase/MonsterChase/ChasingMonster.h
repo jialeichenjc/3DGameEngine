@@ -1,9 +1,10 @@
 #pragma once
 #include "GameObject.h"
 #include "IGameObjectController.h"
-class Player : public IGameObjectController {
+class ChasingMonster : public IGameObjectController {
 public:
-	Player();
+	ChasingMonster(); // create a new monster with a random initial position
+	void init_pos() override;
 	void set_game_object(GameObject *object) override {
 		game_object = object;
 	}
@@ -23,11 +24,11 @@ public:
 	void set_position(const Vector2D &vec) override {
 		game_object->set_position(vec);
 	}
-	void init_pos() override;
-	void move_from_user_input(int input);
-	~Player();
+
+	void move_chasing(const Vector2D &target_pos);
+
+	~ChasingMonster();
 
 private:
 	GameObject *game_object;
 };
-

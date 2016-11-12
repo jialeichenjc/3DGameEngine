@@ -9,9 +9,7 @@ public:
 	Vector2D get_position() const;
 	void set_position(const Vector2D &vec);
 	void move_next(const Vector2D &delta_vec); // move game object by delta_x and delta_y
-	~GameObject();
-	//virtual void init_pos(); // set the initial posiion for the character
-	//virtual void move();
+	~GameObject() {};
 
 protected:
 	Vector2D position; // a 2D vector representing the position {x_coord, y_coord}
