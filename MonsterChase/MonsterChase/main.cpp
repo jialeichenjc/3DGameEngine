@@ -18,7 +18,7 @@ int main() {
 	//printf("Testing Vector 2D class with const paramters\n");
 	//EngineTestSuite engine_test;
 	//engine_test.testVector2D();
-	
+	_CrtDumpMemoryLeaks();
 	srand((unsigned int)time(NULL));
 	int num_monsters;
 	printf("Please enter the number of monsters you'd like to create:\n");
@@ -110,7 +110,8 @@ int main() {
 	//allocator_test.test_mem_alloc(50);
 	//allocator_test.test_free_alloc(50);
 	*/
-	_CrtDumpMemoryLeaks();
+	//_CrtDumpMemoryLeaks();
+	delete[] monsters;
 	return 0;
 }
 

@@ -94,6 +94,7 @@ void BlockDescriptorList::print_block_list() const {
 		printf("block base pointer is %p size of memory block is %p", curr->block_base_ptr, curr->block_size);
 		curr = curr->next_bd;
 	}
+	printf("size of block list is %zu", size);
 }
 
 BlockDescriptorList::~BlockDescriptorList()
