@@ -15,9 +15,11 @@
 
 void printList(BlockDescriptorList);
 int main() {
+	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 	printf("Testing Vector 2D class with const paramters\n");
 	EngineTestSuite engine_test;
 	engine_test.testVector2D();
+	
 	/*
 	srand((unsigned int)time(NULL));
 	int num_monsters;
@@ -102,7 +104,9 @@ int main() {
 	//MemoryAllocatorTest allocator_test;
 	//allocator_test.test_mem_alloc(50);
 	//allocator_test.test_free_alloc(50);
-	_CrtDumpMemoryLeaks();
+	
+	//delete[] monsters;
+	//_CrtDumpMemoryLeaks();
 	return 0;
 }
 
