@@ -16,9 +16,11 @@
 void printList(BlockDescriptorList);
 int main() {
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+	/*
 	printf("Testing Vector 2D class with const paramters\n");
 	EngineTestSuite engine_test;
 	engine_test.testVector2D();
+	*/
 	
 	/*
 	srand((unsigned int)time(NULL));
@@ -75,8 +77,9 @@ int main() {
 		printf("\nPress Enter to continue...\n");
 		printf("Or press Q to quit game.\n");
 	}
-	
-	/*
+	delete[] monsters;
+	*/
+
 	MemoryAllocator allocator;
 	srand((unsigned int)time(NULL));
 	printf("\n\n-------------TEST ALLOCATION-------------\n");
@@ -111,8 +114,8 @@ int main() {
 	//MemoryAllocatorTest allocator_test;
 	//allocator_test.test_mem_alloc(50);
 	//allocator_test.test_free_alloc(50);
-	delete[] monsters;
-	*/
+	
+	
 	return 0;
 }
 

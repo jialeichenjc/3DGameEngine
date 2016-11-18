@@ -125,7 +125,7 @@ void MemoryAllocator::free_mem(void *mem_ptr) {
 		}
 	}
 	// Could not find pointer to be freed. Log an error
-	log_error("Pointer to be freed does not exist");
+	//log_error("Pointer to be freed does not exist");
 	//return;
 }
 
