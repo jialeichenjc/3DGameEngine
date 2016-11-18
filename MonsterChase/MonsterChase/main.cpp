@@ -125,5 +125,6 @@ void printList(BlockDescriptorList list) {
 				curr->block_size, curr->block_base_ptr);
 			curr = curr->next_bd;
 		}
+		printf("size of block list is %zu", list.size);
 	}
 }
