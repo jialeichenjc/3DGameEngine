@@ -15,10 +15,12 @@
 
 void printList(BlockDescriptorList);
 int main() {
-	//printf("Testing Vector 2D class with const paramters\n");
-	//EngineTestSuite engine_test;
-	//engine_test.testVector2D();
-	_CrtDumpMemoryLeaks();
+	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+	printf("Testing Vector 2D class with const paramters\n");
+	EngineTestSuite engine_test;
+	engine_test.testVector2D();
+	
+	/*
 	srand((unsigned int)time(NULL));
 	int num_monsters;
 	printf("Please enter the number of monsters you'd like to create:\n");
@@ -109,9 +111,8 @@ int main() {
 	//MemoryAllocatorTest allocator_test;
 	//allocator_test.test_mem_alloc(50);
 	//allocator_test.test_free_alloc(50);
-	*/
-	//_CrtDumpMemoryLeaks();
 	delete[] monsters;
+	*/
 	return 0;
 }
 
