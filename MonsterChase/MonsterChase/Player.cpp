@@ -4,6 +4,7 @@
 
 Player::Player()
 {
+	game_object = new GameObject();
 	//init_pos();
 }
 
@@ -33,4 +34,5 @@ void Player::move_from_user_input(int input) {
 }
 
 Player::~Player() {
+	delete(game_object);
 }

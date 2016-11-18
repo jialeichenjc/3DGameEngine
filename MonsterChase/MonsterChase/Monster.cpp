@@ -5,6 +5,7 @@
 
 
 Monster::Monster() {
+	game_object = new GameObject();
 	//init_pos();
 }
 
@@ -38,4 +39,5 @@ void Monster::move_random() {
 
 
 Monster::~Monster() {
+	delete(game_object);
 }

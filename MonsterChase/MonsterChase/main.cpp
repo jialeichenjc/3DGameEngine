@@ -19,7 +19,7 @@ int main() {
 	printf("Testing Vector 2D class with const paramters\n");
 	EngineTestSuite engine_test;
 	engine_test.testVector2D();	
-	/*
+	
 	srand((unsigned int)time(NULL));
 	int num_monsters;
 	printf("Please enter the number of monsters you'd like to create:\n");
@@ -29,25 +29,25 @@ int main() {
 
 	Monster *monsters = new Monster[num_monsters];
 	for (int i = 0; i < num_monsters; i++) {
-		Monster monster;
-		GameObject monster_object;
-		monster.set_game_object(&monster_object);
-		monster.init_pos();
+		Monster* monster = new Monster();
+		//GameObject* monster_object = new GameObject();
+		//monster->set_game_object(monster_object);
+		monster->init_pos();
 		char *monster_name = new char[30];
 		printf("Please enter your name for monster number %d: ", i);
 		scanf_s("%s", monster_name, sizeof(monster_name));
-		monster.set_name(monster_name);
-		monsters[i] = monster;
+		monster->set_name(monster_name);
+		monsters[i] = *monster;
 	}
-	Player player;
-	GameObject player_object;
-	player.set_game_object(&player_object);
-	player.init_pos();
+	Player *player = new Player();
+	//GameObject player_object;
+	//player.set_game_object(&player_object);
+	player->init_pos();
 	char player_name[30];
 	printf("Please enter your name for the player: ");
 	scanf_s("%s", player_name, sizeof(player_name));
-	player.set_name(player_name);
-	printf("\nPlayer %s is at position [%.2f, %.2f]\n", player.get_name(), player.get_position().x(), player.get_position().y());
+	player->set_name(player_name);
+	printf("\nPlayer %s is at position [%.2f, %.2f]\n", player->get_name(), player->get_position().x(), player->get_position().y());
 	monster_controller.move_and_print_monsters(monsters, num_monsters);
 	printf("Press Enter to continue...\n");
 
@@ -57,8 +57,8 @@ int main() {
 		printf("Move your player. Left: A, Right: D, Up: W, Down: S\n");
 		input = toupper(_getch());
 		assert((input == 'A' || input == 'W' || input == 'S' || input == 'D'), "Invalid input");
-		player.move_from_user_input(input);
-		printf("\nPlayer %s is at position [%.2f, %.2f]\n", player.get_name(), player.get_position().x(), player.get_position().y());
+		player->move_from_user_input(input);
+		printf("\nPlayer %s is at position [%.2f, %.2f]\n", player->get_name(), player->get_position().x(), player->get_position().y());
 
 		monster_controller.move_and_print_monsters(monsters, num_monsters);
 
@@ -75,8 +75,8 @@ int main() {
 		printf("Or press Q to quit game.\n");
 	}
 	delete[] monsters;
-	*/
-
+	
+	/*
 	MemoryAllocator allocator;
 	srand((unsigned int)time(NULL));
 	printf("\n\n-------------TEST ALLOCATION-------------\n");
@@ -111,6 +111,7 @@ int main() {
 	//MemoryAllocatorTest allocator_test;
 	//allocator_test.test_mem_alloc(50);
 	//allocator_test.test_free_alloc(50);
+	*/
 	return 0;
 }
 
