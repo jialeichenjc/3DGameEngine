@@ -14,7 +14,7 @@ MemoryAllocator::MemoryAllocator()
 {	
 	// Allocate a list of block descirptors at the "top" of the heap
 	for (int i = 0; i < TOTAL_NUM_BLOCK_DESCRIPTORS; i++) {
-		BlockDescriptor *bd = new (heap + i * sizeof(BlockDescriptor)) BlockDescriptor;
+		BlockDescriptor *bd = new (heap + i * sizeof(BlockDescriptor)) BlockDescriptor();
 		available_bd_list.push(bd);
 	}
 	heap_mem_bd.block_base_ptr = &heap[TOTAL_NUM_BLOCK_DESCRIPTORS * sizeof(BlockDescriptor)];

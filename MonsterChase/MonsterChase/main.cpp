@@ -19,7 +19,7 @@ int main() {
 	printf("Testing Vector 2D class with const paramters\n");
 	EngineTestSuite engine_test;
 	engine_test.testVector2D();	
-	
+	/*
 	srand((unsigned int)time(NULL));
 	int num_monsters;
 	printf("Please enter the number of monsters you'd like to create:\n");
@@ -75,21 +75,23 @@ int main() {
 		printf("Or press Q to quit game.\n");
 	}
 	delete[] monsters;
+	*/
 	
-	/*
 	MemoryAllocator allocator;
 	srand((unsigned int)time(NULL));
 	printf("\n\n-------------TEST ALLOCATION-------------\n");
-	for (int i = 0; i < 10; i++) {
+	for (int i = 0; i < 200; i++) {
 		size_t requested_size = rand() % 100 + 1;
 		printf("\nallocating %zu bytes of memory\n", requested_size);
 		allocator.alloc_mem(requested_size);
 	}
+
 	printf("\n\n>>>>>>memory in use\n");
 	printList(allocator.in_use_bd_list);
 	printf("\n\n>>>>>>free memory in allocator\n");
 	printList(allocator.free_mem_bd_list);
 
+	/*
 	printf("\n\n-------------TEST FREE-------------\n");
 	for (int i = 0; i < 5; i++) {
 		size_t requested_size = rand() % 100 + 1;
@@ -108,10 +110,11 @@ int main() {
 	printf("\n\n>>>>>>free memory in allocator\n");
 	printList(allocator.free_mem_bd_list);
 
+	*/
 	//MemoryAllocatorTest allocator_test;
 	//allocator_test.test_mem_alloc(50);
 	//allocator_test.test_free_alloc(50);
-	*/
+	
 	return 0;
 }
 
