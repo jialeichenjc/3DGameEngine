@@ -20,12 +20,15 @@ int main() {
 	EngineTestSuite engine_test;
 	engine_test.testVector2D();	
 	
+	/*
 	srand((unsigned int)time(NULL));
 	int num_monsters;
 	printf("Please enter the number of monsters you'd like to create:\n");
 	scanf_s("%d", &num_monsters);
 	assert(num_monsters > 0, "Invalid number of monsters");
 	MonsterController monster_controller;
+	//GameObject::create_mem_allocator(4);
+	GameObject *test_object = new GameObject();
 
 	Monster *monsters = new Monster[num_monsters];
 	for (int i = 0; i < num_monsters; i++) {
@@ -39,6 +42,7 @@ int main() {
 		monster->set_name(monster_name);
 		monsters[i] = *monster;
 	}
+
 	Player *player = new Player();
 	//GameObject player_object;
 	//player.set_game_object(&player_object);
@@ -75,11 +79,9 @@ int main() {
 		printf("Or press Q to quit game.\n");
 	}
 	delete[] monsters;
+	*/
 	
-	
-	/*
-
-	MemoryAllocator allocator;
+	MemoryAllocator allocator(8);
 	srand((unsigned int)time(NULL));
 	printf("\n\n-------------TEST ALLOCATION-------------\n");
 	for (int i = 0; i < 200; i++) {
@@ -110,8 +112,6 @@ int main() {
 	printList(allocator.in_use_bd_list);
 	printf("\n\n>>>>>>free memory in allocator\n");
 	printList(allocator.free_mem_bd_list);
-
-	*/
 	//MemoryAllocatorTest allocator_test;
 	//allocator_test.test_mem_alloc(50);
 	//allocator_test.test_free_alloc(50);
