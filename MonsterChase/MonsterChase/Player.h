@@ -1,6 +1,8 @@
 #pragma once
 #include "GameObject.h"
 #include "IGameObjectController.h"
+#include "MemoryAllocator.h"
+#include "Debug.h"
 class Player : public IGameObjectController {
 public:
 	Player();
@@ -23,6 +25,7 @@ public:
 	void set_position(const Vector2D &vec) override {
 		game_object->set_position(vec);
 	}
+
 	void init_pos() override;
 	void move_from_user_input(int input);
 	~Player();
@@ -30,4 +33,3 @@ public:
 private:
 	GameObject *game_object;
 };
-

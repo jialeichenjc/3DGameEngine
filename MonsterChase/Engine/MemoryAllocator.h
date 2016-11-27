@@ -8,6 +8,8 @@ class MemoryAllocator
 {
 public:
 	MemoryAllocator();
+	MemoryAllocator(size_t alignment_size);
+	void init();
 	void* alloc_mem(const size_t req_size);
 	void free_mem(void *mem_ptr);
 	void coalesce_mem(); // acts like a garbage collector
@@ -28,5 +30,8 @@ public:
 	// a block descriptor for the heap, always points to the first memory address in the heap (after 
 	// the memory allocated to all the block descriptors
 	BlockDescriptor heap_mem_bd; 
+
+private:
+	size_t mem_alignment;
 };
 

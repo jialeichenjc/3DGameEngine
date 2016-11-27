@@ -20,6 +20,7 @@ int main() {
 	EngineTestSuite engine_test;
 	engine_test.testVector2D();	
 	
+	/*
 	srand((unsigned int)time(NULL));
 	int num_monsters;
 	printf("Please enter the number of monsters you'd like to create:\n");
@@ -76,10 +77,9 @@ int main() {
 	}
 	delete[] monsters;
 	
+	*/
 	
-	/*
-
-	MemoryAllocator allocator;
+	MemoryAllocator allocator(8);
 	srand((unsigned int)time(NULL));
 	printf("\n\n-------------TEST ALLOCATION-------------\n");
 	for (int i = 0; i < 200; i++) {
@@ -110,8 +110,6 @@ int main() {
 	printList(allocator.in_use_bd_list);
 	printf("\n\n>>>>>>free memory in allocator\n");
 	printList(allocator.free_mem_bd_list);
-
-	*/
 	//MemoryAllocatorTest allocator_test;
 	//allocator_test.test_mem_alloc(50);
 	//allocator_test.test_free_alloc(50);
