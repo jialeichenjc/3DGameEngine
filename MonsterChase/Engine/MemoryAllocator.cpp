@@ -32,6 +32,19 @@ void MemoryAllocator::init() {
 	free_mem_bd_list.size = 1;
 }
 
+void MemoryAllocator::operator=(const MemoryAllocator& mem_allocator) {
+	//self-assignment
+	if (&mem_allocator == this) {
+		return;
+	}
+	else {
+		this->available_bd_list = mem_allocator.available_bd_list;
+		this->free_mem_bd_list = mem_allocator.free_mem_bd_list;
+		this->in_use_bd_list = mem_allocator.in_use_bd_list;
+		this->heap_mem_bd = mem_allocator.heap_mem_bd;
+	}
+}
+
 // In Debug build, returns 8 bytes memory more than requested to create 4-byte guardbands on each end
 void* MemoryAllocator::alloc_mem(const size_t req_size) {
 	size_t allocated_size = req_size + (mem_alignment - req_size % mem_alignment); // size of the memory to be allocated, equals req_size in non-debug build

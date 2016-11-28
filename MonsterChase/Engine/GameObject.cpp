@@ -11,10 +11,11 @@ inline void GameObject::create_mem_allocator(size_t alignment) {
 	}
 }
 
+/*
 void* GameObject::operator new(const size_t size) {
+	MemoryAllocator allocator(4);
 	if (p_mem_allocator == NULL) {
 		// TODO: fix this...magic number 4
-		MemoryAllocator allocator(4);
 		p_mem_allocator = &allocator;
 	}
 	void *p_mem = p_mem_allocator->alloc_mem(size);
@@ -39,3 +40,4 @@ void GameObject::operator delete(void *ptr) {
 void GameObject::operator delete[](void *ptr) {
 	p_mem_allocator->free_mem(ptr);
 }
+*/

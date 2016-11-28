@@ -16,10 +16,11 @@
 void printList(BlockDescriptorList);
 int main() {
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+	/*
 	printf("Testing Vector 2D class with const paramters\n");
 	EngineTestSuite engine_test;
 	engine_test.testVector2D();	
-	
+	*/
 	/*
 	srand((unsigned int)time(NULL));
 	int num_monsters;
@@ -80,6 +81,7 @@ int main() {
 	}
 	delete[] monsters;
 	*/
+	GameObject *test_object = new GameObject();
 	
 	MemoryAllocator allocator(8);
 	srand((unsigned int)time(NULL));
