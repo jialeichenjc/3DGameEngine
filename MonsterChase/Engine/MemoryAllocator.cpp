@@ -7,6 +7,8 @@
 #define HEAP_SIZE 1024 * 1024
 #define TOTAL_NUM_BLOCK_DESCRIPTORS 1000
 #define DEFAULT_ALIGNMENT_SIZE 4
+#define GUARD_BAND_SIZE 4
+#define GUARD_BAND_VALUE 0XFFFFFFFF
 
 //static const size_t heap_size = 1024 * 1024;
 static char *heap = (char*) malloc(HEAP_SIZE);
@@ -30,6 +32,19 @@ void MemoryAllocator::init() {
 	free_mem_bd_list.head->block_base_ptr = heap_mem_bd.block_base_ptr;
 	free_mem_bd_list.head->block_size = HEAP_SIZE - TOTAL_NUM_BLOCK_DESCRIPTORS * sizeof(BlockDescriptor);
 	free_mem_bd_list.size = 1;
+}
+
+void MemoryAllocator::operator=(const MemoryAllocator& mem_allocator) {
+	//self-assignment
+	if (&mem_allocator == this) {
+		return;
+	}
+	else {
+		this->available_bd_list = mem_allocator.available_bd_list;
+		this->free_mem_bd_list = mem_allocator.free_mem_bd_list;
+		this->in_use_bd_list = mem_allocator.in_use_bd_list;
+		this->heap_mem_bd = mem_allocator.heap_mem_bd;
+	}
 }
 
 // In Debug build, returns 8 bytes memory more than requested to create 4-byte guardbands on each end
@@ -73,11 +88,11 @@ void* MemoryAllocator::alloc_mem(const size_t req_size) {
 
 	// return the pointer 4 bytes into the allocated memory to include guardband at the front
 	if (INCLUDE_GUARDBAND) {
-		// write 4 bytes of special value into the guardbands
-		*static_cast<char*>(mem_ptr) = 0XFFFFFFFF;
-		mem_ptr = static_cast<char*>(mem_ptr) + 4;
+		// write bytes of special value into the guardbands
+		*static_cast<char*>(mem_ptr) = GUARD_BAND_VALUE;
+		mem_ptr = static_cast<char*>(mem_ptr) + GUARD_BAND_SIZE;
 		// write to the other end of the guardband
-		*(static_cast<char*>(mem_ptr) + req_size) = 0XFFFFFFFF;
+		*(static_cast<char*>(mem_ptr) + req_size) = GUARD_BAND_VALUE;
 	}
 	return mem_ptr;
 }

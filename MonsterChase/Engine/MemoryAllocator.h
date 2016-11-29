@@ -13,7 +13,7 @@ public:
 	void* alloc_mem(const size_t req_size);
 	void free_mem(void *mem_ptr);
 	void coalesce_mem(); // acts like a garbage collector
-
+	void operator=(const MemoryAllocator& mem_allocator);
 	~MemoryAllocator();
 
 	void printHeap() const;
