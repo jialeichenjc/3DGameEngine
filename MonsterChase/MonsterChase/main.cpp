@@ -21,7 +21,7 @@ int main() {
 	EngineTestSuite engine_test;
 	engine_test.testVector2D();	
 	*/
-	/*
+	
 	srand((unsigned int)time(NULL));
 	int num_monsters;
 	printf("Please enter the number of monsters you'd like to create:\n");
@@ -40,6 +40,7 @@ int main() {
 		char *monster_name = new char[30];
 		printf("Please enter your name for monster number %d: ", i);
 		scanf_s("%s", monster_name, sizeof(monster_name));
+		assert(sizeof(monster_name) <= 30, "Your name is too long. Please choose another name.");
 		monster->set_name(monster_name);
 		monsters[i] = *monster;
 	}
@@ -51,6 +52,7 @@ int main() {
 	char player_name[30];
 	printf("Please enter your name for the player: ");
 	scanf_s("%s", player_name, sizeof(player_name));
+	assert(sizeof(player_name) <= 30, "Your name is too long. Please choose another name.");
 	player->set_name(player_name);
 	printf("\nPlayer %s is at position [%.2f, %.2f]\n", player->get_name(), player->get_position().x(), player->get_position().y());
 	monster_controller.move_and_print_monsters(monsters, num_monsters);
@@ -80,9 +82,8 @@ int main() {
 		printf("Or press Q to quit game.\n");
 	}
 	delete[] monsters;
-	*/
-	GameObject *test_object = new GameObject();
-	
+
+	/*
 	MemoryAllocator allocator(8);
 	srand((unsigned int)time(NULL));
 	printf("\n\n-------------TEST ALLOCATION-------------\n");
@@ -117,7 +118,7 @@ int main() {
 	//MemoryAllocatorTest allocator_test;
 	//allocator_test.test_mem_alloc(50);
 	//allocator_test.test_free_alloc(50);
-	
+	*/
 	return 0;
 }
 

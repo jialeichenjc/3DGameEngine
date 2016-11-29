@@ -7,6 +7,8 @@
 #define HEAP_SIZE 1024 * 1024
 #define TOTAL_NUM_BLOCK_DESCRIPTORS 1000
 #define DEFAULT_ALIGNMENT_SIZE 4
+#define GUARD_BAND_SIZE 4
+#define GUARD_BAND_VALUE 0XFFFFFFFF
 
 //static const size_t heap_size = 1024 * 1024;
 static char *heap = (char*) malloc(HEAP_SIZE);
@@ -86,11 +88,11 @@ void* MemoryAllocator::alloc_mem(const size_t req_size) {
 
 	// return the pointer 4 bytes into the allocated memory to include guardband at the front
 	if (INCLUDE_GUARDBAND) {
-		// write 4 bytes of special value into the guardbands
-		*static_cast<char*>(mem_ptr) = 0XFFFFFFFF;
-		mem_ptr = static_cast<char*>(mem_ptr) + 4;
+		// write bytes of special value into the guardbands
+		*static_cast<char*>(mem_ptr) = GUARD_BAND_VALUE;
+		mem_ptr = static_cast<char*>(mem_ptr) + GUARD_BAND_SIZE;
 		// write to the other end of the guardband
-		*(static_cast<char*>(mem_ptr) + req_size) = 0XFFFFFFFF;
+		*(static_cast<char*>(mem_ptr) + req_size) = GUARD_BAND_VALUE;
 	}
 	return mem_ptr;
 }
