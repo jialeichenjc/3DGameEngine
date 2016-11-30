@@ -99,9 +99,4 @@ void BlockDescriptorList::print_block_list() const {
 
 BlockDescriptorList::~BlockDescriptorList()
 {
-	/*
-	for (int i = 0; i < size; i++) {
-		delete &(this->pop_head());
-	}
-	*/
 }
