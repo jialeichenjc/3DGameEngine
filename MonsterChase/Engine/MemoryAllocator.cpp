@@ -12,6 +12,7 @@
 
 //static const size_t heap_size = 1024 * 1024;
 static char *heap = (char*) malloc(HEAP_SIZE);
+MemoryAllocator* MemoryAllocator::p_instance = nullptr;
 MemoryAllocator::MemoryAllocator() : mem_alignment(DEFAULT_ALIGNMENT_SIZE){	
 	init();
 }
@@ -19,6 +20,13 @@ MemoryAllocator::MemoryAllocator() : mem_alignment(DEFAULT_ALIGNMENT_SIZE){
 MemoryAllocator::MemoryAllocator(size_t alignment_size) : mem_alignment(alignment_size) {
 	// Allocate a list of block descirptors at the "top" of the heap
 	init();
+}
+
+MemoryAllocator* MemoryAllocator::get_instance() {
+	if (p_instance == nullptr) {
+		p_instance = new MemoryAllocator(DEFAULT_ALIGNMENT_SIZE);
+	}
+	return p_instance;
 }
 
 void MemoryAllocator::init() {

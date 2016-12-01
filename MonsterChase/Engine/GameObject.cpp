@@ -6,8 +6,8 @@ GameObject::GameObject() : position(0.0, 0.0) {
 
 inline void GameObject::create_mem_allocator(size_t alignment) {
 	if (p_mem_allocator == NULL) {
-		MemoryAllocator allocator(alignment);
-		p_mem_allocator = &allocator;
+		MemoryAllocator* allocator = MemoryAllocator::get_instance();
+		p_mem_allocator = allocator;
 	}
 }
 

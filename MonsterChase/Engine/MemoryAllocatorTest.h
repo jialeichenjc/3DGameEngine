@@ -7,7 +7,6 @@ public:
 	void test_mem_alloc(int num_allocation);
 	void test_free_alloc(int num_free);
 
-	MemoryAllocator allocator;
 	MemoryAllocatorTest();
 	~MemoryAllocatorTest();
 };
