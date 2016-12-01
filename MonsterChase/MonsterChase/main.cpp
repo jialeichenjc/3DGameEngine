@@ -12,6 +12,7 @@
 #include "MemoryAllocatorTest.h"
 #include "EngineTestSuite.h"
 #include "time.h"
+#include "Utility.h"
 
 void printList(BlockDescriptorList);
 int main() {
@@ -85,6 +86,7 @@ int main() {
 	delete[] monsters;
 
 	*/
+	GameObject test_game_object;
 	MemoryAllocator* allocator = MemoryAllocator::get_instance();
 	srand((unsigned int)time(NULL));
 	printf("\n\n-------------TEST ALLOCATION-------------\n");
