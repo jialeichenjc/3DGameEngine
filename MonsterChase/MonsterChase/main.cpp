@@ -20,7 +20,7 @@ int main() {
 	printf("Testing Vector 2D class with const paramters\n");
 	EngineTestSuite engine_test;
 	engine_test.testVector2D();	
-	*/
+
 	
 	srand((unsigned int)time(NULL));
 	int num_monsters;
@@ -83,11 +83,11 @@ int main() {
 	}
 	delete[] monsters;
 
-	/*
+	*/
 	MemoryAllocator allocator(8);
 	srand((unsigned int)time(NULL));
 	printf("\n\n-------------TEST ALLOCATION-------------\n");
-	for (int i = 0; i < 200; i++) {
+	for (int i = 0; i < 1000; i++) {
 	size_t requested_size = rand() % 100 + 1;
 	printf("\nallocating %zu bytes of memory\n", requested_size);
 	allocator.alloc_mem(requested_size);
@@ -99,7 +99,7 @@ int main() {
 	printList(allocator.free_mem_bd_list);
 
 	printf("\n\n-------------TEST FREE-------------\n");
-	for (int i = 0; i < 5; i++) {
+	for (int i = 0; i < 100; i++) {
 		size_t requested_size = rand() % 100 + 1;
 		char *test_ptr = static_cast<char*> (allocator.alloc_mem(requested_size));
 		allocator.free_mem(test_ptr);
@@ -118,7 +118,7 @@ int main() {
 	//MemoryAllocatorTest allocator_test;
 	//allocator_test.test_mem_alloc(50);
 	//allocator_test.test_free_alloc(50);
-	*/
+	
 	return 0;
 }
 
