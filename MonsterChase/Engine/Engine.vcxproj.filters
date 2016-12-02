@@ -45,7 +45,11 @@
     <ClInclude Include="IGameObjectController.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+<<<<<<< HEAD
     <ClInclude Include="Allocators.h">
+=======
+    <ClInclude Include="Utility.h">
+>>>>>>> origin/dev
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -71,7 +75,11 @@
     <ClCompile Include="EngineTestSuite.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+<<<<<<< HEAD
     <ClCompile Include="Allocators.cpp">
+=======
+    <ClCompile Include="Utility.cpp">
+>>>>>>> origin/dev
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
