@@ -12,6 +12,7 @@
 #include "MemoryAllocatorTest.h"
 #include "EngineTestSuite.h"
 #include "time.h"
+#include "Utility.h"
 
 void printList(BlockDescriptorList);
 int main() {
@@ -84,40 +85,38 @@ int main() {
 	}
 	delete[] monsters;
 	*/
-
-	//TODO: Fix this magic number
-	MemoryAllocator allocator(8);
-
+	GameObject test_game_object;
+	MemoryAllocator* allocator = MemoryAllocator::get_instance();
 	srand((unsigned int)time(NULL));
 	printf("\n\n-------------TEST ALLOCATION-------------\n");
 	for (int i = 0; i < 200; i++) {
 	size_t requested_size = rand() % 100 + 1;
 	printf("\nallocating %zu bytes of memory\n", requested_size);
-	allocator.alloc_mem(requested_size);
+	allocator->alloc_mem(requested_size);
 	}
 
 	printf("\n\n>>>>>>memory in use\n");
-	printList(allocator.in_use_bd_list);
+	printList(allocator->in_use_bd_list);
 	printf("\n\n>>>>>>free memory in allocator\n");
-	printList(allocator.free_mem_bd_list);
+	printList(allocator->free_mem_bd_list);
 
 	printf("\n\n-------------TEST FREE-------------\n");
 	for (int i = 0; i < 5; i++) {
 		size_t requested_size = rand() % 100 + 1;
-		char *test_ptr = static_cast<char*> (allocator.alloc_mem(requested_size));
-		allocator.free_mem(test_ptr);
+		char *test_ptr = static_cast<char*> (allocator->alloc_mem(requested_size));
+		allocator->free_mem(test_ptr);
 	}
 	printf("\n\n>>>>>>memory in use:\n");
-	printList(allocator.in_use_bd_list);
+	printList(allocator->in_use_bd_list);
 	printf("\n\n>>>>>>free memory in allocator\n");
-	printList(allocator.free_mem_bd_list);
+	printList(allocator->free_mem_bd_list);
 	
 	printf("\n\n-------------TEST COALESCE-------------\n");
-	allocator.coalesce_mem();
+	allocator->coalesce_mem();
 	printf("\n\n>>>>>>memory in use:\n");
-	printList(allocator.in_use_bd_list);
+	printList(allocator->in_use_bd_list);
 	printf("\n\n>>>>>>free memory in allocator\n");
-	printList(allocator.free_mem_bd_list);
+	printList(allocator->free_mem_bd_list);
 	//MemoryAllocatorTest allocator_test;
 	//allocator_test.test_mem_alloc(50);
 	//allocator_test.test_free_alloc(50);

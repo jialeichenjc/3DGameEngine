@@ -1,7 +1,6 @@
 #pragma once
 #include "GameObject.h"
 #include "IGameObjectController.h"
-#include "Allocators.h"
 class Monster : public IGameObjectController {
 public:
 	Monster(); // create a new monster with a random initial position
