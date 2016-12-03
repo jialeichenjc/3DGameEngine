@@ -13,13 +13,6 @@ MonsterController::MonsterController()
 }
 
 void MonsterController::add_monster(std::vector<Monster*> &monsters, int& num_monsters) const {
-	/*
-	Monster *new_monsters = new Monster[++num_monsters];
-
-	for (int i = 0; i < num_monsters - 1; i++) {
-		new_monsters[i] = monsters[i]; // pointer copy
-	}
-	*/
 	Monster *added_monster = new Monster();
 	added_monster->set_name("Machine Added");
 	monsters.push_back(added_monster);
