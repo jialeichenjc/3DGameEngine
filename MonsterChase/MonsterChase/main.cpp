@@ -4,6 +4,7 @@
 #include <conio.h>
 #include <ctype.h>
 #include <crtdbg.h>
+#include <vector>
 #include "Monster.h"
 #include "Player.h"
 #include "MonsterController.h"
@@ -23,28 +24,24 @@ int main() {
 	engine_test.testVector2D();	
 	*/
 	
-	/*
 	srand((unsigned int)time(NULL));
 	int num_monsters;
 	printf("Please enter the number of monsters you'd like to create:\n");
 	scanf_s("%d", &num_monsters);
 	assert(num_monsters > 0, "Invalid number of monsters");
 	MonsterController monster_controller;
-	//GameObject::create_mem_allocator(4);
-	GameObject *test_object = new GameObject();
 
-	Monster *monsters = new Monster[num_monsters];
+	//Monster *monsters = new Monster[num_monsters];
+	std::vector<Monster> monsters;
 	for (int i = 0; i < num_monsters; i++) {
-		Monster* monster = new Monster();
-		//GameObject* monster_object = new GameObject();
-		//monster->set_game_object(monster_object);
+		Monster *monster = new Monster();
 		monster->init_pos();
 		char *monster_name = new char[30];
 		printf("Please enter your name for monster number %d: ", i);
 		scanf_s("%s", monster_name, sizeof(monster_name));
 		assert(sizeof(monster_name) <= 30, "Your name is too long. Please choose another name.");
 		monster->set_name(monster_name);
-		monsters[i] = *monster;
+		monsters.push_back(*monster);
 	}
 
 	Player *player = new Player();
@@ -73,7 +70,7 @@ int main() {
 
 		if (monster_controller.should_add_monster()) {
 			printf("A monster has been added to the game...\n");
-			monsters = monster_controller.add_monster(monsters, num_monsters);
+			monster_controller.add_monster(monsters, num_monsters);
 		}
 
 		if (monster_controller.should_delete_monster(num_monsters)) {
@@ -83,9 +80,10 @@ int main() {
 		printf("\nPress Enter to continue...\n");
 		printf("Or press Q to quit game.\n");
 	}
-	delete[] monsters;
+	delete player;
+	//delete[] monsters;
 
-	*/
+	/*
 	GameObject test_game_object;
 	MemoryAllocator* allocator = MemoryAllocator::get_instance();
 	srand((unsigned int)time(NULL));
@@ -121,6 +119,7 @@ int main() {
 	//MemoryAllocatorTest allocator_test;
 	//allocator_test.test_mem_alloc(50);
 	//allocator_test.test_free_alloc(50);
+	*/
 	return 0;
 }
 
