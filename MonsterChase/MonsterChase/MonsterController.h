@@ -6,11 +6,11 @@ class MonsterController
 public:
 	MonsterController();
 
-	void add_monster(std::vector<Monster> &monsters, int& num_monsters) const;
+	void add_monster(std::vector<Monster*> &monsters, int& num_monsters) const;
 	bool should_add_monster() const;
-	void destroy_monster(std::vector<Monster> &monsters, int& num_monsters) const;
+	void destroy_monster(std::vector<Monster*> &monsters, int& num_monsters) const;
 	bool should_delete_monster(const int& num_monsters) const;
-	void move_and_print_monsters(std::vector<Monster> &monsters, const int& num_monsters) const;
+	void move_and_print_monsters(std::vector<Monster*> &monsters, const int& num_monsters) const;
 	~MonsterController();
 };
 
@@ -23,8 +23,9 @@ inline bool MonsterController::should_add_monster() const {
 		return false;
 }
 
-inline void MonsterController::destroy_monster(std::vector<Monster> &monsters, int& num_monsters) const {
+inline void MonsterController::destroy_monster(std::vector<Monster*> &monsters, int& num_monsters) const {
 	monsters.pop_back();
+	num_monsters--;
 }
 
 inline bool MonsterController::should_delete_monster(const int& num_monsters) const {

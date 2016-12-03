@@ -32,7 +32,7 @@ int main() {
 	MonsterController monster_controller;
 
 	//Monster *monsters = new Monster[num_monsters];
-	std::vector<Monster> monsters;
+	std::vector<Monster*> monsters;
 	for (int i = 0; i < num_monsters; i++) {
 		Monster *monster = new Monster();
 		monster->init_pos();
@@ -41,7 +41,7 @@ int main() {
 		scanf_s("%s", monster_name, sizeof(monster_name));
 		assert(sizeof(monster_name) <= 30, "Your name is too long. Please choose another name.");
 		monster->set_name(monster_name);
-		monsters.push_back(*monster);
+		monsters.push_back(monster);
 	}
 
 	Player *player = new Player();
