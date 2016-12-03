@@ -4,6 +4,7 @@
 #include <conio.h>
 #include <ctype.h>
 #include <crtdbg.h>
+#include <vector>
 #include "Monster.h"
 #include "Player.h"
 #include "MonsterController.h"
@@ -86,7 +87,7 @@ int main() {
 	delete[] monsters;
 
 	*/
-	GameObject test_game_object;
+	//GameObject test_game_object;
 	MemoryAllocator* allocator = MemoryAllocator::get_instance();
 	srand((unsigned int)time(NULL));
 	printf("\n\n-------------TEST ALLOCATION-------------\n");
