@@ -9,6 +9,13 @@ Monster::Monster() {
 	//init_pos();
 }
 
+// copy constructor
+Monster::Monster(const Monster &i_monster) {
+	printf("using copy constructor");
+	game_object = new GameObject();
+	*game_object = *i_monster.game_object;
+}
+
 // For Monsters, the initial position is randomly generated
 void Monster::init_pos() {
 	float x = static_cast<float>(rand() % 100 + 1);

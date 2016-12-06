@@ -4,6 +4,8 @@
 class Monster : public IGameObjectController {
 public:
 	Monster(); // create a new monster with a random initial position
+	// copy constructor
+	Monster(const Monster &i_monster);
 	void init_pos() override;
 	void set_game_object(GameObject *object) override {
 		game_object = object;
