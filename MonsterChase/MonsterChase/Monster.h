@@ -4,6 +4,7 @@
 class Monster : public IGameObjectController {
 public:
 	Monster(); // create a new monster with a random initial position
+
 	// copy constructor
 	Monster(const Monster &i_monster);
 	void init_pos() override;
@@ -30,7 +31,10 @@ public:
 	void move_random();
 
 	// move assignment operator
-	Monster& operator=(const Monster&& monster);
+	Monster& operator=(const Monster&& i_monster);
+
+	// copy assignment operator
+	Monster& operator=(const Monster& i_monster);
 
 	~Monster();
 

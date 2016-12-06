@@ -45,13 +45,24 @@ void Monster::move_random() {
 }
 
 // move assignment
-Monster& Monster::operator=(const Monster&& monster) {
-	if (this != &monster) {
+Monster& Monster::operator=(const Monster&& i_monster) {
+	if (this != &i_monster) {
 		delete game_object;
-		game_object = monster.game_object;
+		game_object = i_monster.game_object;
 		printf("using move assignment operator");
-		set_name(monster.get_name());
-		set_position(monster.get_position());
+		set_name(i_monster.get_name());
+		set_position(i_monster.get_position());
+	}
+	return *this;
+}
+
+// copy assignment
+Monster& Monster::operator=(const Monster& i_monster) {
+	if (this != &i_monster) {
+		delete game_object;
+		game_object = new GameObject();
+		set_name(i_monster.get_name());
+		set_position(i_monster.get_position());
 	}
 	return *this;
 }
