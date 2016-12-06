@@ -27,6 +27,9 @@ public:
 
 	void move_random();
 
+	// move assignment operator
+	Monster& operator=(const Monster&& monster);
+
 	~Monster();
 
 private:

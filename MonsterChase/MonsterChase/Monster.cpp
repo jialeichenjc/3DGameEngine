@@ -37,7 +37,18 @@ void Monster::move_random() {
 	}
 }
 
+// move assignment
+Monster& Monster::operator=(const Monster&& monster) {
+	if (this != &monster) {
+		delete game_object;
+		game_object = monster.game_object;
+		printf("using move assignment operator");
+		set_name(monster.get_name());
+		set_position(monster.get_position());
+	}
+	return *this;
+}
 
 Monster::~Monster() {
-	delete(game_object);
+	delete game_object;
 }

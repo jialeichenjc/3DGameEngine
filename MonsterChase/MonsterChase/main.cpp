@@ -31,10 +31,10 @@ int main() {
 	assert(num_monsters > 0, "Invalid number of monsters");
 	MonsterController monster_controller;
 
-	//Monster *monsters = new Monster[num_monsters];
 	std::vector<Monster*> monsters;
 	for (int i = 0; i < num_monsters; i++) {
 		Monster *monster = new Monster();
+		printf("size of a monster...%zu", sizeof(*monster));
 		monster->init_pos();
 		char *monster_name = new char[30];
 		printf("Please enter your name for monster number %d: ", i);
@@ -51,6 +51,7 @@ int main() {
 	char player_name[30];
 	printf("Please enter your name for the player: ");
 	scanf_s("%s", player_name, sizeof(player_name));
+	printf("size of a player...%zu", sizeof(*player));
 	assert(sizeof(player_name) <= 30, "Your name is too long. Please choose another name.");
 	player->set_name(player_name);
 	printf("\nPlayer %s is at position [%.2f, %.2f]\n", player->get_name(), player->get_position().x(), player->get_position().y());
@@ -81,7 +82,11 @@ int main() {
 		printf("Or press Q to quit game.\n");
 	}
 	delete player;
-	//delete[] monsters;
+
+	// delete all the monsters
+	while (monsters.size() > 0) {
+		monsters.pop_back();
+	}
 
 	/*
 	GameObject test_game_object;

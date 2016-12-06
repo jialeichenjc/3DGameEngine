@@ -17,7 +17,9 @@ public:
 	//void* operator new[](const size_t size);
 	//void operator delete[](void *ptr);
 
-	~GameObject() {};
+	~GameObject() {
+		delete name;
+	};
 
 protected:
 	Vector2D position; // a 2D vector representing the position {x_coord, y_coord}
