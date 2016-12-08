@@ -11,6 +11,16 @@ inline void GameObject::create_mem_allocator(size_t alignment) {
 	}
 }
 
+void* GameObject::operator new(const size_t size) {
+	MemoryAllocator *allocator = MemoryAllocator::get_instance();
+	return allocator->alloc_mem(size);
+}
+
+void GameObject::operator delete(void *ptr) {
+	MemoryAllocator *allocator = MemoryAllocator::get_instance();
+	allocator->free_mem(ptr);
+}
+
 /*
 void* GameObject::operator new(const size_t size) {
 	MemoryAllocator allocator(4);

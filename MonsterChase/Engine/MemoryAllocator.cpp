@@ -176,6 +176,6 @@ void set_Block_Descriptor_List() {
 
 MemoryAllocator::~MemoryAllocator()
 {
-	delete(p_instance);
 	free(heap);
+	//delete p_instance;
 }
