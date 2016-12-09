@@ -16,13 +16,15 @@
 
 void printList(BlockDescriptorList);
 int main() {
+	//_crtBreakAlloc = 160;
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+	
 	/*
 	printf("Testing Vector 2D class with const paramters\n");
 	EngineTestSuite engine_test;
 	engine_test.testVector2D();	
 	*/
-	/*
+	MemoryAllocator* allocator = MemoryAllocator::get_instance();
 	srand((unsigned int)time(NULL));
 	int num_monsters;
 	printf("Please enter the number of monsters you'd like to create:\n");
@@ -35,19 +37,17 @@ int main() {
 		Monster *monster = new Monster();
 		printf("size of a monster...%zu", sizeof(*monster));
 		monster->init_pos();
-		char *monster_name = new char[30];
+		const char *monster_name = monster->get_name();
 		printf("Please enter your name for monster number %d: ", i);
-		scanf_s("%s", monster_name, sizeof(monster_name));
-		assert(sizeof(monster_name) <= 30, "Your name is too long. Please choose another name.");
+		scanf_s("%s", monster_name, 20);
+		//assert(sizeof(monster_name) <= 30, "Your name is too long. Please choose another name.");
 		monster->set_name(monster_name);
 		monsters.push_back(monster);
 	}
 
 	Player *player = new Player();
-	//GameObject player_object;
-	//player.set_game_object(&player_object);
 	player->init_pos();
-	char player_name[30];
+	char player_name[20];
 	printf("Please enter your name for the player: ");
 	scanf_s("%s", player_name, sizeof(player_name));
 	printf("size of a player...%zu", sizeof(*player));
@@ -83,16 +83,24 @@ int main() {
 	delete player;
 
 	// delete all the monsters
-	while (monsters.size() > 0) {
-		monsters.pop_back();
-	}
-	*/
+	//while (monsters.size() > 0) {
+	//	//monsters.back().~Monster();
+	//	Monster *temp = monsters.back();
+	//	delete temp;
+	//	monsters.pop_back();
+	//}
 	
+	for (size_t i = 0; i < num_monsters; i++)
+	{
+		delete monsters[i];
+	}
+	//monsters._Pop_back_n(monsters.size());
+	/*
 	GameObject* test_game_object = new GameObject();
 	printf("size of test_game_object is %zu", sizeof(*test_game_object));
 	MemoryAllocator* allocator = MemoryAllocator::get_instance();
 	printf("size of memory allocator is %zu", sizeof(*allocator));
-	/*
+	
 	srand((unsigned int)time(NULL));
 	printf("\n\n-------------TEST ALLOCATION-------------\n");
 	for (int i = 0; i < 200; i++) {
@@ -123,12 +131,16 @@ int main() {
 	printList(allocator->in_use_bd_list);
 	printf("\n\n>>>>>>free memory in allocator\n");
 	printList(allocator->free_mem_bd_list);
-	*/
+	
 	//MemoryAllocatorTest allocator_test;
 	//allocator_test.test_mem_alloc(50);
 	//allocator_test.test_free_alloc(50);
-	delete test_game_object;
-	allocator->~MemoryAllocator();
+	//delete test_game_object;
+	*/
+
+
+	allocator->destroy_instance();
+	//allocator->~MemoryAllocator();
 	return 0;
 }
 

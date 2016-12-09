@@ -29,6 +29,11 @@ MemoryAllocator* MemoryAllocator::get_instance() {
 	return p_instance;
 }
 
+void MemoryAllocator::destroy_instance() {
+	delete p_instance;
+	p_instance = nullptr;
+}
+
 void MemoryAllocator::init() {
 	for (int i = 0; i < TOTAL_NUM_BLOCK_DESCRIPTORS; i++) {
 		BlockDescriptor *bd = new (heap + i * sizeof(BlockDescriptor)) BlockDescriptor();

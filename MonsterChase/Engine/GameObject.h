@@ -17,7 +17,12 @@ public:
 	//void* operator new[](const size_t size);
 	//void operator delete[](void *ptr);
 
-	~GameObject() {};
+	~GameObject() {
+		if (name) {
+			MemoryAllocator* allocator = MemoryAllocator::get_instance();
+			allocator->free_mem((void*)name);
+		}
+	};
 
 protected:
 	Vector2D position; // a 2D vector representing the position {x_coord, y_coord}
