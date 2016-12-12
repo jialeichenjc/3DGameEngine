@@ -12,6 +12,7 @@
 #include "MemoryAllocator.h"
 #include "MemoryAllocatorTest.h"
 #include "EngineTestSuite.h"
+#include "BitArray.h"
 #include "time.h"
 
 void printList(BlockDescriptorList);
@@ -20,7 +21,8 @@ int main() {
 	
 	MemoryAllocator* allocator = MemoryAllocator::get_instance();
 	printf("size of memory allocator is %zu", sizeof(*allocator));
-	
+	BitArray bit_array_test(256, false);
+	/*
 	srand((unsigned int)time(NULL));
 	printf("\n\n-------------TEST ALLOCATION-------------\n");
 	for (int i = 0; i < 200; i++) {
@@ -51,7 +53,7 @@ int main() {
 	printList(allocator->in_use_bd_list);
 	printf("\n\n>>>>>>free memory in allocator\n");
 	printList(allocator->free_mem_bd_list);
-
+	*/
 	allocator->destroy_instance();
 	return 0;
 }

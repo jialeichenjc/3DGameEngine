@@ -131,6 +131,7 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BitArray.h" />
     <ClInclude Include="BlockDescriptor.h" />
     <ClInclude Include="BlockDescriptorList.h" />
     <ClInclude Include="Debug.h" />
@@ -143,6 +144,7 @@
     <ClInclude Include="Vector2D.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BitArray.cpp" />
     <ClCompile Include="BlockDescriptor.cpp" />
     <ClCompile Include="BlockDescriptorList.cpp" />
     <ClCompile Include="EngineTestSuite.cpp" />
