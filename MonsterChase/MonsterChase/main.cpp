@@ -16,88 +16,8 @@
 
 void printList(BlockDescriptorList);
 int main() {
-	//_crtBreakAlloc = 160;
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 	
-	/*
-	printf("Testing Vector 2D class with const paramters\n");
-	EngineTestSuite engine_test;
-	engine_test.testVector2D();	
-	*/
-	MemoryAllocator* allocator = MemoryAllocator::get_instance();
-	srand((unsigned int)time(NULL));
-	int num_monsters;
-	printf("Please enter the number of monsters you'd like to create:\n");
-	scanf_s("%d", &num_monsters);
-	assert(num_monsters > 0, "Invalid number of monsters");
-	MonsterController monster_controller;
-
-	std::vector<Monster*> monsters;
-	for (int i = 0; i < num_monsters; i++) {
-		Monster *monster = new Monster();
-		printf("size of a monster...%zu", sizeof(*monster));
-		monster->init_pos();
-		const char *monster_name = monster->get_name();
-		printf("Please enter your name for monster number %d: ", i);
-		scanf_s("%s", monster_name, 20);
-		//assert(sizeof(monster_name) <= 30, "Your name is too long. Please choose another name.");
-		monster->set_name(monster_name);
-		monsters.push_back(monster);
-	}
-
-	Player *player = new Player();
-	player->init_pos();
-	char player_name[20];
-	printf("Please enter your name for the player: ");
-	scanf_s("%s", player_name, sizeof(player_name));
-	printf("size of a player...%zu", sizeof(*player));
-	assert(sizeof(player_name) <= 30, "Your name is too long. Please choose another name.");
-	player->set_name(player_name);
-	printf("\nPlayer %s is at position [%.2f, %.2f]\n", player->get_name(), player->get_position().x(), player->get_position().y());
-	monster_controller.move_and_print_monsters(monsters, num_monsters);
-	printf("Press Enter to continue...\n");
-
-	// Main game loop
-	int input;
-	while (input = toupper(_getch()) != 'Q') {
-		printf("Move your player. Left: A, Right: D, Up: W, Down: S\n");
-		input = toupper(_getch());
-		assert((input == 'A' || input == 'W' || input == 'S' || input == 'D'), "Invalid input");
-		player->move_from_user_input(input);
-		printf("\nPlayer %s is at position [%.2f, %.2f]\n", player->get_name(), player->get_position().x(), player->get_position().y());
-
-		monster_controller.move_and_print_monsters(monsters, num_monsters);
-
-		if (monster_controller.should_add_monster()) {
-			printf("A monster has been added to the game...\n");
-			monster_controller.add_monster(monsters, num_monsters);
-		}
-
-		if (monster_controller.should_delete_monster(num_monsters)) {
-			printf("A monster has been deleted from the game...\n");
-			monster_controller.destroy_monster(monsters, num_monsters);
-		}
-		printf("\nPress Enter to continue...\n");
-		printf("Or press Q to quit game.\n");
-	}
-	delete player;
-
-	// delete all the monsters
-	//while (monsters.size() > 0) {
-	//	//monsters.back().~Monster();
-	//	Monster *temp = monsters.back();
-	//	delete temp;
-	//	monsters.pop_back();
-	//}
-	
-	for (size_t i = 0; i < num_monsters; i++)
-	{
-		delete monsters[i];
-	}
-	//monsters._Pop_back_n(monsters.size());
-	/*
-	GameObject* test_game_object = new GameObject();
-	printf("size of test_game_object is %zu", sizeof(*test_game_object));
 	MemoryAllocator* allocator = MemoryAllocator::get_instance();
 	printf("size of memory allocator is %zu", sizeof(*allocator));
 	
@@ -131,16 +51,8 @@ int main() {
 	printList(allocator->in_use_bd_list);
 	printf("\n\n>>>>>>free memory in allocator\n");
 	printList(allocator->free_mem_bd_list);
-	
-	//MemoryAllocatorTest allocator_test;
-	//allocator_test.test_mem_alloc(50);
-	//allocator_test.test_free_alloc(50);
-	//delete test_game_object;
-	*/
-
 
 	allocator->destroy_instance();
-	//allocator->~MemoryAllocator();
 	return 0;
 }
 
