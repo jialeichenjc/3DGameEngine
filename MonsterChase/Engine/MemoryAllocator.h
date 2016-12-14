@@ -7,8 +7,10 @@
 class MemoryAllocator
 {
 public:
-	MemoryAllocator();
-	MemoryAllocator(size_t alignment_size);
+	// make Memory Allocator a singleton class
+	static MemoryAllocator* get_instance();
+	static MemoryAllocator* get_instance(const size_t alignment_size);
+	static void destroy_instance();
 	void init();
 	void* alloc_mem(const size_t req_size);
 	void free_mem(void *mem_ptr);
@@ -28,10 +30,14 @@ public:
 	BlockDescriptorList in_use_bd_list;
 
 	// a block descriptor for the heap, always points to the first memory address in the heap (after 
-	// the memory allocated to all the block descriptors
+	// the memory allocated to all the block descriptors)
 	BlockDescriptor heap_mem_bd; 
 
 private:
+	MemoryAllocator();
+	MemoryAllocator(size_t alignment_size);
+	static MemoryAllocator *p_instance;
 	size_t mem_alignment;
 };
+
 

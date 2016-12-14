@@ -12,6 +12,7 @@
 
 //static const size_t heap_size = 1024 * 1024;
 static char *heap = (char*) malloc(HEAP_SIZE);
+MemoryAllocator* MemoryAllocator::p_instance = nullptr;
 MemoryAllocator::MemoryAllocator() : mem_alignment(DEFAULT_ALIGNMENT_SIZE){	
 	init();
 }
@@ -19,6 +20,25 @@ MemoryAllocator::MemoryAllocator() : mem_alignment(DEFAULT_ALIGNMENT_SIZE){
 MemoryAllocator::MemoryAllocator(size_t alignment_size) : mem_alignment(alignment_size) {
 	// Allocate a list of block descirptors at the "top" of the heap
 	init();
+}
+
+MemoryAllocator* MemoryAllocator::get_instance() {
+	if (p_instance == nullptr) {
+		p_instance = new MemoryAllocator(DEFAULT_ALIGNMENT_SIZE);
+	}
+	return p_instance;
+}
+
+MemoryAllocator* MemoryAllocator::get_instance(const size_t alignment_size) {
+	if (p_instance == nullptr) {
+		p_instance = new MemoryAllocator(alignment_size);
+	}
+	return p_instance;
+}
+
+void MemoryAllocator::destroy_instance() {
+	delete p_instance;
+	p_instance = nullptr;
 }
 
 void MemoryAllocator::init() {
@@ -34,6 +54,7 @@ void MemoryAllocator::init() {
 	free_mem_bd_list.size = 1;
 }
 
+/*
 void MemoryAllocator::operator=(const MemoryAllocator& mem_allocator) {
 	//self-assignment
 	if (&mem_allocator == this) {
@@ -46,6 +67,7 @@ void MemoryAllocator::operator=(const MemoryAllocator& mem_allocator) {
 		this->heap_mem_bd = mem_allocator.heap_mem_bd;
 	}
 }
+*/
 
 // In Debug build, returns 8 bytes memory more than requested to create 4-byte guardbands on each end
 void* MemoryAllocator::alloc_mem(const size_t req_size) {
@@ -167,4 +189,5 @@ void set_Block_Descriptor_List() {
 MemoryAllocator::~MemoryAllocator()
 {
 	free(heap);
+	//delete p_instance;
 }
