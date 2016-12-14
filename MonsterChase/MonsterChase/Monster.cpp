@@ -11,9 +11,16 @@ Monster::Monster() {
 
 // copy constructor
 Monster::Monster(const Monster &i_monster) {
-	printf("using copy constructor");
 	game_object = new GameObject();
 	*game_object = *i_monster.game_object;
+}
+
+// move constructor
+Monster::Monster(Monster &&i_monster) {
+	game_object = i_monster.game_object;
+
+	// release game object pointer from source
+	i_monster.game_object = nullptr;
 }
 
 // For Monsters, the initial position is randomly generated
