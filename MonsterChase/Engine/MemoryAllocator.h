@@ -9,6 +9,7 @@ class MemoryAllocator
 public:
 	// make Memory Allocator a singleton class
 	static MemoryAllocator* get_instance();
+	static void destroy_instance();
 	void init();
 	void* alloc_mem(const size_t req_size);
 	void free_mem(void *mem_ptr);

@@ -12,12 +12,17 @@ public:
 	void set_position(const Vector2D &vec);
 	void move_next(const Vector2D &delta_vec); // move game object by delta_x and delta_y
 
-	//void* operator new(const size_t size);
-	//void operator delete(void* ptr);
+	void* operator new(const size_t size);
+	void operator delete(void* ptr);
 	//void* operator new[](const size_t size);
 	//void operator delete[](void *ptr);
 
-	~GameObject() {};
+	~GameObject() {
+		if (name) {
+			MemoryAllocator* allocator = MemoryAllocator::get_instance();
+			allocator->free_mem((void*)name);
+		}
+	};
 
 protected:
 	Vector2D position; // a 2D vector representing the position {x_coord, y_coord}

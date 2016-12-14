@@ -9,6 +9,20 @@ Monster::Monster() {
 	//init_pos();
 }
 
+// copy constructor
+Monster::Monster(const Monster &i_monster) {
+	game_object = new GameObject();
+	*game_object = *i_monster.game_object;
+}
+
+// move constructor
+Monster::Monster(Monster &&i_monster) {
+	game_object = i_monster.game_object;
+
+	// release game object pointer from source
+	i_monster.game_object = nullptr;
+}
+
 // For Monsters, the initial position is randomly generated
 void Monster::init_pos() {
 	float x = static_cast<float>(rand() % 100 + 1);
@@ -37,7 +51,29 @@ void Monster::move_random() {
 	}
 }
 
+// move assignment
+Monster& Monster::operator=(const Monster&& i_monster) {
+	if (this != &i_monster) {
+		delete game_object;
+		game_object = i_monster.game_object;
+		printf("using move assignment operator");
+		set_name(i_monster.get_name());
+		set_position(i_monster.get_position());
+	}
+	return *this;
+}
+
+// copy assignment
+Monster& Monster::operator=(const Monster& i_monster) {
+	if (this != &i_monster) {
+		delete game_object;
+		game_object = new GameObject();
+		set_name(i_monster.get_name());
+		set_position(i_monster.get_position());
+	}
+	return *this;
+}
 
 Monster::~Monster() {
-	delete(game_object);
+	delete game_object;
 }

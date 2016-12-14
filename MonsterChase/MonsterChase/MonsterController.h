@@ -1,15 +1,16 @@
 #pragma once
 #include "Monster.h"
+#include <vector>
 class MonsterController
 {
 public:
 	MonsterController();
 
-	Monster* add_monster(Monster *monsters, int& num_monsters) const;
+	void add_monster(std::vector<Monster*> &monsters, int& num_monsters) const;
 	bool should_add_monster() const;
-	void destroy_monster(Monster *monsters, int& num_monsters) const;
+	void destroy_monster(std::vector<Monster*> &monsters, int& num_monsters) const;
 	bool should_delete_monster(const int& num_monsters) const;
-	void move_and_print_monsters(Monster *monsters, const int& num_monsters) const;
+	void move_and_print_monsters(std::vector<Monster*> &monsters, const int& num_monsters) const;
 	~MonsterController();
 };
 
@@ -22,8 +23,9 @@ inline bool MonsterController::should_add_monster() const {
 		return false;
 }
 
-inline void MonsterController::destroy_monster(Monster *monsters, int& num_monsters) const {
-	monsters[num_monsters - 1].~Monster();
+inline void MonsterController::destroy_monster(std::vector<Monster*> &monsters, int& num_monsters) const {
+	delete monsters[num_monsters - 1];
+	monsters.pop_back();
 	num_monsters--;
 }
 

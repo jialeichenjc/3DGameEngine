@@ -4,6 +4,7 @@
 #include <conio.h>
 #include <ctype.h>
 #include <crtdbg.h>
+#include <vector>
 #include "Monster.h"
 #include "Player.h"
 #include "MonsterController.h"
@@ -12,46 +13,40 @@
 #include "MemoryAllocatorTest.h"
 #include "EngineTestSuite.h"
 #include "time.h"
-#include "Utility.h"
 
 void printList(BlockDescriptorList);
 int main() {
+	//_crtBreakAlloc = 160;
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+	
 	/*
 	printf("Testing Vector 2D class with const paramters\n");
 	EngineTestSuite engine_test;
 	engine_test.testVector2D();	
 	*/
-	
-	/*
+
+	MemoryAllocator* allocator = MemoryAllocator::get_instance();
 	srand((unsigned int)time(NULL));
 	int num_monsters;
 	printf("Please enter the number of monsters you'd like to create:\n");
 	scanf_s("%d", &num_monsters);
 	assert(num_monsters > 0, "Invalid number of monsters");
 	MonsterController monster_controller;
-	//GameObject::create_mem_allocator(4);
-	GameObject *test_object = new GameObject();
 
-	Monster *monsters = new Monster[num_monsters];
+	std::vector<Monster*> monsters;
 	for (int i = 0; i < num_monsters; i++) {
-		Monster* monster = new Monster();
-		//GameObject* monster_object = new GameObject();
-		//monster->set_game_object(monster_object);
+		Monster *monster = new Monster();
 		monster->init_pos();
-		char *monster_name = new char[30];
+		const char *monster_name = monster->get_name();
 		printf("Please enter your name for monster number %d: ", i);
-		scanf_s("%s", monster_name, sizeof(monster_name));
-		assert(sizeof(monster_name) <= 30, "Your name is too long. Please choose another name.");
+		scanf_s("%s", monster_name, 20);
 		monster->set_name(monster_name);
-		monsters[i] = *monster;
+		monsters.push_back(monster);
 	}
 
 	Player *player = new Player();
-	//GameObject player_object;
-	//player.set_game_object(&player_object);
 	player->init_pos();
-	char player_name[30];
+	char player_name[20];
 	printf("Please enter your name for the player: ");
 	scanf_s("%s", player_name, sizeof(player_name));
 	assert(sizeof(player_name) <= 30, "Your name is too long. Please choose another name.");
@@ -73,7 +68,7 @@ int main() {
 
 		if (monster_controller.should_add_monster()) {
 			printf("A monster has been added to the game...\n");
-			monsters = monster_controller.add_monster(monsters, num_monsters);
+			monster_controller.add_monster(monsters, num_monsters);
 		}
 
 		if (monster_controller.should_delete_monster(num_monsters)) {
@@ -83,13 +78,19 @@ int main() {
 		printf("\nPress Enter to continue...\n");
 		printf("Or press Q to quit game.\n");
 	}
-	delete[] monsters;
-	*/
-	GameObject test_game_object;
-	MemoryAllocator* allocator = MemoryAllocator::get_instance();
+	delete player;
+	
+	for (size_t i = 0; i < num_monsters; i++)
+	{
+		delete monsters[i];
+	}
+	
+	//MemoryAllocator* allocator = MemoryAllocator::get_instance();
+	printf("size of memory allocator is %zu", sizeof(*allocator));
+
 	srand((unsigned int)time(NULL));
 	printf("\n\n-------------TEST ALLOCATION-------------\n");
-	for (int i = 0; i < 200; i++) {
+	for (int i = 0; i < 100; i++) {
 	size_t requested_size = rand() % 100 + 1;
 	printf("\nallocating %zu bytes of memory\n", requested_size);
 	allocator->alloc_mem(requested_size);
@@ -101,7 +102,7 @@ int main() {
 	printList(allocator->free_mem_bd_list);
 
 	printf("\n\n-------------TEST FREE-------------\n");
-	for (int i = 0; i < 5; i++) {
+	for (int i = 0; i < 50; i++) {
 		size_t requested_size = rand() % 100 + 1;
 		char *test_ptr = static_cast<char*> (allocator->alloc_mem(requested_size));
 		allocator->free_mem(test_ptr);
@@ -117,9 +118,8 @@ int main() {
 	printList(allocator->in_use_bd_list);
 	printf("\n\n>>>>>>free memory in allocator\n");
 	printList(allocator->free_mem_bd_list);
-	//MemoryAllocatorTest allocator_test;
-	//allocator_test.test_mem_alloc(50);
-	//allocator_test.test_free_alloc(50);
+
+	allocator->destroy_instance();
 	return 0;
 }
 
