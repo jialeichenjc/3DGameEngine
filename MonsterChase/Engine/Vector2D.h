@@ -42,7 +42,7 @@ inline Vector2D operator +(const Vector2D &lhs, const Vector2D &rhs) {
 }
 
 inline bool operator ==(const Vector2D &lhs, const Vector2D &rhs) {
-	return lhs.x() == rhs.x() && lhs.y() == rhs.y();
+	return is_approx_equals (lhs.x(), rhs.x(), 0.00001) && is_approx_equals(lhs.y(), rhs.y(), 0.00001);
 }
 
 inline bool operator !=(const Vector2D &lhs, const Vector2D &rhs) {
