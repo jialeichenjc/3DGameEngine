@@ -24,7 +24,7 @@ inline bool MonsterController::should_add_monster() const {
 }
 
 inline void MonsterController::destroy_monster(std::vector<Monster*> &monsters, int& num_monsters) const {
-	monsters.pop_back();
+	delete monsters[num_monsters - 1];
 	num_monsters--;
 }
 
