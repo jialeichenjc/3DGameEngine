@@ -14,8 +14,8 @@ public:
 
 	void* operator new(const size_t size);
 	void operator delete(void* ptr);
-	//void* operator new[](const size_t size);
-	//void operator delete[](void *ptr);
+	void* operator new[](const size_t size);
+	void operator delete[](void *ptr);
 
 	~GameObject() {
 		if (name) {

@@ -33,6 +33,12 @@ int main() {
 	assert(num_monsters > 0, "Invalid number of monsters");
 	MonsterController monster_controller;
 
+	// test new[]
+	GameObject *test_monsters = new GameObject[num_monsters];
+
+	// test delete[]
+	delete[] test_monsters;
+
 	std::vector<Monster*> monsters;
 	for (int i = 0; i < num_monsters; i++) {
 		Monster *monster = new Monster();
