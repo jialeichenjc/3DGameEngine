@@ -20,6 +20,12 @@ void* GameObject::operator new(const size_t size) {
 	return allocator->alloc_mem(size);
 }
 
+void* GameObject::operator new(const size_t size, const size_t alignment_size) {
+	MemoryAllocator *allocator = MemoryAllocator::get_instance(alignment_size);
+
+	return allocator->alloc_mem(size);
+}
+
 void GameObject::operator delete(void *ptr) {
 	MemoryAllocator *allocator = MemoryAllocator::get_instance();
 

@@ -29,6 +29,13 @@ MemoryAllocator* MemoryAllocator::get_instance() {
 	return p_instance;
 }
 
+MemoryAllocator* MemoryAllocator::get_instance(const size_t alignment_size) {
+	if (p_instance == nullptr) {
+		p_instance = new MemoryAllocator(alignment_size);
+	}
+	return p_instance;
+}
+
 void MemoryAllocator::destroy_instance() {
 	delete p_instance;
 	p_instance = nullptr;

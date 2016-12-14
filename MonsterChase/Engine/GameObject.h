@@ -13,6 +13,7 @@ public:
 	void move_next(const Vector2D &delta_vec); // move game object by delta_x and delta_y
 
 	void* operator new(const size_t size);
+	void* operator new(const size_t size, const size_t alignment_size);
 	void operator delete(void* ptr);
 	void* operator new[](const size_t size);
 	void operator delete[](void *ptr);
