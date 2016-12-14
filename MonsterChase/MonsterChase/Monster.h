@@ -7,6 +7,9 @@ public:
 
 	// copy constructor
 	Monster(const Monster &i_monster);
+	// move constructor
+	Monster(Monster &&i_monster);
+
 	void init_pos() override;
 	void set_game_object(GameObject *object) override {
 		game_object = object;

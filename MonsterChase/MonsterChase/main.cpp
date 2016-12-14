@@ -40,7 +40,6 @@ int main() {
 		const char *monster_name = monster->get_name();
 		printf("Please enter your name for monster number %d: ", i);
 		scanf_s("%s", monster_name, 20);
-		assert(sizeof(monster_name) <= 30, "Your name is too long. Please choose another name.");
 		monster->set_name(monster_name);
 		monsters.push_back(monster);
 	}
@@ -86,41 +85,39 @@ int main() {
 		delete monsters[i];
 	}
 	
-	//GameObject* test_game_object = new GameObject();
-	//printf("size of test_game_object is %zu", sizeof(*test_game_object));
 	//MemoryAllocator* allocator = MemoryAllocator::get_instance();
-	//printf("size of memory allocator is %zu", sizeof(*allocator));
-	//
-	//srand((unsigned int)time(NULL));
-	//printf("\n\n-------------TEST ALLOCATION-------------\n");
-	//for (int i = 0; i < 100; i++) {
-	//size_t requested_size = rand() % 100 + 1;
-	//printf("\nallocating %zu bytes of memory\n", requested_size);
-	//allocator->alloc_mem(requested_size);
-	//}
+	printf("size of memory allocator is %zu", sizeof(*allocator));
+	
+	srand((unsigned int)time(NULL));
+	printf("\n\n-------------TEST ALLOCATION-------------\n");
+	for (int i = 0; i < 100; i++) {
+	size_t requested_size = rand() % 100 + 1;
+	printf("\nallocating %zu bytes of memory\n", requested_size);
+	allocator->alloc_mem(requested_size);
+	}
 
-	//printf("\n\n>>>>>>memory in use\n");
-	//printList(allocator->in_use_bd_list);
-	//printf("\n\n>>>>>>free memory in allocator\n");
-	//printList(allocator->free_mem_bd_list);
+	printf("\n\n>>>>>>memory in use\n");
+	printList(allocator->in_use_bd_list);
+	printf("\n\n>>>>>>free memory in allocator\n");
+	printList(allocator->free_mem_bd_list);
 
-	//printf("\n\n-------------TEST FREE-------------\n");
-	//for (int i = 0; i < 50; i++) {
-	//	size_t requested_size = rand() % 100 + 1;
-	//	char *test_ptr = static_cast<char*> (allocator->alloc_mem(requested_size));
-	//	allocator->free_mem(test_ptr);
-	//}
-	//printf("\n\n>>>>>>memory in use:\n");
-	//printList(allocator->in_use_bd_list);
-	//printf("\n\n>>>>>>free memory in allocator\n");
-	//printList(allocator->free_mem_bd_list);
-	//
-	//printf("\n\n-------------TEST COALESCE-------------\n");
-	//allocator->coalesce_mem();
-	//printf("\n\n>>>>>>memory in use:\n");
-	//printList(allocator->in_use_bd_list);
-	//printf("\n\n>>>>>>free memory in allocator\n");
-	//printList(allocator->free_mem_bd_list);
+	printf("\n\n-------------TEST FREE-------------\n");
+	for (int i = 0; i < 50; i++) {
+		size_t requested_size = rand() % 100 + 1;
+		char *test_ptr = static_cast<char*> (allocator->alloc_mem(requested_size));
+		allocator->free_mem(test_ptr);
+	}
+	printf("\n\n>>>>>>memory in use:\n");
+	printList(allocator->in_use_bd_list);
+	printf("\n\n>>>>>>free memory in allocator\n");
+	printList(allocator->free_mem_bd_list);
+	
+	printf("\n\n-------------TEST COALESCE-------------\n");
+	allocator->coalesce_mem();
+	printf("\n\n>>>>>>memory in use:\n");
+	printList(allocator->in_use_bd_list);
+	printf("\n\n>>>>>>free memory in allocator\n");
+	printList(allocator->free_mem_bd_list);
 
 	allocator->destroy_instance();
 	return 0;
