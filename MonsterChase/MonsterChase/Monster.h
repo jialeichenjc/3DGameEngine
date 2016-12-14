@@ -1,4 +1,9 @@
 #pragma once
+#include <stdlib.h>
+#include <stdio.h>
+#include <time.h>
+#include <cstdint>
+
 #include "GameObject.h"
 #include "IGameObjectController.h"
 class Monster : public IGameObjectController {

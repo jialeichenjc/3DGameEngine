@@ -1,8 +1,4 @@
 #include "Monster.h"
-#include <stdlib.h>
-#include <stdio.h>
-#include <time.h>
-
 
 Monster::Monster() {
 	game_object = new GameObject();
@@ -32,7 +28,7 @@ void Monster::init_pos() {
 
 // Randomly move the monster in four directions
 void Monster::move_random() {
-	int direction = rand() % 4 + 1;
+	uint8_t direction = rand() % 4 + 1;
 	switch (direction) {
 	case 1: // move up
 		game_object->move_next(Vector2D(0.0, 1.0));
