@@ -18,17 +18,17 @@ void printList(BlockDescriptorList);
 int main() {
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 	
-	/*
+	
 	printf("Testing Vector 2D class with const paramters\n");
 	EngineTestSuite engine_test;
 	engine_test.testVector2D();	
-	*/
+	
 
 	MemoryAllocator* allocator = MemoryAllocator::get_instance();
 	srand((unsigned int)time(NULL));
-	int num_monsters;
+	size_t num_monsters;
 	printf("Please enter the number of monsters you'd like to create:\n");
-	scanf_s("%d", &num_monsters);
+	scanf_s("%zu", &num_monsters);
 	assert(num_monsters > 0, "Invalid number of monsters");
 	MonsterController monster_controller;
 
@@ -39,7 +39,7 @@ int main() {
 	delete[] test_monsters;
 
 	std::vector<Monster*> monsters;
-	for (int i = 0; i < num_monsters; i++) {
+	for (size_t i = 0; i < num_monsters; i++) {
 		Monster *monster = new Monster();
 		monster->init_pos();
 		const char *monster_name = monster->get_name();
@@ -107,7 +107,7 @@ int main() {
 	printList(allocator->free_mem_bd_list);
 
 	printf("\n\n-------------TEST FREE-------------\n");
-	for (int i = 0; i < 100; i++) {
+	for (size_t i = 0; i < 100; i++) {
 		size_t requested_size = rand() % 100 + 1;
 		char *test_ptr = static_cast<char*> (allocator->alloc_mem(requested_size));
 		allocator->free_mem(test_ptr);
