@@ -21,7 +21,7 @@ int main() {
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 	MemoryAllocator* allocator = MemoryAllocator::get_instance();
 	printf("size of memory allocator is %zu", sizeof(*allocator));
-	//BitArray bit_array_test((size_t)256, false);
+	//BitArray bit_array_test = BitArray::get_instance(256)
 	/*
 	srand((unsigned int)time(NULL));
 	printf("\n\n-------------TEST ALLOCATION-------------\n");
