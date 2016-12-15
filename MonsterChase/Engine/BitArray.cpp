@@ -1,7 +1,5 @@
 #include "BitArray.h"
 
-
-
 BitArray::BitArray(size_t i_num_bits, bool i_init_to_zero) {
 	const size_t bits_per_byte = 8;
 

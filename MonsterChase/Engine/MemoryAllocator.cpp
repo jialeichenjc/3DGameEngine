@@ -5,7 +5,7 @@
 #define INCLUDE_GUARDBAND true
 #endif
 #define HEAP_SIZE 1024 * 1024
-#define TOTAL_NUM_BLOCK_DESCRIPTORS 1000
+#define TOTAL_NUM_BLOCK_DESCRIPTORS 2000
 #define DEFAULT_ALIGNMENT_SIZE 4
 #define GUARD_BAND_SIZE 4
 #define GUARD_BAND_VALUE 0XFFFFFFFF
@@ -29,6 +29,13 @@ MemoryAllocator* MemoryAllocator::get_instance() {
 	return p_instance;
 }
 
+MemoryAllocator* MemoryAllocator::get_instance(const size_t alignment_size) {
+	if (p_instance == nullptr) {
+		p_instance = new MemoryAllocator(alignment_size);
+	}
+	return p_instance;
+}
+
 void MemoryAllocator::destroy_instance() {
 	delete p_instance;
 	p_instance = nullptr;
@@ -46,21 +53,6 @@ void MemoryAllocator::init() {
 	free_mem_bd_list.head->block_size = HEAP_SIZE - TOTAL_NUM_BLOCK_DESCRIPTORS * sizeof(BlockDescriptor);
 	free_mem_bd_list.size = 1;
 }
-
-/*
-void MemoryAllocator::operator=(const MemoryAllocator& mem_allocator) {
-	//self-assignment
-	if (&mem_allocator == this) {
-		return;
-	}
-	else {
-		this->available_bd_list = mem_allocator.available_bd_list;
-		this->free_mem_bd_list = mem_allocator.free_mem_bd_list;
-		this->in_use_bd_list = mem_allocator.in_use_bd_list;
-		this->heap_mem_bd = mem_allocator.heap_mem_bd;
-	}
-}
-*/
 
 // In Debug build, returns 8 bytes memory more than requested to create 4-byte guardbands on each end
 void* MemoryAllocator::alloc_mem(const size_t req_size) {

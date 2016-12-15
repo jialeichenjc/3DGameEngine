@@ -13,22 +13,22 @@
 #include "MemoryAllocatorTest.h"
 #include "EngineTestSuite.h"
 #include "BitArray.h"
+#include "GameObject.h"
 #include "time.h"
 
 void printList(BlockDescriptorList);
 int main() {
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
-	
 	MemoryAllocator* allocator = MemoryAllocator::get_instance();
 	printf("size of memory allocator is %zu", sizeof(*allocator));
-	BitArray bit_array_test(256, false);
+	//BitArray bit_array_test((size_t)256, false);
 	/*
 	srand((unsigned int)time(NULL));
 	printf("\n\n-------------TEST ALLOCATION-------------\n");
-	for (int i = 0; i < 200; i++) {
-	size_t requested_size = rand() % 100 + 1;
-	printf("\nallocating %zu bytes of memory\n", requested_size);
-	allocator->alloc_mem(requested_size);
+	for (int i = 0; i < 100; i++) {
+		size_t requested_size = rand() % 100 + 1;
+		printf("\nallocating %zu bytes of memory\n", requested_size);
+		allocator->alloc_mem(requested_size);
 	}
 
 	printf("\n\n>>>>>>memory in use\n");
@@ -37,7 +37,7 @@ int main() {
 	printList(allocator->free_mem_bd_list);
 
 	printf("\n\n-------------TEST FREE-------------\n");
-	for (int i = 0; i < 5; i++) {
+	for (size_t i = 0; i < 100; i++) {
 		size_t requested_size = rand() % 100 + 1;
 		char *test_ptr = static_cast<char*> (allocator->alloc_mem(requested_size));
 		allocator->free_mem(test_ptr);
