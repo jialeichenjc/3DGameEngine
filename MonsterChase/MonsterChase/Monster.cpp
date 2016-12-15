@@ -1,8 +1,11 @@
+#include <stdlib.h>
+#include <stdio.h>
+#include <time.h>
+#include <cstdint>
 #include "Monster.h"
-
+#include "GameObject.h"
 Monster::Monster() {
 	game_object = new GameObject();
-	//init_pos();
 }
 
 // copy constructor
@@ -24,6 +27,26 @@ void Monster::init_pos() {
 	float x = static_cast<float>(rand() % 100 + 1);
 	float y = static_cast<float>(rand() % 100 + 1);
 	game_object->set_position(Vector2D(x, y));
+}
+
+void Monster::set_game_object(GameObject *object) {
+	game_object = object;
+}
+
+void Monster::set_name(const char *name) {
+	game_object->set_name(name);
+}
+
+const char* Monster::get_name() const {
+	return game_object->get_name();
+}
+
+Vector2D Monster::get_position() const {
+	return game_object->get_position();
+}
+
+void Monster::set_position(const Vector2D &vec) {
+	game_object->set_position(vec);
 }
 
 // Randomly move the monster in four directions
