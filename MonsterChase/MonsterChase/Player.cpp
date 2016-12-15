@@ -2,6 +2,10 @@
 #include "GameObject.h"
 #include <conio.h>
 #include <ctype.h>
+const Vector2D UP = Vector2D(0.0, 1.0);
+const Vector2D DOWN = Vector2D(0.0, -1.0);
+const Vector2D LEFT = Vector2D(-1.0, 0.0);
+const Vector2D RIGHT = Vector2D(1.0, 0.0);
 
 Player::Player()
 {
@@ -39,16 +43,16 @@ void Player::move_from_user_input(int input) {
 	//int input = toupper(_getch());
 	switch (input) {
 	case 'W': // move up
-		game_object->move_next(Vector2D(0.0, 1.0));
+		game_object->move_next(UP);
 		break;
 	case 'S': // move down
-		game_object->move_next(Vector2D(0.0, -1.0));
+		game_object->move_next(DOWN);
 		break;
 	case 'A': // move left
-		game_object->move_next(Vector2D(-1.0, 0.0));
+		game_object->move_next(LEFT);
 		break;
 	case 'D': // move right
-		game_object->move_next(Vector2D(1.0, 0.0));
+		game_object->move_next(RIGHT);
 		break;
 	default:
 		break;

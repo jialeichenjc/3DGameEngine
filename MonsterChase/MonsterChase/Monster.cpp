@@ -4,6 +4,11 @@
 #include <cstdint>
 #include "Monster.h"
 #include "GameObject.h"
+const Vector2D UP = Vector2D(0.0, 1.0);
+const Vector2D DOWN = Vector2D(0.0, -1.0);
+const Vector2D LEFT = Vector2D(-1.0, 0.0);
+const Vector2D RIGHT = Vector2D(1.0, 0.0);
+
 Monster::Monster() {
 	game_object = new GameObject();
 }
@@ -54,16 +59,16 @@ void Monster::move_random() {
 	uint8_t direction = rand() % 4 + 1;
 	switch (direction) {
 	case 1: // move up
-		game_object->move_next(Vector2D(0.0, 1.0));
+		game_object->move_next(UP);
 		break;
 	case 2: // move down
-		game_object->move_next(Vector2D(0.0, -1.0));
+		game_object->move_next(DOWN);
 		break;
 	case 3: // move left
-		game_object->move_next(Vector2D(-1.0, 0.0));
+		game_object->move_next(LEFT);
 		break;
 	case 4: // move right
-		game_object->move_next(Vector2D(1.0, 0.0));
+		game_object->move_next(RIGHT);
 		break;
 	default:
 		break;
