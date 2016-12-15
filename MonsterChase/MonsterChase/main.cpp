@@ -12,6 +12,7 @@
 #include "MemoryAllocator.h"
 #include "MemoryAllocatorTest.h"
 #include "EngineTestSuite.h"
+#include "GameObject.h"
 #include "time.h"
 
 void printList(BlockDescriptorList);
