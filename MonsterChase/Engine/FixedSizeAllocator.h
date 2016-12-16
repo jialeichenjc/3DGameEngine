@@ -23,6 +23,8 @@ public:
 
 private:
 	static FixedSizeAllocator* p_fsa_instance;
+	static BitArray* bit_array; // the bit array that describes the current state of the heap
+	char* base_ptr; // points to the beginning of the heap
 	FixedSizeAllocator();
 };
 
