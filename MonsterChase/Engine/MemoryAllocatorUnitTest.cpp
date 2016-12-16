@@ -4,4 +4,5 @@
 
 bool MemoryAllocator_UnitTest() {
 
+	return true;
 }

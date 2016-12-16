@@ -153,9 +153,6 @@ void MemoryAllocator::free_mem(void *mem_ptr) {
 			curr = curr->next_bd;
 		}
 	}
-	// Could not find pointer to be freed. Log an error
-	//log_error("Pointer to be freed does not exist");
-	//return;
 }
 
 
@@ -174,5 +171,4 @@ void set_Block_Descriptor_List() {
 MemoryAllocator::~MemoryAllocator()
 {
 	free(heap);
-	//delete p_instance;
 }

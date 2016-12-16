@@ -1,8 +1,2 @@
 #pragma once
-class MemoryAllocatorUnitTest
-{
-public:
-	MemoryAllocatorUnitTest();
-	~MemoryAllocatorUnitTest();
-};
-
+bool MemoryAllocator_UnitTest();
