@@ -1,5 +1,5 @@
 #include "BitArray.h"
-
+BitArray* BitArray::p_instance = nullptr;
 BitArray::BitArray(size_t i_num_bits, bool i_init_to_zero) {
 	const size_t bits_per_byte = 8;
 
@@ -8,7 +8,15 @@ BitArray::BitArray(size_t i_num_bits, bool i_init_to_zero) {
 	memset(p_bits_array, i_init_to_zero ? 0 : 1, i_num_bits / bits_per_byte);
 }
 
-size_t BitArray::FindFirstSetBit() {
+BitArray* BitArray::get_instance(size_t i_num_bits, bool i_init_zero) {
+	if (p_instance == nullptr) {
+		p_instance = new BitArray(i_num_bits, i_init_zero);
+	}
+
+	return p_instance;
+}
+
+size_t BitArray::FindFirstSetBit() const {
 	size_t index = 0;
 
 	// find the first non-zero byte
