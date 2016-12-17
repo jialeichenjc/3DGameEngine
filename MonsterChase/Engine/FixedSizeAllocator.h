@@ -1,9 +1,9 @@
 #pragma once
 #include <malloc.h>
 #include <new>
-#include "BitArray.h"
+#include <stdint.h>
 #define MEMORY_TOTAL 1024*1024
-
+class BitArray;
 // Fixed Size Memory Allocator
 class FixedSizeAllocator
 {
@@ -23,8 +23,9 @@ public:
 
 private:
 	static FixedSizeAllocator* p_fsa_instance;
-	static BitArray* bit_array; // the bit array that describes the current state of the heap
+	BitArray* bit_array; // the bit array that describes the current state of the heap
 	char* base_ptr; // points to the beginning of the heap
+	size_t allocator_size; // size of this allocator
 	FixedSizeAllocator();
 };
 

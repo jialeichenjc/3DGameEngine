@@ -1,24 +1,42 @@
 #pragma once
 #include <cstdint>
 #include <cstring>
-class FixedSizeAllocator;
 class BitArray
 {
 public:
 	
 	// return a static instance of BitArray
 	static BitArray* get_instance(size_t i_num_bits, bool i_init_to_zero);
+
+	// delete the singleton
 	static void destroy_instatnce();
+
 	// return the underlying bit (byte) array
 	uint8_t* get_byte_array() const;
+
+	// set the byte array
+	void set_byte_array(uint8_t *i_p_byte_array);
+
+	// set consecutive bits to zero, starting from start_index
+	// targeted bit has to have trailing zeros (i.e., 01011000)
+	void set_bits_to_zero(uint8_t &i_p_bits, const uint8_t &start_index, const uint8_t &num_bits);
+
 	void clear_all();
 	void set_all();
 	bool are_all_clear() const;
 	bool are_all_set() const;
 
 
-	size_t FindFirstClearBit() const;
-	size_t FindFirstSetBit() const;
+	// size_t FindFirstClearBit() const;
+	
+	// return the index of the set bit, relative to first element of the entire bit array
+	size_t get_set_bit_offset() const;
+
+	// return the first set bit in a non-zero byte
+	unsigned long get_first_set_bit(const uint8_t& i_byte) const;
+
+	// return the index of the first non-zero byte in the byte_array
+	size_t get_first_set_byte() const;
 	~BitArray();
 
 private:
