@@ -1,11 +1,12 @@
 #include "FixedSizeAllocator.h"
 #include <intrin.h>
 #include "BitArray.h"
-#define HEAP_SIZE 1024 * 1024
-#define TOTAL_NUM_BLOCK_DESCRIPTORS 2000
+#include "Debug.h"
+#define HEAP_SIZE 1024 * 256
 #define DEFAULT_ALIGNMENT_SIZE 4
 #define GUARD_BAND_SIZE 4
 #define GUARD_BAND_VALUE 0XFFFFFFFF
+#define NUM_BLOCK 1 //allocates 1 block per allocation
 
 static char* heap = nullptr;
 FixedSizeAllocator* FixedSizeAllocator::p_fsa_instance = nullptr;
@@ -32,20 +33,31 @@ void FixedSizeAllocator::create_heap(const size_t heap_size, const uint8_t align
 
 void* FixedSizeAllocator::alloc_mem(const size_t req_size) {
 	void* mem_ptr = nullptr;
+	
+	// this FSA only handles allocation of small size memory
+	if (req_size > allocator_size) {
+		log_error("requested size exceeds allocator size");
+		return mem_ptr;
+	}
 	// Make sure there is a heap, create one if not defined by the user
 	if (heap == nullptr) {
 		create_heap(HEAP_SIZE, DEFAULT_ALIGNMENT_SIZE);
 	}
 	
-	// Figure out number of blocks needed for this allocation
-	size_t num_blocks = (req_size % allocator_size == 0 ? req_size / allocator_size : req_size / allocator_size + 1);
-
 	size_t offset = bit_array->get_set_bit_offset();
 	mem_ptr = base_ptr + offset * allocator_size;
 	
+	// set the corresponding bits to zero to indicate memory in use
+	bit_array->set_bits_to_zero(offset, NUM_BLOCK);
 	
 	// Find the first set bit in the bit array
 	return mem_ptr;
+}
+
+void FixedSizeAllocator::free_mem(void *p_mem) {
+	size_t offset = (static_cast<char*>(p_mem) - base_ptr) / allocator_size;
+	bit_array->set_bits_to_one(offset, NUM_BLOCK);
+	p_mem = nullptr;
 }
 
 void FixedSizeAllocator::destroy_instance() {

@@ -20,11 +20,16 @@ public:
 	// set consecutive bits to zero, starting from start_index
 	// targeted bit has to have trailing zeros (i.e., 01011000)
 	void set_bits_to_zero(uint8_t &i_p_bits, const uint8_t &start_index, const uint8_t &num_bits);
+	void set_bits_to_zero(const size_t &offset, const uint8_t &num_bits);
+
+	void set_bits_to_one(uint8_t &i_p_bits, const uint8_t &start_index, const uint8_t &num_bits);
+	void set_bits_to_one(const size_t &offset, const uint8_t &num_bits);
 
 	void clear_all();
 	void set_all();
-	bool are_all_clear() const;
-	bool are_all_set() const;
+	// if the bits are all zero, then no memory block is available
+	bool are_all_zero() const;
+	bool are_all_one() const;
 
 
 	// size_t FindFirstClearBit() const;

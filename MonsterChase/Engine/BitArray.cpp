@@ -36,6 +36,7 @@ void BitArray::set_byte_array(uint8_t* i_p_array) {
 	p_byte_array = i_p_array;
 }
 
+// if the returned index == num_bytes then all bytes are zero in the array
 size_t BitArray::get_first_set_byte() const {
 	size_t index = 0;
 
@@ -63,10 +64,30 @@ void BitArray::set_bits_to_zero(uint8_t &i_p_bits, const uint8_t &start_index, c
 	for (uint8_t i = 0; i < num_bits; i++) {
 		mask += pow(2, i);
 	}
-	mask << (start_index + num_bits);
+	mask = mask << start_index;
 	i_p_bits = i_p_bits ^ mask;
 }
 
+void BitArray::set_bits_to_zero(const size_t &offset, const uint8_t &num_bits) {
+	size_t byte_index = offset / BITS_PER_BYTE;
+	uint8_t bit_index = offset % BITS_PER_BYTE;
+	set_bits_to_zero(p_byte_array[byte_index], bit_index, num_bits);
+}
+
+void BitArray::set_bits_to_one(uint8_t &i_p_bits, const uint8_t &start_index, const uint8_t &num_bits) {
+	uint8_t mask = 0;
+	for (uint8_t i = 0; i < num_bits; i++) {
+		mask += pow(2, i);
+	}
+	mask = mask << start_index;
+	i_p_bits = i_p_bits | mask;
+}
+
+void BitArray::set_bits_to_one(const size_t &offset, const uint8_t &num_bits) {
+	size_t byte_index = offset / BITS_PER_BYTE;
+	uint8_t bit_index = offset % BITS_PER_BYTE;
+	set_bits_to_one(p_byte_array[byte_index], bit_index, num_bits);
+}
 
 unsigned long BitArray::get_first_set_bit(const uint8_t &i_byte) const {
 	//unsigned long mask = 0x22;
@@ -76,28 +97,37 @@ unsigned long BitArray::get_first_set_bit(const uint8_t &i_byte) const {
 	return index;
 }
 
-//size_t BitArray::FindFirstSetBit() const {
-//	size_t index = 0;
-//
-//	// find the first non-zero byte
-//	while ((p_byte_array[index] == 0x00) && (index < num_bytes)) {
-//		index++;
-//	}
-//
-//	uint8_t non_zero_byte = p_byte_array[index];
-//	size_t bit;
-//
-//	// find the non-zero bit within that byte
-//	for (bit = 0; bit < 8; bit++) {
-//		if (non_zero_byte & (1 << bit)) {
-//			break;
-//		}
-//	}
-//
-//	size_t bitset = index * 8 + bit;
-//
-//	return bitset;
-//}
+bool BitArray::are_all_zero() const {
+	for (size_t i = 0; i < num_bytes; i++) {
+		if (p_byte_array[i] != 0x00) {
+			return false;
+		}
+	}
+	return true;
+}
+
+bool BitArray::are_all_one() const {
+	for (size_t i = 0; i < num_bytes; i++) {
+		if (p_byte_array[i] == 0x00) {
+			return false;
+		}
+	}
+	return true;
+}
+
+// set all bits to 1 (i.e., all bytes to 0xff)
+void BitArray::set_all() {
+	for (size_t i = 0; i < num_bytes; i++) {
+		p_byte_array[i] = 0xff;
+	}
+}
+
+// set all bits to 0 (i.e., all bytes to 0x00)
+void BitArray::clear_all() {
+	for (size_t i = 0; i < num_bytes; i++) {
+		p_byte_array[i] = 0x00;
+	}
+}
 
 void BitArray::destroy_instatnce() {
 	//delete p_byte_array;

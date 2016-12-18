@@ -15,7 +15,7 @@ public:
 	// analogous to malloc()
 	void* alloc_mem(const size_t req_size);
 	// analogous to free()
-	void free_mem(void* mem_ptr);
+	void free_mem(void* p_mem);
 
 	static void destroy_instance();
 	static uint8_t alignment_size;
@@ -25,7 +25,7 @@ private:
 	static FixedSizeAllocator* p_fsa_instance;
 	BitArray* bit_array; // the bit array that describes the current state of the heap
 	char* base_ptr; // points to the beginning of the heap
-	size_t allocator_size; // size of this allocator
+	size_t allocator_size; // block size of this allocator
 	FixedSizeAllocator();
 };
 
