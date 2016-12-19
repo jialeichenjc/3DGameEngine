@@ -37,15 +37,16 @@ bool MemoryAllocator_UnitTest() {
 		size_t req_size = rand() % test_alloc_size + 1;
 		void *ptr = fsa_allocator->alloc_mem(req_size);
 		assert(ptr);
-		//fsa_allocated_address.push_back(ptr);
+		fsa_allocated_address.push_back(ptr);
 		num_allocations++;
 	}
 
-	while (!fsa_allocated_address.empty()) {
+	while (num_allocations > 10) {
 		void *ptr = fsa_allocated_address.back();
 		fsa_allocated_address.pop_back();
 		bool success = fsa_allocator->free_mem(ptr);
 		assert(success);
+		num_allocations--;
 	}
 
 	if (mem_allocator == nullptr)

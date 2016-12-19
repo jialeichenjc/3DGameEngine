@@ -64,7 +64,6 @@ void* FixedSizeAllocator::alloc_mem(const size_t req_size) {
 bool FixedSizeAllocator::free_mem(void *p_mem) {
 	size_t offset = (static_cast<char*>(p_mem) - base_ptr) / allocator_size;
 	bit_array->set_bits_to_one(offset, NUM_BLOCK);
-	p_mem = nullptr;
 	return true;
 }
 
@@ -81,6 +80,11 @@ void FixedSizeAllocator::operator delete(void* ptr) {
 }
 
 void FixedSizeAllocator::destroy_instance() {
+#if defined(_DEBUG)
+	if (!bit_array->are_all_one()) {
+		//log_error("Fixed Size Allocator being detroyed with outstanding allocation");
+	}
+#endif
 	MemoryAllocator *allocator = MemoryAllocator::get_instance();
 	allocator->free_mem(p_fsa_instance);
 

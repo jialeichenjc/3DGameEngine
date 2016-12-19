@@ -107,7 +107,7 @@ bool BitArray::are_all_zero() const {
 
 bool BitArray::are_all_one() const {
 	for (size_t i = 0; i < num_bytes; i++) {
-		if (p_byte_array[i] == 0x00) {
+		if (p_byte_array[i] != 0xff) {
 			return false;
 		}
 	}
