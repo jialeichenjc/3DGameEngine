@@ -28,7 +28,19 @@ MemoryAllocator.h (.cpp)
 GameObject.h (.cpp)
 - uses two allocators (FSA and MemoryAllocator)
 
-Grading Helper:
+For Grading:
 - Both BitArray and FSA are allocated on the heap of Memory Allocator
 - FSA construction with number of blocks (bits) (FixedSizeAllocator.cpp / line 17)
-- FSA free function
+- FSA free function (FixedSizeAllocator.cpp / line 64)
+- BitArray.h lists all the implemented methods in BitArray
+- FixedSizeAllocator added to overridden new and delete in GameObject.h (.cpp)
+- GameObject has two booleans on_mem_allocator and on_fsa_allocator
+to keep track of which allocator owns which memory
+- Passed unit test MemoryAllocatorUnitTest.cpp (in all builds)
+- Can comment out the unit test and de-comment play() in main
+to see Monster Chase using memory allocator
+
+- Use _BitScanForward in BitArray.cpp / line 92
+- Warns about outstanding memory allocation FSA.cpp / line 82 
+(commented out because I don't want to be warned)
+
