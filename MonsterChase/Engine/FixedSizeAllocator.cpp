@@ -82,7 +82,7 @@ void FixedSizeAllocator::operator delete(void* ptr) {
 void FixedSizeAllocator::destroy_instance() {
 #if defined(_DEBUG)
 	if (!bit_array->are_all_one()) {
-		//log_error("Fixed Size Allocator being detroyed with outstanding allocation");
+		//log_error("outstanding memory when FSA is being destroyed");
 	}
 #endif
 	MemoryAllocator *allocator = MemoryAllocator::get_instance();
