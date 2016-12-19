@@ -1,6 +1,7 @@
 #pragma once
 #include <cstdint>
 #include <cstring>
+class MemoryAllocator;
 class BitArray
 {
 public:
@@ -31,8 +32,13 @@ public:
 	bool are_all_zero() const;
 	bool are_all_one() const;
 
+	// override new to allocate with MemoryAllocator
+	void* operator new(const size_t size);
+	// override delete
+	void operator delete(void* ptr);
 
-	// size_t FindFirstClearBit() const;
+	void* operator new[](const size_t size);
+	void operator delete[](void *ptr);
 	
 	// return the index of the set bit, relative to first element of the entire bit array
 	size_t get_set_bit_offset() const;
@@ -45,13 +51,13 @@ public:
 	~BitArray();
 
 private:
-
+	static MemoryAllocator *p_mem_allocator;
 	// BitArray is a singleton class
 	BitArray(size_t i_num_bits, bool i_init_to_zero);
 	// Singleton instance of BitArray
 	static BitArray *p_instance;
 	// store bits in an array of bytes
-	uint8_t  *p_byte_array;
+	static uint8_t  *p_byte_array;
 	size_t num_bytes; // length of this bit array
 };
 

@@ -9,7 +9,7 @@ const Vector2D RIGHT = Vector2D(1.0, 0.0);
 
 Player::Player()
 {
-game_object = new GameObject();
+	game_object = new GameObject();
 	//init_pos();
 }
 
@@ -39,7 +39,7 @@ void Player::set_position(const Vector2D &vec) {
 }
 
 
-void Player::move_from_user_input(int input) {
+void Player::move_from_user_input(uint8_t input) {
 	//int input = toupper(_getch());
 	switch (input) {
 	case 'W': // move up

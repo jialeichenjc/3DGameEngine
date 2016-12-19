@@ -5,7 +5,7 @@ class Vector2D
 {
 public:
 	Vector2D() = default;
-	Vector2D(float i_x, float i_y) : x_coord(is_nan(i_x) ? 0.0 : i_x), y_coord(is_nan(i_y) ? 0.0 : i_y) {}
+	Vector2D(float i_x, float i_y) : x_coord(is_nan(i_x) ? float(0.0) : i_x), y_coord(is_nan(i_y) ? float(0.0) : i_y) {}
 
 	// get x coordination of vector
 	inline float x() const { return x_coord; }

@@ -1,21 +1,23 @@
 #include "FixedSizeAllocator.h"
 #include <intrin.h>
 #include "BitArray.h"
+#include "MemoryAllocator.h"
 #include "Debug.h"
 #define HEAP_SIZE 1024 * 256
 #define DEFAULT_ALIGNMENT_SIZE 4
-#define GUARD_BAND_SIZE 4
-#define GUARD_BAND_VALUE 0XFFFFFFFF
+#define DEFAULT_ALLOCATOR_SIZE 8
+#define NUM_OF_BITS 256
 #define NUM_BLOCK 1 //allocates 1 block per allocation
 
 static char* heap = nullptr;
 FixedSizeAllocator* FixedSizeAllocator::p_fsa_instance = nullptr;
-uint8_t FixedSizeAllocator::alignment_size = DEFAULT_ALIGNMENT_SIZE;
+MemoryAllocator* FixedSizeAllocator::p_mem_allocator = nullptr;
+BitArray* FixedSizeAllocator::bit_array = nullptr;
 FixedSizeAllocator::FixedSizeAllocator()
 {
-	// create 256 bits for this allocator
-	bit_array = BitArray::get_instance(256, false);
-	allocator_size = 16;
+	// create a bit array for this allocator
+	bit_array = BitArray::get_instance(NUM_OF_BITS, false);
+	allocator_size = DEFAULT_ALLOCATOR_SIZE;
 }
 
 FixedSizeAllocator* FixedSizeAllocator::get_instance() {
@@ -26,9 +28,14 @@ FixedSizeAllocator* FixedSizeAllocator::get_instance() {
 }
 
 void FixedSizeAllocator::create_heap(const size_t heap_size, const uint8_t alignment) {
-	heap = (char*)malloc(heap_size);
-	base_ptr = heap;
+	p_mem_allocator = MemoryAllocator::get_instance();
+	// fixed size allocator shares the same heap as the memory allocator
+	base_ptr = static_cast<char*>(p_mem_allocator->alloc_mem(heap_size));
 	alignment_size = alignment;
+}
+
+void FixedSizeAllocator::set_alignment_size(const uint8_t i_alignment) {
+	alignment_size = i_alignment;
 }
 
 void* FixedSizeAllocator::alloc_mem(const size_t req_size) {
@@ -54,18 +61,33 @@ void* FixedSizeAllocator::alloc_mem(const size_t req_size) {
 	return mem_ptr;
 }
 
-void FixedSizeAllocator::free_mem(void *p_mem) {
+bool FixedSizeAllocator::free_mem(void *p_mem) {
 	size_t offset = (static_cast<char*>(p_mem) - base_ptr) / allocator_size;
 	bit_array->set_bits_to_one(offset, NUM_BLOCK);
 	p_mem = nullptr;
+	return true;
+}
+
+void* FixedSizeAllocator::operator new(const size_t size) {
+	MemoryAllocator *allocator = MemoryAllocator::get_instance();
+
+	return allocator->alloc_mem(size);
+}
+
+void FixedSizeAllocator::operator delete(void* ptr) {
+	MemoryAllocator *allocator = MemoryAllocator::get_instance();
+
+	allocator->free_mem(ptr);
 }
 
 void FixedSizeAllocator::destroy_instance() {
-	delete p_fsa_instance;
+	MemoryAllocator *allocator = MemoryAllocator::get_instance();
+	allocator->free_mem(p_fsa_instance);
+
 	p_fsa_instance = nullptr;
+	bit_array->destroy_instatnce();
 }
 
 FixedSizeAllocator::~FixedSizeAllocator()
 {
-	free(heap);
 }

@@ -5,20 +5,22 @@
 #define INCLUDE_GUARDBAND true
 #endif
 #define HEAP_SIZE 1024 * 1024
-#define TOTAL_NUM_BLOCK_DESCRIPTORS 2000
+#define TOTAL_NUM_BLOCK_DESCRIPTORS 2048
 #define DEFAULT_ALIGNMENT_SIZE 4
 #define GUARD_BAND_SIZE 4
 #define GUARD_BAND_VALUE 0XFFFFFFFF
 
 //static const size_t heap_size = 1024 * 1024;
-static char *heap = (char*) malloc(HEAP_SIZE);
+static char *heap;
 MemoryAllocator* MemoryAllocator::p_instance = nullptr;
 MemoryAllocator::MemoryAllocator() : mem_alignment(DEFAULT_ALIGNMENT_SIZE){	
-	init();
 }
 
 MemoryAllocator::MemoryAllocator(size_t alignment_size) : mem_alignment(alignment_size) {
-	// Allocate a list of block descirptors at the "top" of the heap
+}
+
+void MemoryAllocator::create_heap(const size_t heap_size) {
+	heap = (char*)malloc(heap_size);
 	init();
 }
 
@@ -41,6 +43,10 @@ void MemoryAllocator::destroy_instance() {
 	p_instance = nullptr;
 }
 
+void MemoryAllocator::set_alignment_size(const size_t alignment_size) {
+	mem_alignment = alignment_size;
+}
+
 void MemoryAllocator::init() {
 	for (int i = 0; i < TOTAL_NUM_BLOCK_DESCRIPTORS; i++) {
 		BlockDescriptor *bd = new (heap + i * sizeof(BlockDescriptor)) BlockDescriptor();
@@ -56,6 +62,10 @@ void MemoryAllocator::init() {
 
 // In Debug build, returns 8 bytes memory more than requested to create 4-byte guardbands on each end
 void* MemoryAllocator::alloc_mem(const size_t req_size) {
+	// Make sure there is a heap, create one if not defined by the user
+	if (heap == nullptr) {
+		create_heap(HEAP_SIZE);
+	}
 	size_t allocated_size = req_size + (mem_alignment - req_size % mem_alignment); // size of the memory to be allocated, equals req_size in non-debug build
 	void *mem_ptr = NULL;
 	BlockDescriptor *curr = free_mem_bd_list.head;
@@ -92,7 +102,10 @@ void* MemoryAllocator::alloc_mem(const size_t req_size) {
 		} 
 		curr = curr->next_bd;
 	}
-
+	// out of memory
+	if (mem_ptr == NULL) {
+		return mem_ptr;
+	}
 	// return the pointer 4 bytes into the allocated memory to include guardband at the front
 	if (INCLUDE_GUARDBAND) {
 		// write bytes of special value into the guardbands
@@ -136,7 +149,10 @@ void MemoryAllocator::coalesce_mem() {
 	}
 }
 
-void MemoryAllocator::free_mem(void *mem_ptr) {
+bool MemoryAllocator::free_mem(void *mem_ptr) {
+	if (INCLUDE_GUARDBAND) {
+		mem_ptr = static_cast<char*>(mem_ptr) - GUARD_BAND_SIZE;
+	}
 	// first, find the block descriptor that contains the pointer to the memory block
 	BlockDescriptor *curr = in_use_bd_list.head;
 	while (curr != NULL) {
@@ -147,12 +163,14 @@ void MemoryAllocator::free_mem(void *mem_ptr) {
 			// add it to the free memory block list
 			free_mem_bd_list.push(&bd);
 
-			return;
+			return true;
 		}
 		else {
 			curr = curr->next_bd;
 		}
 	}
+	// indicate failure
+	return false;
 }
 
 
@@ -162,6 +180,21 @@ void MemoryAllocator::printHeap() const {
 		heap_mem_bd.block_size);
 	printf("\n*****************size of block descriptor %zu\n", sizeof(BlockDescriptor));
 	printf("\n*****************free block address at %p size is %zu\n", free_mem_bd_list.head->block_base_ptr, free_mem_bd_list.head->block_size);
+}
+
+void MemoryAllocator::print_list(BlockDescriptorList list) const{
+	if (list.head == NULL) {
+		return;
+	}
+	else {
+		BlockDescriptor *curr = list.head;
+		while (curr != NULL) {
+			printf("\nsize of block descriptor is %zu and the memory pointer is %p\n",
+				curr->block_size, curr->block_base_ptr);
+			curr = curr->next_bd;
+		}
+		printf("size of block list is %zu", list.size);
+	}
 }
 
 void set_Block_Descriptor_List() {
