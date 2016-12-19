@@ -31,7 +31,7 @@ GameObject.h (.cpp)
 For Grading:
 - Both BitArray and FSA are allocated on the heap of Memory Allocator
 - FSA construction with number of blocks (bits) (FixedSizeAllocator.cpp / line 17)
-- FSA free function (FixedSizeAllocator.cpp / line 64)
+- FSA free_mem and alloc_mem function (FixedSizeAllocator.cpp)
 - BitArray.h lists all the implemented methods in BitArray
 - FixedSizeAllocator added to overridden new and delete in GameObject.h (.cpp)
 - GameObject has two booleans on_mem_allocator and on_fsa_allocator
