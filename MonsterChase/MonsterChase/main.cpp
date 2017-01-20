@@ -25,10 +25,10 @@
 void printList(BlockDescriptorList);
 void print_bit_array(uint8_t*, size_t);
 
-int main() {
+int WinMain() {
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 	MemoryAllocator_UnitTest();
-	//play();
+	play();
 	return 0;
 }
 
