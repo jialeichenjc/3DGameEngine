@@ -6,6 +6,8 @@
 #include <crtdbg.h>
 #include <vector>
 #include <intrin.h>
+#include <Windows.h>
+
 #include "Monster.h"
 #include "Player.h"
 #include "MonsterController.h"
@@ -19,16 +21,22 @@
 #include "FixedSizeAllocator.h"
 #include "time.h"
 #include "Play.h"
+#include "GLib.h"
+
 #define HEAP_SIZE 1024 * 1024
 #define DEFAULT_ALIGNMENT_SIZE 4
 
 void printList(BlockDescriptorList);
 void print_bit_array(uint8_t*, size_t);
 
-int WinMain() {
+int WINAPI wWinMain(HINSTANCE i_hInstance, HINSTANCE i_hPrevInstance, LPWSTR i_lpCmdLine, int i_nCmdShow) {
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
-	MemoryAllocator_UnitTest();
-	play();
+
+	// Initialize GLib
+	bool bSuccess = GLib::Initialize(i_hInstance, i_nCmdShow, "GLibTest", -1, 800, 600);
+
+	//MemoryAllocator_UnitTest();
+	//play();
 	return 0;
 }
 
