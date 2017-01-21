@@ -23,9 +23,6 @@
 #include "Play.h"
 #include "GLib.h"
 
-#define HEAP_SIZE 1024 * 1024
-#define DEFAULT_ALIGNMENT_SIZE 4
-
 void printList(BlockDescriptorList);
 void print_bit_array(uint8_t*, size_t);
 
