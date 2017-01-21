@@ -33,7 +33,7 @@ void play() {
 		Monster *monster = new Monster();
 		monster->init_pos();
 		const char *monster_name = monster->get_name();
-		printf("Please enter your name for monster number %d: ", i);
+		printf("Please enter your name for monster number %zu: ", i);
 		scanf_s("%s", monster_name, 20);
 		monster->set_name(monster_name);
 		monsters.push_back(monster);

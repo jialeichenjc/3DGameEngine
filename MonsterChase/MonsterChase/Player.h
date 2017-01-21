@@ -1,6 +1,7 @@
 #pragma once
 #include "IGameObjectController.h"
 #include <stdint.h>
+#include "GLib.h"
 class GameObject;
 
 class Player : public IGameObjectController {
@@ -13,8 +14,12 @@ public:
 	void set_position(const Vector2D &vec) override;
 	void init_pos() override;
 	void move_from_user_input(uint8_t input);
+
+	void set_sprite(const GLib::Sprites::Sprite *i_sprite);
+	const GLib::Sprites::Sprite* get_sprite() const;
 	~Player();
 
 private:
 	GameObject *game_object;
+	const GLib::Sprites::Sprite *sprite;
 };

@@ -8,9 +8,9 @@ const Vector2D LEFT = Vector2D(-1.0, 0.0);
 const Vector2D RIGHT = Vector2D(1.0, 0.0);
 
 Player::Player()
-{
+{	
 	game_object = new GameObject();
-	//init_pos();
+	init_pos();
 }
 
 // For the Player, the initial position is set to [0,0]
@@ -38,6 +38,13 @@ void Player::set_position(const Vector2D &vec) {
 	game_object->set_position(vec);
 }
 
+void Player::set_sprite(const GLib::Sprites::Sprite *i_sprite) {
+	this->sprite = i_sprite;
+}
+
+const GLib::Sprites::Sprite* Player::get_sprite() const {
+	return this->sprite;
+}
 
 void Player::move_from_user_input(uint8_t input) {
 	//int input = toupper(_getch());

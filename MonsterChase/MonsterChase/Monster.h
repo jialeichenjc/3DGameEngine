@@ -1,5 +1,6 @@
 #pragma once
 #include "IGameObjectController.h"
+#include "GLib.h"
 class GameObject;
 
 class Monster : public IGameObjectController {
@@ -19,6 +20,9 @@ public:
 	void set_position(const Vector2D &vec) override;
 	void move_random();
 
+	void set_sprite(const GLib::Sprites::Sprite *i_sprite);
+	const GLib::Sprites::Sprite* get_sprite() const;
+
 	// move assignment operator
 	Monster& operator=(const Monster&& i_monster);
 
@@ -29,4 +33,5 @@ public:
 
 private:
 	GameObject *game_object;
+	const GLib::Sprites::Sprite *sprite;
 };

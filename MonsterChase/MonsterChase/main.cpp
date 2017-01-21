@@ -47,14 +47,26 @@ int WINAPI wWinMain(HINSTANCE i_hInstance, HINSTANCE i_hPrevInstance, LPWSTR i_l
 #if defined _DEBUG
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 #endif
+
+	MemoryAllocator* allocator = MemoryAllocator::get_instance();
+	FixedSizeAllocator *fsa_allocator = FixedSizeAllocator::get_instance();
+
 	// Initialize GLib
 	bool bSuccess = GLib::Initialize(i_hInstance, i_nCmdShow, "GLibTest", -1, 800, 600);
+	Player *player = new Player();
+	player->init_pos();
+	player->set_name("test player");
+
+	Monster *monster = new Monster();
+
 
 	if (bSuccess) {
 		GLib::SetKeyStateChangeCallback(TestKeyCallback);
 
-		GLib::Sprites::Sprite *pMonster = CreateSprite("data\\BadGuy.dds");
-		GLib::Sprites::Sprite *pPlayer = CreateSprite("data\\GoodGuy.dds");
+		GLib::Sprites::Sprite *pMonster_sprite = CreateSprite("data\\BadGuy.dds");
+		GLib::Sprites::Sprite *pPlayer_sprite = CreateSprite("data\\GoodGuy.dds");
+		player->set_sprite(pPlayer_sprite);
+		monster->set_sprite(pMonster_sprite);
 
 		bool bQuit = false;
 
@@ -65,14 +77,14 @@ int WINAPI wWinMain(HINSTANCE i_hInstance, HINSTANCE i_hPrevInstance, LPWSTR i_l
 				GLib::BeginRendering();
 				GLib::Sprites::BeginRendering();
 
-				if (pPlayer) {
+				if (player->get_sprite()) {
 					static GLib::Point2D offset = { -180.0f, -100.0f };
-					GLib::Sprites::RenderSprite(*pPlayer, offset, 0.0f);
+					GLib::Sprites::RenderSprite(*(player->get_sprite()), offset, 0.0f);
 				}
 
-				if (pMonster) {
+				if (monster->get_sprite()) {
 					static GLib::Point2D offset = { 180.0f, -100.0f };
-					GLib::Sprites::RenderSprite(*pMonster, offset, 0.0f);
+					GLib::Sprites::RenderSprite(*(monster->get_sprite()), offset, 0.0f);
 				}
 
 				GLib::Sprites::EndRendering();
@@ -80,17 +92,19 @@ int WINAPI wWinMain(HINSTANCE i_hInstance, HINSTANCE i_hPrevInstance, LPWSTR i_l
 			}
 		} while (bQuit == false);
 		
-		if (pPlayer) {
-			GLib::Sprites::Release(pPlayer);
+		if (pPlayer_sprite) {
+			GLib::Sprites::Release(pPlayer_sprite);
 		}
-		if (pMonster) {
-			GLib::Sprites::Release(pMonster);
+		if (pMonster_sprite) {
+			GLib::Sprites::Release(pMonster_sprite);
 		}
 		GLib::Shutdown();
 	}
+	delete player;
+	delete monster;
 
-	//MemoryAllocator_UnitTest();
-	//play();
+	fsa_allocator->destroy_instance();
+	allocator->destroy_instance();
 	return 0;
 }
 

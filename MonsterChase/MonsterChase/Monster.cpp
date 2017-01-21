@@ -54,6 +54,14 @@ void Monster::set_position(const Vector2D &vec) {
 	game_object->set_position(vec);
 }
 
+void Monster::set_sprite(const GLib::Sprites::Sprite *i_sprite) {
+	this->sprite = i_sprite;
+}
+
+const GLib::Sprites::Sprite* Monster::get_sprite() const {
+	return this->sprite;
+}
+
 // Randomly move the monster in four directions
 void Monster::move_random() {
 	uint8_t direction = rand() % 4 + 1;
