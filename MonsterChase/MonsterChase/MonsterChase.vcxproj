@@ -173,6 +173,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ChasingMonster.h" />
+    <ClInclude Include="Game.h" />
     <ClInclude Include="Monster.h" />
     <ClInclude Include="MonsterController.h" />
     <ClInclude Include="Play.h" />
@@ -180,6 +181,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ChasingMonster.cpp" />
+    <ClCompile Include="Game.cpp" />
     <ClCompile Include="Monster.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MonsterController.cpp" />

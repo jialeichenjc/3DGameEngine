@@ -22,6 +22,7 @@
 #include "time.h"
 #include "Play.h"
 #include "GLib.h"
+#include "Game.h"
 
 void printList(BlockDescriptorList);
 void print_bit_array(uint8_t*, size_t);
