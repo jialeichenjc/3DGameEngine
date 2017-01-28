@@ -7,6 +7,9 @@
 #include <vector>
 #include <intrin.h>
 #include <Windows.h>
+#include <stdint.h>
+#include <chrono>
+#include <thread> // might not be necessary
 
 #include "Monster.h"
 #include "Player.h"
@@ -23,6 +26,7 @@
 #include "Play.h"
 #include "GLib.h"
 #include "Game.h"
+//typedef std::chrono::high_resolution_clock clock;
 
 void printList(BlockDescriptorList);
 void print_bit_array(uint8_t*, size_t);
@@ -48,6 +52,8 @@ int WINAPI wWinMain(HINSTANCE i_hInstance, HINSTANCE i_hPrevInstance, LPWSTR i_l
 
 	MemoryAllocator* allocator = MemoryAllocator::get_instance();
 	FixedSizeAllocator *fsa_allocator = FixedSizeAllocator::get_instance();
+
+	auto start = std::chrono::high_resolution_clock::now();
 
 	// Initialize GLib
 	bool bSuccess = GLib::Initialize(i_hInstance, i_nCmdShow, "GLibTest", -1, 800, 600);
@@ -103,6 +109,8 @@ int WINAPI wWinMain(HINSTANCE i_hInstance, HINSTANCE i_hPrevInstance, LPWSTR i_l
 
 	fsa_allocator->destroy_instance();
 	allocator->destroy_instance();
+	auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::high_resolution_clock::now() - start);
+	auto time_elapsed = duration.count();
 	return 0;
 }
 
