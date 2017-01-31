@@ -4,18 +4,20 @@
 #include "MemoryAllocator.h"
 #include "MemoryAllocatorTest.h"
 #include "EngineTestSuite.h"
-#include "BitArray.h"
-#include "GameObject.h"
-#include "MemoryAllocatorUnitTest.h"
-#include "FixedSizeAllocator.h"
-#include "time.h"
-#include "Game.h"
-using namespace Game;
+//#include "BitArray.h"
+//#include "GameObject.h"
+//#include "MemoryAllocatorUnitTest.h"
+//#include "FixedSizeAllocator.h"
+//#include "time.h"
+//#include "Game.h"
+//using namespace Game;
+
 //void Game::init() {
-//	allocator = MemoryAllocator::get_instance();
-//	fsa_allocator = FixedSizeAllocator::get_instance();
+//	MemoryAllocator* allocator = MemoryAllocator::get_instance();
+//	FixedSizeAllocator* fsa_allocator = FixedSizeAllocator::get_instance();
+//	size_t monster_count = 10;
 //	srand((unsigned int)time(NULL));
-//
+//	std::vector<Monster*> monsters;
 //	for (size_t i = 0; i < DEFAULT_MONSTER_SIZE; i++) {
 //		Monster *monster = new Monster();
 //		monster->init_pos();
@@ -26,7 +28,7 @@ using namespace Game;
 //		monsters.push_back(monster);
 //	}
 //
-//	player = new Player();
+//	Player* player = new Player();
 //	player->init_pos();
 //	char* player_name = DEFAULT_PLAYER_NAME;
 //	player->set_name(player_name);

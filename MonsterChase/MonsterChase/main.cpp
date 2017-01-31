@@ -49,8 +49,11 @@ int WINAPI wWinMain(HINSTANCE i_hInstance, HINSTANCE i_hPrevInstance, LPWSTR i_l
 #if defined _DEBUG
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 #endif
+	Game::init();
+	Game::shut_down();
+	//Game::monster_count++;
 
-	MemoryAllocator* allocator = MemoryAllocator::get_instance();
+	MemoryAllocator* test_allocator = MemoryAllocator::get_instance();
 	FixedSizeAllocator *fsa_allocator = FixedSizeAllocator::get_instance();
 
 	auto start = std::chrono::high_resolution_clock::now();
@@ -108,7 +111,7 @@ int WINAPI wWinMain(HINSTANCE i_hInstance, HINSTANCE i_hPrevInstance, LPWSTR i_l
 	delete monster;
 
 	fsa_allocator->destroy_instance();
-	allocator->destroy_instance();
+	test_allocator->destroy_instance();
 	auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::high_resolution_clock::now() - start);
 	auto time_elapsed = duration.count();
 	return 0;

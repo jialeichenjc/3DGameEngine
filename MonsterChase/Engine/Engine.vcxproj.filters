@@ -27,6 +27,7 @@
     <ClInclude Include="Utility.h" />
     <ClInclude Include="Vector2D.h" />
     <ClInclude Include="MemoryAllocatorUnitTest.h" />
+    <ClInclude Include="Graphics.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
