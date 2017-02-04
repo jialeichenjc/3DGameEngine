@@ -12,6 +12,10 @@
     <ClCompile Include="Utility.cpp" />
     <ClCompile Include="Vector2D.cpp" />
     <ClCompile Include="MemoryAllocatorUnitTest.cpp" />
+    <ClCompile Include="SmartPointer.cpp" />
+    <ClCompile Include="WeakPointer.cpp" />
+    <ClCompile Include="ObjectManager.cpp" />
+    <ClCompile Include="SmartPointerUnitTest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BitArray.h" />
@@ -28,6 +32,10 @@
     <ClInclude Include="Vector2D.h" />
     <ClInclude Include="MemoryAllocatorUnitTest.h" />
     <ClInclude Include="Graphics.h" />
+    <ClInclude Include="SmartPointer.h" />
+    <ClInclude Include="WeakPointer.h" />
+    <ClInclude Include="ObjectManager.h" />
+    <ClInclude Include="SmartPointerUnitTest.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />

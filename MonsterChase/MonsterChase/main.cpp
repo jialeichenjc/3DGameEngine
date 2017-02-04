@@ -18,6 +18,7 @@
 #include "MemoryAllocator.h"
 #include "MemoryAllocatorTest.h"
 #include "EngineTestSuite.h"
+#include "SmartPointerUnitTest.h"
 #include "BitArray.h"
 #include "GameObject.h"
 #include "MemoryAllocatorUnitTest.h"
@@ -45,10 +46,19 @@ void TestKeyCallback(unsigned int i_VKeyID, bool bWentDown)
 #endif // __DEBUG
 }
 
+int main() {
+	
+	return 0;
+}
+
 int WINAPI wWinMain(HINSTANCE i_hInstance, HINSTANCE i_hPrevInstance, LPWSTR i_lpCmdLine, int i_nCmdShow) {
 #if defined _DEBUG
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 #endif
+
+	// test smart pointer
+	SmartPointer_UnitTest();
+
 	Game::init();
 	Game::shut_down();
 	//Game::monster_count++;
