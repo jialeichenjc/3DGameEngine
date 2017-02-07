@@ -16,6 +16,9 @@
     <ClCompile Include="WeakPointer.cpp" />
     <ClCompile Include="ObjectManager.cpp" />
     <ClCompile Include="SmartPointerUnitTest.cpp" />
+    <ClCompile Include="StringPool.cpp" />
+    <ClCompile Include="HashedString.cpp" />
+    <ClCompile Include="PooledString.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BitArray.h" />
@@ -36,6 +39,9 @@
     <ClInclude Include="WeakPointer.h" />
     <ClInclude Include="ObjectManager.h" />
     <ClInclude Include="SmartPointerUnitTest.h" />
+    <ClInclude Include="StringPool.h" />
+    <ClInclude Include="HashedString.h" />
+    <ClInclude Include="PooledString.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
