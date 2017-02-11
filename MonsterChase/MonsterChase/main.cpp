@@ -27,6 +27,7 @@
 #include "Play.h"
 #include "GLib.h"
 #include "Game.h"
+#include "SmartPointer.h"
 //typedef std::chrono::high_resolution_clock clock;
 
 void printList(BlockDescriptorList);
@@ -44,11 +45,6 @@ void TestKeyCallback(unsigned int i_VKeyID, bool bWentDown)
 	sprintf_s(Buffer, lenBuffer, "VKey 0x%04x went %s\n", i_VKeyID, bWentDown ? "down" : "up");
 	OutputDebugStringA(Buffer);
 #endif // __DEBUG
-}
-
-int main() {
-	
-	return 0;
 }
 
 int WINAPI wWinMain(HINSTANCE i_hInstance, HINSTANCE i_hPrevInstance, LPWSTR i_lpCmdLine, int i_nCmdShow) {

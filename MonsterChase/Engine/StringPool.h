@@ -13,6 +13,7 @@ public:
 	~StringPool();
 private:
 	StringPool(uint8_t* i_pPool, size_t i_sizePool);
+	StringPool(size_t i_sizePool);
 	// points to the start of the string pool
 	uint8_t* m_pStart;
 	static StringPool* str_pool_instance;
