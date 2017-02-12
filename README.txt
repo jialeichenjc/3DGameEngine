@@ -1,5 +1,9 @@
-Assignment 1.05 
-Name: Joyce Chen    Email: superbrainchen@gmail.com
-There is not much to do from Assignment1.04.02
-The project already builds in both 64-bit and 32-bit
-All variable types grow with CPU bit-depth
+Game Programming 
+Assignment 2.01
+Name: Joyce Chen (u1086833)
+Email: superbrainchen@gmail.com
+
+
+Add sprite member and functions to Monster.h and Player.h
+Displays one player and one monster to the window
+Click [x] closes the window and exits the program

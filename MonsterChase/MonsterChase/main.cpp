@@ -5,6 +5,11 @@
 #include <ctype.h>
 #include <crtdbg.h>
 #include <vector>
+#include <intrin.h>
+#include <Windows.h>
+#include <stdint.h>
+#include <chrono>
+#include <thread> // might not be necessary
 #include "Monster.h"
 #include "Player.h"
 #include "MonsterController.h"
@@ -12,71 +17,59 @@
 #include "MemoryAllocator.h"
 #include "MemoryAllocatorTest.h"
 #include "EngineTestSuite.h"
+#include "SmartPointerUnitTest.h"
+#include "BitArray.h"
+#include "GameObject.h"
+#include "MemoryAllocatorUnitTest.h"
+#include "FixedSizeAllocator.h"
 #include "time.h"
-#include "Utility.h"
+#include "Play.h"
+#include "GLib.h"
+#include "Game.h"
+#include "SmartPointer.h"
+//typedef std::chrono::high_resolution_clock clock;
 
 void printList(BlockDescriptorList);
-int main() {
+void print_bit_array(uint8_t*, size_t);
+
+void * LoadFile(const char * i_pFilename, size_t & o_sizeFile);
+GLib::Sprites::Sprite * CreateSprite(const char * i_pFilename);
+
+void TestKeyCallback(unsigned int i_VKeyID, bool bWentDown)
+{
+#ifdef _DEBUG
+	const size_t	lenBuffer = 65;
+	char			Buffer[lenBuffer];
+
+	sprintf_s(Buffer, lenBuffer, "VKey 0x%04x went %s\n", i_VKeyID, bWentDown ? "down" : "up");
+	OutputDebugStringA(Buffer);
+#endif // __DEBUG
+}
+
+int WINAPI wWinMain(HINSTANCE i_hInstance, HINSTANCE i_hPrevInstance, LPWSTR i_lpCmdLine, int i_nCmdShow) {
+#if defined _DEBUG
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
-	/*
-	printf("Testing Vector 2D class with const paramters\n");
-	EngineTestSuite engine_test;
-	engine_test.testVector2D();	
-	*/
-	
-	/*
-	srand((unsigned int)time(NULL));
-	int num_monsters;
-	printf("Please enter the number of monsters you'd like to create:\n");
-	scanf_s("%d", &num_monsters);
-	assert(num_monsters > 0, "Invalid number of monsters");
-	MonsterController monster_controller;
-	//GameObject::create_mem_allocator(4);
-	GameObject *test_object = new GameObject();
+#endif
 
-	Monster *monsters = new Monster[num_monsters];
-	for (int i = 0; i < num_monsters; i++) {
-		Monster* monster = new Monster();
-		//GameObject* monster_object = new GameObject();
-		//monster->set_game_object(monster_object);
-		monster->init_pos();
-		char *monster_name = new char[30];
-		printf("Please enter your name for monster number %d: ", i);
-		scanf_s("%s", monster_name, sizeof(monster_name));
-		assert(sizeof(monster_name) <= 30, "Your name is too long. Please choose another name.");
-		monster->set_name(monster_name);
-		monsters[i] = *monster;
-	}
+	// test smart pointer
+	SmartPointer_UnitTest();
 
+	Game::init();
+	Game::shut_down();
+	//Game::monster_count++;
+
+	MemoryAllocator* test_allocator = MemoryAllocator::get_instance();
+	FixedSizeAllocator *fsa_allocator = FixedSizeAllocator::get_instance();
+
+	auto start = std::chrono::high_resolution_clock::now();
+
+	// Initialize GLib
+	bool bSuccess = GLib::Initialize(i_hInstance, i_nCmdShow, "GLibTest", -1, 800, 600);
 	Player *player = new Player();
-	//GameObject player_object;
-	//player.set_game_object(&player_object);
 	player->init_pos();
-	char player_name[30];
-	printf("Please enter your name for the player: ");
-	scanf_s("%s", player_name, sizeof(player_name));
-	assert(sizeof(player_name) <= 30, "Your name is too long. Please choose another name.");
-	player->set_name(player_name);
-	printf("\nPlayer %s is at position [%.2f, %.2f]\n", player->get_name(), player->get_position().x(), player->get_position().y());
-	monster_controller.move_and_print_monsters(monsters, num_monsters);
-	printf("Press Enter to continue...\n");
+	player->set_name("test player");
 
-	// Main game loop
-	int input;
-	while (input = toupper(_getch()) != 'Q') {
-		printf("Move your player. Left: A, Right: D, Up: W, Down: S\n");
-		input = toupper(_getch());
-		assert((input == 'A' || input == 'W' || input == 'S' || input == 'D'), "Invalid input");
-		player->move_from_user_input(input);
-		printf("\nPlayer %s is at position [%.2f, %.2f]\n", player->get_name(), player->get_position().x(), player->get_position().y());
-
-		monster_controller.move_and_print_monsters(monsters, num_monsters);
-
-		if (monster_controller.should_add_monster()) {
-			printf("A monster has been added to the game...\n");
-			monsters = monster_controller.add_monster(monsters, num_monsters);
-		}
-
+<<<<<<< HEAD
 		if (monster_controller.should_delete_monster(num_monsters)) {
 			printf("A monster has been deleted from the game...\n");
 			monster_controller.destroy_monster(monsters, num_monsters);
@@ -96,32 +89,58 @@ int main() {
 	printf("\nallocating %zu bytes of memory\n", requested_size);
 	allocator->alloc_mem(requested_size);
 	}
+=======
+	Monster *monster = new Monster();
+>>>>>>> Assignment2.04
 
-	printf("\n\n>>>>>>memory in use\n");
-	printList(allocator->in_use_bd_list);
-	printf("\n\n>>>>>>free memory in allocator\n");
-	printList(allocator->free_mem_bd_list);
 
-	printf("\n\n-------------TEST FREE-------------\n");
-	for (int i = 0; i < 5; i++) {
-		size_t requested_size = rand() % 100 + 1;
-		char *test_ptr = static_cast<char*> (allocator->alloc_mem(requested_size));
-		allocator->free_mem(test_ptr);
+	if (bSuccess) {
+		GLib::SetKeyStateChangeCallback(TestKeyCallback);
+
+		GLib::Sprites::Sprite *pMonster_sprite = CreateSprite("data\\BadGuy.dds");
+		GLib::Sprites::Sprite *pPlayer_sprite = CreateSprite("data\\GoodGuy.dds");
+		player->set_sprite(pPlayer_sprite);
+		monster->set_sprite(pMonster_sprite);
+
+		bool bQuit = false;
+
+		do {
+			GLib::Service(bQuit);
+
+			if (!bQuit) {
+				GLib::BeginRendering();
+				GLib::Sprites::BeginRendering();
+
+				if (player->get_sprite()) {
+					static GLib::Point2D offset = { -180.0f, -100.0f };
+					GLib::Sprites::RenderSprite(*(player->get_sprite()), offset, 0.0f);
+				}
+
+				if (monster->get_sprite()) {
+					static GLib::Point2D offset = { 180.0f, -100.0f };
+					GLib::Sprites::RenderSprite(*(monster->get_sprite()), offset, 0.0f);
+				}
+
+				GLib::Sprites::EndRendering();
+				GLib::EndRendering();
+			}
+		} while (bQuit == false);
+		
+		if (pPlayer_sprite) {
+			GLib::Sprites::Release(pPlayer_sprite);
+		}
+		if (pMonster_sprite) {
+			GLib::Sprites::Release(pMonster_sprite);
+		}
+		GLib::Shutdown();
 	}
-	printf("\n\n>>>>>>memory in use:\n");
-	printList(allocator->in_use_bd_list);
-	printf("\n\n>>>>>>free memory in allocator\n");
-	printList(allocator->free_mem_bd_list);
-	
-	printf("\n\n-------------TEST COALESCE-------------\n");
-	allocator->coalesce_mem();
-	printf("\n\n>>>>>>memory in use:\n");
-	printList(allocator->in_use_bd_list);
-	printf("\n\n>>>>>>free memory in allocator\n");
-	printList(allocator->free_mem_bd_list);
-	//MemoryAllocatorTest allocator_test;
-	//allocator_test.test_mem_alloc(50);
-	//allocator_test.test_free_alloc(50);
+	delete player;
+	delete monster;
+
+	fsa_allocator->destroy_instance();
+	test_allocator->destroy_instance();
+	auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::high_resolution_clock::now() - start);
+	auto time_elapsed = duration.count();
 	return 0;
 }
 
@@ -138,4 +157,93 @@ void printList(BlockDescriptorList list) {
 		}
 		printf("size of block list is %zu", list.size);
 	}
+}
+
+
+void print_bit_array(uint8_t *p_bits_array, size_t num_bytes) {
+	for (size_t i = 0; i < num_bytes; i++) {
+		printf("%02x ", p_bits_array[i]);
+	}
+}
+
+GLib::Sprites::Sprite * CreateSprite(const char * i_pFilename)
+{
+	//assert(i_pFilename);
+
+	size_t sizeTextureFile = 0;
+
+	// Load the source file (texture data)
+	void * pTextureFile = LoadFile(i_pFilename, sizeTextureFile);
+
+	// Ask GLib to create a texture out of the data (assuming it was loaded successfully)
+	GLib::Texture * pTexture = pTextureFile ? GLib::CreateTexture(pTextureFile, sizeTextureFile) : nullptr;
+
+	// exit if something didn't work
+	// probably need some debug logging in here!!!!
+	if (pTextureFile)
+		delete[] pTextureFile;
+
+	if (pTexture == nullptr)
+		return NULL;
+
+	unsigned int width = 0;
+	unsigned int height = 0;
+	unsigned int depth = 0;
+
+	// Get the dimensions of the texture. We'll use this to determine how big it is on screen
+	bool result = GLib::GetDimensions(pTexture, width, height, depth);
+	//assert(result == true);
+	//assert((width > 0) && (height > 0));
+
+	// Define the sprite edges
+	GLib::Sprites::SpriteEdges	Edges = { -float(width / 2.0f), float(height), float(width / 2.0f), 0.0f };
+	GLib::Sprites::SpriteUVs	UVs = { { 0.0f, 0.0f },{ 1.0f, 0.0f },{ 0.0f, 1.0f },{ 1.0f, 1.0f } };
+	GLib::RGBA							Color = { 255, 255, 255, 255 };
+
+	// Create the sprite
+	GLib::Sprites::Sprite * pSprite = GLib::Sprites::CreateSprite(Edges, 0.1f, Color, UVs);
+	if (pSprite == nullptr)
+	{
+		GLib::Release(pTexture);
+		return nullptr;
+	}
+
+	// Bind the texture to sprite
+	GLib::Sprites::SetTexture(*pSprite, *pTexture);
+
+	return pSprite;
+}
+
+void * LoadFile(const char * i_pFilename, size_t & o_sizeFile)
+{
+	//assert(i_pFilename != NULL);
+
+	FILE * pFile = NULL;
+
+	errno_t fopenError = fopen_s(&pFile, i_pFilename, "rb");
+	if (fopenError != 0)
+		return NULL;
+
+	//assert(pFile != NULL);
+
+	int FileIOError = fseek(pFile, 0, SEEK_END);
+	//assert(FileIOError == 0);
+
+	long FileSize = ftell(pFile);
+	//assert(FileSize >= 0);
+
+	FileIOError = fseek(pFile, 0, SEEK_SET);
+	//assert(FileIOError == 0);
+
+	uint8_t * pBuffer = new uint8_t[FileSize];
+	//assert(pBuffer);
+
+	size_t FileRead = fread(pBuffer, 1, FileSize, pFile);
+	//assert(FileRead == FileSize);
+
+	fclose(pFile);
+
+	o_sizeFile = FileSize;
+
+	return pBuffer;
 }

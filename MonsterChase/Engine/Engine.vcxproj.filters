@@ -1,78 +1,49 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
-    </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
+    <ClCompile Include="BitArray.cpp" />
+    <ClCompile Include="BlockDescriptor.cpp" />
+    <ClCompile Include="BlockDescriptorList.cpp" />
+    <ClCompile Include="EngineTestSuite.cpp" />
+    <ClCompile Include="FixedSizeAllocator.cpp" />
+    <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="MemoryAllocator.cpp" />
+    <ClCompile Include="MemoryAllocatorTest.cpp" />
+    <ClCompile Include="Utility.cpp" />
+    <ClCompile Include="Vector2D.cpp" />
+    <ClCompile Include="MemoryAllocatorUnitTest.cpp" />
+    <ClCompile Include="SmartPointer.cpp" />
+    <ClCompile Include="WeakPointer.cpp" />
+    <ClCompile Include="ObjectManager.cpp" />
+    <ClCompile Include="SmartPointerUnitTest.cpp" />
+    <ClCompile Include="StringPool.cpp" />
+    <ClCompile Include="HashedString.cpp" />
+    <ClCompile Include="PooledString.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="BitArray.h" />
+    <ClInclude Include="BlockDescriptor.h" />
+    <ClInclude Include="BlockDescriptorList.h" />
+    <ClInclude Include="Debug.h" />
+    <ClInclude Include="EngineTestSuite.h" />
+    <ClInclude Include="FixedSizeAllocator.h" />
+    <ClInclude Include="GameObject.h" />
+    <ClInclude Include="IGameObjectController.h" />
+    <ClInclude Include="MemoryAllocator.h" />
+    <ClInclude Include="MemoryAllocatorTest.h" />
+    <ClInclude Include="Utility.h" />
+    <ClInclude Include="Vector2D.h" />
+    <ClInclude Include="MemoryAllocatorUnitTest.h" />
+    <ClInclude Include="Graphics.h" />
+    <ClInclude Include="SmartPointer.h" />
+    <ClInclude Include="WeakPointer.h" />
+    <ClInclude Include="ObjectManager.h" />
+    <ClInclude Include="SmartPointerUnitTest.h" />
+    <ClInclude Include="StringPool.h" />
+    <ClInclude Include="HashedString.h" />
+    <ClInclude Include="PooledString.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="GameObject.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Vector2D.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Debug.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MemoryAllocator.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="BlockDescriptor.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="BlockDescriptorList.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MemoryAllocatorTest.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="EngineTestSuite.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="IGameObjectController.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Utility.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="GameObject.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Vector2D.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="MemoryAllocator.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="BlockDescriptor.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="BlockDescriptorList.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="MemoryAllocatorTest.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="EngineTestSuite.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Utility.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
 </Project>
