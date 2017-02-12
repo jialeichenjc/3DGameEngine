@@ -3,20 +3,25 @@
 #include "BlockDescriptorList.h"
 #include <malloc.h>
 #include <new>
+#include <stdint.h>
 #define MEMORY_TOTAL 1024*1024
 class MemoryAllocator
 {
 public:
 	// make Memory Allocator a singleton class
 	static MemoryAllocator* get_instance();
+	static MemoryAllocator* get_instance(const size_t alignment_size);
+	void create_heap(const size_t heap_size);
+	static void destroy_instance();
 	void init();
+	void set_alignment_size(const size_t alignment_size);
 	void* alloc_mem(const size_t req_size);
-	void free_mem(void *mem_ptr);
+	bool free_mem(void *mem_ptr);
 	void coalesce_mem(); // acts like a garbage collector
-	void operator=(const MemoryAllocator& mem_allocator);
 	~MemoryAllocator();
 
 	void printHeap() const;
+	void print_list(BlockDescriptorList list) const;
 	
 	// They aren't currently describing a block of memory but available when new blocks are created
 	BlockDescriptorList available_bd_list;

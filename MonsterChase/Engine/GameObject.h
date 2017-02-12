@@ -1,29 +1,38 @@
 #pragma once
 #include <string.h>
 #include "Vector2D.h"
-#include "MemoryAllocator.h"
+#include "FixedSizeAllocator.h"
+class MemoryAllocator;
+class FixedSizeAllocator;
 class GameObject {
 public:
 	GameObject();
 	void set_name(const char* name);
 	const char* get_name() const;
 	Vector2D get_position() const;
-	static void create_mem_allocator(size_t alignment);
 	void set_position(const Vector2D &vec);
 	void move_next(const Vector2D &delta_vec); // move game object by delta_x and delta_y
 
-	//void* operator new(const size_t size);
-	//void operator delete(void* ptr);
-	//void* operator new[](const size_t size);
-	//void operator delete[](void *ptr);
+	void* operator new(const size_t size);
+	void* operator new(const size_t size, const size_t alignment_size);
+	void operator delete(void* ptr);
+	void* operator new[](const size_t size);
+	void operator delete[](void *ptr);
 
-	~GameObject() {};
+	~GameObject() {
+		if (name) {
+			MemoryAllocator* allocator = MemoryAllocator::get_instance();
+			FixedSizeAllocator* fsa_allocator = FixedSizeAllocator::get_instance();
+			on_mem_allocator ? allocator->free_mem((void*)name) : fsa_allocator->free_mem((void*)name);
+		}
+	};
 
 protected:
 	Vector2D position; // a 2D vector representing the position {x_coord, y_coord}
 private:
 	const char *name;
-	static MemoryAllocator *p_mem_allocator;
+	static bool on_mem_allocator; // true if game object is allocated through memory allocator
+	static bool on_fsa_allocator; // true if game object is allocated through fsa allocator
 };
 
 inline void GameObject::set_name(const char* name) {
