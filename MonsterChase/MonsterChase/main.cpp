@@ -50,7 +50,7 @@ int WINAPI wWinMain(HINSTANCE i_hInstance, HINSTANCE i_hPrevInstance, LPWSTR i_l
 #if defined _DEBUG
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 #endif
-
+	//_CrtSetBreakAlloc(213);
 	// test smart pointer
 	SmartPointer_UnitTest();
 

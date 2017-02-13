@@ -32,21 +32,20 @@ namespace Game {
 			monsters.push_back(monster);
 		}
 
-		Player* player = new Player();
+		player = new Player();
 		player->init_pos();
 		char* player_name = DEFAULT_PLAYER_NAME;
 		player->set_name(player_name);
 	}
 
 	void shut_down() {
-		
 		for (size_t i = 0; i < DEFAULT_MONSTER_SIZE; i++)
 		{
 			delete monsters[i];
 		}
 
-		delete player;
 
+		delete player;
 		//fsa_allocator->destroy_instance();
 		//allocator->destroy_instance();
 	}
