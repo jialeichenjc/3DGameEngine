@@ -7,9 +7,9 @@ class StringPool
 public:
 	static StringPool* get_instance(size_t i_bytesInPool);
 	// Add a string to pool, if it doesn't exist yet
-	const char* add(const char* i_pString);
+	bool add(const char* i_pString);
 
-	const char* find(const char* i_pString);
+	char* find(const char* i_pString);
 
 	~StringPool();
 private:
