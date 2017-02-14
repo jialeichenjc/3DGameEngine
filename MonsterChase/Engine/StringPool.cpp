@@ -15,10 +15,13 @@ StringPool::StringPool(uint8_t* i_pPool, size_t i_sizePool) {
 // true indicates success in adding string, false otherwise
 bool StringPool::add(const char* i_pString) {
 
+
+	return true;
 }
 
 char* StringPool::find(const char* i_pString) {
-
+	char* result = "";
+	return result;
 }
 
 StringPool::StringPool(size_t i_sizePool) {

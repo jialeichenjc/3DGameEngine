@@ -81,16 +81,16 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)GLib</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)External\lua;$(SolutionDir)GLib</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
     </Link>
     <Lib>
-      <AdditionalDependencies>d3d11.lib;GLib_$(PlatformTarget)-$(Configuration).lib</AdditionalDependencies>
+      <AdditionalDependencies>d3d11.lib;GLib_$(PlatformTarget)-$(Configuration).lib;$(PlatformShortName)\lua-5.3.2-$(Configuration).lib</AdditionalDependencies>
     </Lib>
     <Lib>
-      <AdditionalLibraryDirectories>$(SolutionDir)GLib</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)GLib;$(SolutionDir)External\lua</AdditionalLibraryDirectories>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -99,16 +99,16 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)GLib</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)External\lua;$(SolutionDir)GLib</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
     </Link>
     <Lib>
-      <AdditionalDependencies>d3d11.lib;GLib_$(PlatformTarget)-$(Configuration).lib</AdditionalDependencies>
+      <AdditionalDependencies>d3d11.lib;GLib_$(PlatformTarget)-$(Configuration).lib;$(PlatformShortName)\lua-5.3.2-$(Configuration).lib</AdditionalDependencies>
     </Lib>
     <Lib>
-      <AdditionalLibraryDirectories>$(SolutionDir)GLib</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)GLib;$(SolutionDir)External\lua</AdditionalLibraryDirectories>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -119,7 +119,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)GLib</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)External\lua;$(SolutionDir)GLib</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -127,10 +127,10 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <Lib>
-      <AdditionalDependencies>d3d11.lib;GLib_$(PlatformTarget)-$(Configuration).lib</AdditionalDependencies>
+      <AdditionalDependencies>d3d11.lib;GLib_$(PlatformTarget)-$(Configuration).lib;$(PlatformShortName)\lua-5.3.2-$(Configuration).lib</AdditionalDependencies>
     </Lib>
     <Lib>
-      <AdditionalLibraryDirectories>$(SolutionDir)GLib</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)GLib;$(SolutionDir)External\lua</AdditionalLibraryDirectories>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -141,7 +141,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)GLib</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)External\lua;$(SolutionDir)GLib</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -149,10 +149,10 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <Lib>
-      <AdditionalDependencies>d3d11.lib;GLib_$(PlatformTarget)-$(Configuration).lib</AdditionalDependencies>
+      <AdditionalDependencies>d3d11.lib;GLib_$(PlatformTarget)-$(Configuration).lib;$(PlatformShortName)\lua-5.3.2-$(Configuration).lib</AdditionalDependencies>
     </Lib>
     <Lib>
-      <AdditionalLibraryDirectories>$(SolutionDir)GLib</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)GLib;$(SolutionDir)External\lua</AdditionalLibraryDirectories>
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
