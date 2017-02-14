@@ -18,6 +18,7 @@
 #include "MemoryAllocatorTest.h"
 #include "EngineTestSuite.h"
 #include "SmartPointerUnitTest.h"
+#include "StringPoolUnitTest.h"
 #include "BitArray.h"
 #include "GameObject.h"
 #include "MemoryAllocatorUnitTest.h"
@@ -53,7 +54,7 @@ int WINAPI wWinMain(HINSTANCE i_hInstance, HINSTANCE i_hPrevInstance, LPWSTR i_l
 	//_CrtSetBreakAlloc(213);
 	// test smart pointer
 	SmartPointer_UnitTest();
-
+	StringPool_UnitTest();
 	Game::init();
 	Game::shut_down();
 	//Game::monster_count++;

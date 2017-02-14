@@ -19,6 +19,7 @@
     <ClCompile Include="StringPool.cpp" />
     <ClCompile Include="HashedString.cpp" />
     <ClCompile Include="PooledString.cpp" />
+    <ClCompile Include="StringPoolUnitTest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BitArray.h" />
@@ -42,6 +43,7 @@
     <ClInclude Include="StringPool.h" />
     <ClInclude Include="HashedString.h" />
     <ClInclude Include="PooledString.h" />
+    <ClInclude Include="StringPoolUnitTest.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />

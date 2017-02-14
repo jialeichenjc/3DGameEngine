@@ -1,10 +1,11 @@
 #pragma once
 #include <stdint.h>
+#include "MemoryAllocator.h"
 // singleton class storing strings
 class StringPool
 {
 public:
-	StringPool* get_instance(size_t i_bytesInPool);
+	static StringPool* get_instance(size_t i_bytesInPool);
 	// Add a string to pool, if it doesn't exist yet
 	const char* add(const char* i_pString);
 
@@ -16,6 +17,8 @@ private:
 	StringPool(size_t i_sizePool);
 	// points to the start of the string pool
 	uint8_t* m_pStart;
+	// total size of the pool
+	size_t pool_size;
 	static StringPool* str_pool_instance;
 };
 
