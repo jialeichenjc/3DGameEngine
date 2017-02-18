@@ -51,7 +51,7 @@ int WINAPI wWinMain(HINSTANCE i_hInstance, HINSTANCE i_hPrevInstance, LPWSTR i_l
 #if defined _DEBUG
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 #endif
-	//_CrtSetBreakAlloc(213);
+	//_CrtSetBreakAlloc(192);
 	// test smart pointer
 	SmartPointer_UnitTest();
 	StringPool_UnitTest();
@@ -75,8 +75,8 @@ int WINAPI wWinMain(HINSTANCE i_hInstance, HINSTANCE i_hPrevInstance, LPWSTR i_l
 	if (bSuccess) {
 		GLib::SetKeyStateChangeCallback(TestKeyCallback);
 
-		GLib::Sprites::Sprite *pMonster_sprite = CreateSprite("data\\BadGuy.dds");
-		GLib::Sprites::Sprite *pPlayer_sprite = CreateSprite("data\\GoodGuy.dds");
+		GLib::Sprites::Sprite *pMonster_sprite = CreateSprite("Sprites\\BadGuy.dds");
+		GLib::Sprites::Sprite *pPlayer_sprite = CreateSprite("Sprites\\GoodGuy.dds");
 		player->set_sprite(pPlayer_sprite);
 		monster->set_sprite(pMonster_sprite);
 

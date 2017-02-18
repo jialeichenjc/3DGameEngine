@@ -110,18 +110,18 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)Engine;$(SolutionDir)GLib;$(SolutionDir)GLib$(SolutionDir)GLib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Engine;$(SolutionDir)GLib;$(SolutionDir)External\lua;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)$(PlatformName)\$(ConfigurationName);$(SolutionDir)GLib;$(SolutionDir)GLib;$(SolutionDir)Exports\GLib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>d3d11.lib;Engine.lib;GLib_$(PlatformTarget)-$(Configuration).lib;GLib_$(PlatformTarget)-$(Configuration).lib;%(AdditionalDependencies);d3d11.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)$(PlatformName)\$(ConfigurationName);$(SolutionDir)External\lua;$(SolutionDir)GLib;$(SolutionDir)GLib;$(SolutionDir)Exports\GLib;$(SolutionDir)External\lua;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>d3d11.lib;Engine.lib;GLib_$(PlatformTarget)-$(Configuration).lib;GLib_$(PlatformTarget)-$(Configuration).lib;%(AdditionalDependencies);$(PlatformShortName)\lua-5.3.2-$(Configuration).lib;d3d11.lib</AdditionalDependencies>
       <ForceSymbolReferences>
       </ForceSymbolReferences>
     </Link>
     <ProjectReference>
-      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+      <UseLibraryDependencyInputs>true</UseLibraryDependencyInputs>
     </ProjectReference>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">

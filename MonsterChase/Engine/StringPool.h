@@ -22,3 +22,4 @@ private:
 	static StringPool* str_pool_instance;
 };
 
+

@@ -1,4 +1,5 @@
 #include "StringPool.h"
+StringPool* StringPool::str_pool_instance = nullptr;
 
 StringPool* StringPool::get_instance(size_t i_bytes) {
 	if (str_pool_instance == nullptr) {
@@ -29,4 +30,5 @@ StringPool::StringPool(size_t i_sizePool) {
 }
 StringPool::~StringPool()
 {
+	delete str_pool_instance;
 }
