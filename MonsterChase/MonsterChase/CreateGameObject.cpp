@@ -3,7 +3,9 @@
 #include "lua.hpp"
 uint8_t * LoadFile(const char * i_pFilename, size_t & o_sizeFile);
 size_t ReadFloatArray(lua_State * i_pState, int i_index, float * o_pFloats, size_t i_numFloats);
+
 GameObject* create_game_object(const char * i_pScriptFilename) {
+	
 	GameObject *p_game_obj = nullptr;
 	
 	// Initialize us a lua_State                         
@@ -59,6 +61,8 @@ GameObject* create_game_object(const char * i_pScriptFilename) {
 		float position[2] = { 0.0f };
 
 		ReadFloatArray(pLuaState, -1, position, 2);
+		assert(position[0] == 0.0f);
+		assert(position[1] == 0.0f);
 		// we're done with the "initial_position table - pop it
 		lua_pop(pLuaState, 1);
 	}
@@ -108,7 +112,7 @@ size_t ReadFloatArray(lua_State * i_pState, int i_index, float * o_pFloats, size
 	assert(lua_gettop(i_pState) >= -i_index);
 	assert(lua_type(i_pState, i_index) == LUA_TTABLE);
 
-	size_t				index = 0;
+	size_t index = 0;
 
 	lua_pushnil(i_pState);
 
