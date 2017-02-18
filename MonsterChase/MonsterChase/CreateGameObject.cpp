@@ -1,14 +1,12 @@
 #include "CreateGameObject.h"
-#include "lua.hpp"
-#include "lua.h"
 #include "assert.h"
-
+#include "lua.hpp"
 uint8_t * LoadFile(const char * i_pFilename, size_t & o_sizeFile);
 size_t ReadFloatArray(lua_State * i_pState, int i_index, float * o_pFloats, size_t i_numFloats);
 GameObject* create_game_object(const char * i_pScriptFilename) {
 	GameObject *p_game_obj = nullptr;
 	
-	// Initialize us a lua_State
+	// Initialize us a lua_State                         
 	lua_State * pLuaState = luaL_newstate();
 	assert(pLuaState);
 

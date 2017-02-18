@@ -2,7 +2,6 @@
 #include <string.h>
 #include "Vector2D.h"
 #include "FixedSizeAllocator.h"
-#include "lua.h"
 class MemoryAllocator;
 class FixedSizeAllocator;
 class GameObject {
