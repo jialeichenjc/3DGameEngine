@@ -20,6 +20,8 @@
     <ClCompile Include="HashedString.cpp" />
     <ClCompile Include="PooledString.cpp" />
     <ClCompile Include="StringPoolUnitTest.cpp" />
+    <ClCompile Include="Vector4D.cpp" />
+    <ClCompile Include="Matrix4x4.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BitArray.h" />
@@ -44,6 +46,8 @@
     <ClInclude Include="HashedString.h" />
     <ClInclude Include="PooledString.h" />
     <ClInclude Include="StringPoolUnitTest.h" />
+    <ClInclude Include="Vector4D.h" />
+    <ClInclude Include="Matrix4x4.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
