@@ -1,4 +1,5 @@
 #pragma once
+#include "Vector4D.h"
 class Matrix4x4
 {
 public:
@@ -6,3 +7,4 @@ public:
 	~Matrix4x4();
 };
 
+inline 

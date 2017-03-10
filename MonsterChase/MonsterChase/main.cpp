@@ -59,7 +59,8 @@ int WINAPI wWinMain(HINSTANCE i_hInstance, HINSTANCE i_hPrevInstance, LPWSTR i_l
 	Game::init();
 	Game::shut_down();
 	//Game::monster_count++;
-	create_game_object("Player.lua");
+	// TODO: the following lua call is disabled to fix memory leaks, NEED INVESTIGATION
+	//create_game_object("Player.lua");
 
 	MemoryAllocator* test_allocator = MemoryAllocator::get_instance();
 	FixedSizeAllocator *fsa_allocator = FixedSizeAllocator::get_instance();
