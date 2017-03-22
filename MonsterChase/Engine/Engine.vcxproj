@@ -169,6 +169,7 @@
     <ClInclude Include="HashedString.h" />
     <ClInclude Include="IGameObjectController.h" />
     <ClInclude Include="Matrix4x4.h" />
+    <ClInclude Include="Matrix4x4UnitTest.h" />
     <ClInclude Include="MemoryAllocator.h" />
     <ClInclude Include="MemoryAllocatorTest.h" />
     <ClInclude Include="MemoryAllocatorUnitTest.h" />
@@ -193,6 +194,7 @@
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="HashedString.cpp" />
     <ClCompile Include="Matrix4x4.cpp" />
+    <ClCompile Include="Matrix4x4UnitTest.cpp" />
     <ClCompile Include="MemoryAllocator.cpp" />
     <ClCompile Include="MemoryAllocatorTest.cpp" />
     <ClCompile Include="MemoryAllocatorUnitTest.cpp" />

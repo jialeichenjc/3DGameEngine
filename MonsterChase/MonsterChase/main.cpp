@@ -22,6 +22,7 @@
 #include "BitArray.h"
 #include "GameObject.h"
 #include "MemoryAllocatorUnitTest.h"
+#include "Matrix4x4UnitTest.h"
 #include "FixedSizeAllocator.h"
 #include "CreateGameObject.h"
 #include "time.h"
@@ -56,6 +57,8 @@ int WINAPI wWinMain(HINSTANCE i_hInstance, HINSTANCE i_hPrevInstance, LPWSTR i_l
 	// test smart pointer
 	SmartPointer_UnitTest();
 	StringPool_UnitTest();
+	Matrix4x4_UnitTest();
+
 	Game::init();
 	Game::shut_down();
 	//Game::monster_count++;

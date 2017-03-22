@@ -11,7 +11,6 @@
     <ClCompile Include="MemoryAllocatorTest.cpp" />
     <ClCompile Include="Utility.cpp" />
     <ClCompile Include="Vector2D.cpp" />
-    <ClCompile Include="MemoryAllocatorUnitTest.cpp" />
     <ClCompile Include="SmartPointer.cpp" />
     <ClCompile Include="WeakPointer.cpp" />
     <ClCompile Include="ObjectManager.cpp" />
@@ -22,6 +21,10 @@
     <ClCompile Include="StringPoolUnitTest.cpp" />
     <ClCompile Include="Vector4D.cpp" />
     <ClCompile Include="Matrix4x4.cpp" />
+    <ClCompile Include="MemoryAllocatorUnitTest.cpp">
+      <Filter>Unit Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="Matrix4x4UnitTest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BitArray.h" />
@@ -36,7 +39,6 @@
     <ClInclude Include="MemoryAllocatorTest.h" />
     <ClInclude Include="Utility.h" />
     <ClInclude Include="Vector2D.h" />
-    <ClInclude Include="MemoryAllocatorUnitTest.h" />
     <ClInclude Include="Graphics.h" />
     <ClInclude Include="SmartPointer.h" />
     <ClInclude Include="WeakPointer.h" />
@@ -48,8 +50,17 @@
     <ClInclude Include="StringPoolUnitTest.h" />
     <ClInclude Include="Vector4D.h" />
     <ClInclude Include="Matrix4x4.h" />
+    <ClInclude Include="MemoryAllocatorUnitTest.h">
+      <Filter>Unit Tests</Filter>
+    </ClInclude>
+    <ClInclude Include="Matrix4x4UnitTest.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Unit Tests">
+      <UniqueIdentifier>{893b7374-1811-44a1-972f-7664ee565129}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>
