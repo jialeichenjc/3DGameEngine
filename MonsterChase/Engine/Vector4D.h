@@ -1,10 +1,14 @@
 #pragma once
+#include "Vector3D.h"
 class Vector4D
 {
 public:
 	Vector4D() = default;
 	Vector4D(float i_x, float i_y, float i_u, float i_v) 
 		: x_coord(i_x), y_coord(i_y), u_coord(i_u), v_coord(i_v) {}
+
+	Vector4D(const Vector3D & i_vec)
+		: x_coord(i_vec.x()), y_coord(i_vec.y()), u_coord(i_vec.z()), v_coord(1.0f) {}
 
 	inline float x() const {
 		return x_coord;
