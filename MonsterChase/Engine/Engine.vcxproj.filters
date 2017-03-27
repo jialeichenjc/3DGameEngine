@@ -25,6 +25,7 @@
       <Filter>Unit Tests</Filter>
     </ClCompile>
     <ClCompile Include="Matrix4x4UnitTest.cpp" />
+    <ClCompile Include="Vector3D.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BitArray.h" />
@@ -54,6 +55,7 @@
       <Filter>Unit Tests</Filter>
     </ClInclude>
     <ClInclude Include="Matrix4x4UnitTest.h" />
+    <ClInclude Include="Vector3D.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
