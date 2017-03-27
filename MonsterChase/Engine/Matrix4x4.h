@@ -4,25 +4,14 @@ class Matrix4x4
 {
 public:
 	Matrix4x4() = default;
-	Matrix4x4(float i_11, float i_12, float i_13, float i_14,
-		float i_21, float i_22, float i_23, float i_24,
-		float i_31, float i_32, float i_33, float i_34,
-		float i_41, float i_42, float i_43, float i_44)
-		: m_11(i_11), m_12(i_12), m_13(i_13), m_14(i_14),
-		m_21(i_21), m_22(i_22), m_23(i_23), m_24(i_24),
-		m_31(i_31), m_32(i_32), m_33(i_33), m_34(i_34),
-		m_41(i_41), m_42(i_42), m_43(i_43), m_44(i_44) {
-		
-		row1 = new Vector4D(i_11, i_12, i_13, i_14);
-		row2 = new Vector4D(i_21, i_22, i_23, i_24);
-		row3 = new Vector4D(i_31, i_32, i_33, i_34);
-		row4 = new Vector4D(i_41, i_42, i_43, i_44);
-
-		matrix_vec[0] = row1;
-		matrix_vec[1] = row2;
-		matrix_vec[2] = row3;
-		matrix_vec[3] = row4;
-	}
+	Matrix4x4(float i_00, float i_01, float i_02, float i_03,
+		float i_10, float i_11, float i_12, float i_13,
+		float i_20, float i_21, float i_22, float i_23,
+		float i_30, float i_31, float i_32, float i_33)
+		: m_00(i_00), m_01(i_01), m_02(i_02), m_03(i_03),
+		m_10(i_10), m_11(i_11), m_12(i_12), m_13(i_13),
+		m_20(i_20), m_21(i_21), m_22(i_22), m_23(i_23),
+		m_30(i_30), m_31(i_31), m_32(i_32), m_33(i_33) {}
 
 	// proxy class to overload [][] operator
 	class Proxy {
@@ -51,18 +40,34 @@ public:
 
 	private:
 		Vector4D vec4d;
-	};
+	}; // end of proxy class
 
 	// returns a new matrix whose rows are the columns of the original
-	Matrix4x4 get_transpose(Matrix4x4 &i_matrix) {
+	Matrix4x4 get_transpose() const {
 		Matrix4x4 matrix;
-		
+		matrix.set_each_elem(
+			m_00, m_10, m_20, m_30,
+			m_01, m_11, m_21, m_31,
+			m_02, m_12, m_22, m_32,
+			m_03, m_13, m_23, m_33);
+
 		return matrix;
 	}
 
-	Proxy operator[] (size_t i_row) {
-		Vector4D temp = *matrix_vec[i_row - 1];
-		return Proxy(temp);
+	Vector4D operator[] (const size_t i_row) const {
+		switch (i_row) {
+		case 0:
+			return Vector4D(m_00, m_01, m_02, m_03);
+		case 1:
+			return Vector4D(m_10, m_11, m_12, m_13);
+		case 2:
+			return Vector4D(m_20, m_21, m_22, m_23);
+		case 3:
+			return Vector4D(m_30, m_31, m_32, m_33);
+		default:
+			return Vector4D(0.0f, 0.0f, 0.0f, 0.0f);
+		}
+
 	}
 
 	inline void set_row(int i_row, float i_1, float i_2, float i_3, float i_4) {
@@ -70,32 +75,32 @@ public:
 		switch (i_row)
 		{
 		case 1: 
-			row1 = new Vector4D(i_1, i_2, i_3, i_4);
-			m_11 = i_1;
-			m_12 = i_2;
-			m_13 = i_3;
-			m_14 = i_4;
+		/*	row1 = new Vector4D(i_1, i_2, i_3, i_4);*/
+			m_00 = i_1;
+			m_01 = i_2;
+			m_02 = i_3;
+			m_03 = i_4;
 			break;
 		case 2:
-			row2 = new Vector4D(i_1, i_2, i_3, i_4);
-			m_21 = i_1;
-			m_22 = i_2;
-			m_23 = i_3;
-			m_24 = i_4;
+			/*row2 = new Vector4D(i_1, i_2, i_3, i_4);*/
+			m_10 = i_1;
+			m_11 = i_2;
+			m_12 = i_3;
+			m_13 = i_4;
 			break;
 		case 3:
-			row3 = Vector4D(i_1, i_2, i_3, i_4);
-			m_31 = i_1;
-			m_32 = i_2;
-			m_33 = i_3;
-			m_34 = i_4;
+			/*row3 = new Vector4D(i_1, i_2, i_3, i_4);*/
+			m_20 = i_1;
+			m_21 = i_2;
+			m_22 = i_3;
+			m_23 = i_4;
 			break;
 		case 4:
-			row4 = &Vector4D(i_1, i_2, i_3, i_4);
-			m_41 = i_1;
-			m_42 = i_2;
-			m_43 = i_3;
-			m_44 = i_4;
+			/*row4 = new Vector4D(i_1, i_2, i_3, i_4);*/
+			m_30 = i_1;
+			m_31 = i_2;
+			m_32 = i_3;
+			m_33 = i_4;
 			break;
 		default:
 			break;
@@ -104,48 +109,59 @@ public:
 
 
 	// set values for each element in the matrix
-	inline void set_each_elem(float i_11, float i_12, float i_13, float i_14,
-		float i_21, float i_22, float i_23, float i_24,
-		float i_31, float i_32, float i_33, float i_34,
-		float i_41, float i_42, float i_43, float i_44) {
+	inline void set_each_elem(float i_00, float i_01, float i_02, float i_03,
+		float i_10,	float i_11, float i_12, float i_13,
+		float i_20, float i_21, float i_22, float i_23,
+		float i_30, float i_31, float i_32, float i_33) {
+		m_00 = i_00;
+		m_01 = i_01;
+		m_02 = i_02;
+		m_03 = i_03;
+		m_10 = i_10;
 		m_11 = i_11;
 		m_12 = i_12;
 		m_13 = i_13;
-		m_14 = i_14;
+		m_20 = i_20;
 		m_21 = i_21;
 		m_22 = i_22;
 		m_23 = i_23;
-		m_24 = i_24;
+		m_30 = i_30;
 		m_31 = i_31;
 		m_32 = i_32;
 		m_33 = i_33;
-		m_34 = i_34;
-		m_41 = i_41;
-		m_42 = i_42;
-		m_43 = i_43;
-		m_44 = i_44;
 	}
 
 	~Matrix4x4() {
-		delete row1;
-		delete row2;
-		delete row3;
-		delete row4;
 	}
 
 private:
-	float m_11, m_12, m_13, m_14,
-		m_21, m_22, m_23, m_24,
-		m_31, m_32, m_33, m_34,
-		m_41, m_42, m_43, m_44;
-
-	Vector4D *row1;
-	Vector4D *row2;
-	Vector4D *row3;
-	Vector4D *row4;
-
-	// representation of this matrix as an array of Vector4D (for each row)
-	Vector4D *matrix_vec[4];
+	float m_00, m_01, m_02, m_03,
+		m_10, m_11, m_12, m_13,
+		m_20, m_21, m_22, m_23,
+		m_30, m_31, m_32, m_33;
 };
 
+inline bool operator== (Matrix4x4& i_lmat, Matrix4x4& i_rmat) {
+	for (size_t i = 0; i < 3; i++) {
+		for (size_t j = 0; j < 3; j++) {
+			if (i_lmat[i][j] != i_rmat[i][j]) {
+				return false;
+			}
+		}
+	}
+	return true;
+}
 
+// performs Matrix4x4 and Vector4D multiplication
+inline Vector4D operator* (const Matrix4x4& i_mat, Vector4D i_vec) {
+	Vector4D o_vec;
+	for (size_t i = 0; i <= 3; i++) {
+		float temp = 0.0f;
+		size_t j = 0;
+		for (; j <= 3; j++) {
+			temp += i_mat[i][j] * i_vec[j];
+		}
+		o_vec[i] = temp;
+	}
+	return o_vec;
+}

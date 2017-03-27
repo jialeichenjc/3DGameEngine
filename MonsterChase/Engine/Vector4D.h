@@ -45,6 +45,39 @@ public:
 		v_coord = i_v;
 	}
 
+	float operator[](const size_t i_index) const {
+		switch (i_index)
+		{
+		case 0:
+			return x_coord;
+		case 1:
+			return y_coord;
+		case 2:
+			return u_coord;
+		case 3:
+			return v_coord;
+		default:
+			return 0.0f;
+		}
+	}
+
+	float& operator[](const size_t i_index) {
+		float result = 0.0f;
+		switch (i_index)
+		{
+		case 0:
+			return x_coord;
+		case 1:
+			return y_coord;
+		case 2:
+			return u_coord;
+		case 3:
+			return v_coord;
+		default:
+			return result;
+		}
+	}
+
 	~Vector4D() {};
 
 private:
@@ -54,3 +87,11 @@ private:
 	float v_coord;
 };
 
+inline bool operator ==(const Vector4D i_lvec, const Vector4D i_rvec) {
+	for (size_t i = 0; i <= 3; i++) {
+		if (i_lvec[i] != i_rvec[i]) {
+			return false;
+		}
+	}
+	return true;
+}
