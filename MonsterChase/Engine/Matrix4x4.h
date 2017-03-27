@@ -54,6 +54,8 @@ public:
 		return matrix;
 	}
 
+	void scale(Vector4D i_scale_vec);
+
 	Vector4D operator[] (const size_t i_row) const {
 		switch (i_row) {
 		case 0:

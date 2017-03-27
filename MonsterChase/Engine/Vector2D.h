@@ -7,12 +7,12 @@ public:
 	Vector2D() = default;
 	Vector2D(float i_x, float i_y) : x_coord(is_nan(i_x) ? float(0.0) : i_x), y_coord(is_nan(i_y) ? float(0.0) : i_y) {}
 
-	// get x coordination of vector
+	// get x coordinate of vector
 	inline float x() const { return x_coord; }
-	// get y coordination of vector
+	// get y coordinate of vector
 	inline float y() const { return y_coord; }
 
-	// set x coordination of vector
+	// set x coordinate of vector
 	inline void set_x(const float i_x) { 
 		if (is_nan(i_x)) {
 			return;
@@ -20,7 +20,7 @@ public:
 		this->x_coord = i_x; 
 	}
 
-	// set x coordination of vector
+	// set x coordinate of vector
 	inline void set_y(const float i_y) { 
 		if (is_nan(i_y)) {
 			return;
