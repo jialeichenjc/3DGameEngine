@@ -44,7 +44,7 @@ public:
 	}
 
 	// assignment operator
-	void operator =(const Vector3D);
+	void operator = (const Vector3D&);
 
 	~Vector3D() {};
 
