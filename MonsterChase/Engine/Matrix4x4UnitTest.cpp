@@ -45,10 +45,27 @@ bool Matrix4x4_UnitTest() {
 		0.0f, 0.0f, 1.0f, 0.0f,
 		0.0f, 0.0f, 0.0f, 1.0f
 	);
+
+	Matrix4x4 test_matrix2(
+		1.0f, 2.0f, 3.0f, 4.0f,
+		1.0f, 1.0f, 1.0f, 0.0f,
+		0.0f, 1.0f, 1.0f, 0.0f,
+		0.0f, 1.0f, 0.0f, 1.0f
+	);                              
 	Vector4D test_vec(1.0f, 2.0f, 3.0f, 1.0f);
 	Vector4D test_vec_target(1.0f, 2.0f, 3.0f, 1.0f);
+	Vector4D test_vec_target2(18.0f, 6.0f, 5.0f, 3.0f);
 	Vector4D test_matrix_multi = test_matrix_id * test_vec;
+	Vector4D test_matrix_multi2 = test_matrix2 * test_vec;
+	assert(test_matrix_multi2 == test_vec_target2);
 	assert(test_matrix_multi == test_vec_target);
 
+	// test scale vector4d
+	Vector4D trans_target(1.0f, 1.0f, 1.0f, 1.0f);
+	Vector4D trans_vec(1.0f, 2.0f, 3.0f, 1.0f);
+	Matrix4x4 test_mat;
+	test_mat.scale(trans_target, trans_vec);
+	Vector4D expected(1.0f, 2.0f, 3.0f, 1.0f);
+	assert(trans_target == expected);
 	return true;
 }
