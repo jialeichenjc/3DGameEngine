@@ -54,8 +54,6 @@ public:
 		return matrix;
 	}
 
-	void scale(Vector4D i_scale_vec);
-
 	Vector4D operator[] (const size_t i_row) const {
 		switch (i_row) {
 		case 0:
@@ -132,6 +130,20 @@ public:
 		m_32 = i_32;
 		m_33 = i_33;
 	}
+
+	void scale(Vector4D & i_target_vec, Vector4D & i_scale_vec);
+	void scale(Vector3D i_scale_vec); 
+	void rotate(Vector4D & i_target_vec, Vector4D & i_rot_vec);
+	void translate(Vector4D & i_target_vec, Vector4D & i_trans_vec);
+	
+	// create a scalling matrix
+	Matrix4x4 create_scale_mat(float i_x, float i_y, float i_z);
+
+	// create a rotating matrix
+	Matrix4x4 create_rot_mat(float i_x_angle, float i_y_angle, float i_z_angle);
+
+	// create a translation matrix
+	Matrix4x4 create_trans_mat(float i_x, float i_y, float i_z);
 
 	~Matrix4x4() {
 	}
