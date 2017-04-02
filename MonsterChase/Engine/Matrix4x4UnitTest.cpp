@@ -67,5 +67,21 @@ bool Matrix4x4_UnitTest() {
 	test_mat.scale(trans_target, trans_vec);
 	Vector4D expected(1.0f, 2.0f, 3.0f, 1.0f);
 	assert(trans_target == expected);
+
+	// test rotations
+	Matrix4x4 test_rot_mat;
+	Vector4D test_rot_vec_z(1.0f, 0.0f, 0.0f, 1.0f);
+	Vector4D test_rot_z_exp(0.0f, 1.0f, 0.0f, 1.0f);
+	Vector4D test_rot_vec_y(1.0f, 0.0f, 0.0f, 1.0f);
+	Vector4D test_rot_y_exp(0.0f, 0.0f, 1.0f, 1.0f);
+	Vector4D test_rot_vec_x(0.0f, 1.0f, 0.0f, 1.0f);
+	Vector4D test_rot_x_exp(0.0f, 0.0f, 1.0f, 1.0f);
+	test_rot_mat.rotate_x(test_rot_vec_x, 90.0f);
+	test_rot_mat.rotate_y(test_rot_vec_y, -90.0f);
+	test_rot_mat.rotate_z(test_rot_vec_z, 90.0f);
+	assert(test_rot_vec_x == test_rot_x_exp);
+	assert(test_rot_vec_y == test_rot_y_exp);
+	assert(test_rot_vec_z == test_rot_z_exp);
+
 	return true;
 }

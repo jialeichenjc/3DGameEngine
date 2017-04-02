@@ -1,5 +1,7 @@
 #pragma once
+#include <cmath>
 #include "Vector4D.h"
+
 class Matrix4x4
 {
 public:
@@ -135,15 +137,22 @@ public:
 	void scale(Vector3D i_scale_vec); 
 	void rotate(Vector4D & i_target_vec, Vector4D & i_rot_vec);
 	void translate(Vector4D & i_target_vec, Vector4D & i_trans_vec);
-	
-	// create a scalling matrix
+
+	// rotate around different axis
+	void rotate_x(Vector4D & i_target_vec, float angle);
+
+	void rotate_y(Vector4D & i_target_vec, float angle);
+
+	void rotate_z(Vector4D & i_target_vec, float angle);
+
+	/* create a scalling matrix
 	Matrix4x4 create_scale_mat(float i_x, float i_y, float i_z);
 
-	// create a rotating matrix
+	 create a rotating matrix
 	Matrix4x4 create_rot_mat(float i_x_angle, float i_y_angle, float i_z_angle);
 
-	// create a translation matrix
-	Matrix4x4 create_trans_mat(float i_x, float i_y, float i_z);
+	 create a translation matrix
+	Matrix4x4 create_trans_mat(float i_x, float i_y, float i_z);*/
 
 	~Matrix4x4() {
 	}
