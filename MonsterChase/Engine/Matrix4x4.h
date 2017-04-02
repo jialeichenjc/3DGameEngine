@@ -138,21 +138,27 @@ public:
 	void rotate(Vector4D & i_target_vec, Vector4D & i_rot_vec);
 	void translate(Vector4D & i_target_vec, Vector4D & i_trans_vec);
 
+	// return the determinant of a matrix4x4
+	inline float get_det() {
+		float result =
+			m_00 * (m_11*m_22*m_33 + m_21*m_32*m_13 + m_31*m_12*m_23
+				- m_31*m_22*m_13 - m_21*m_12*m_33 - m_11*m_32*m_23)
+			+ m_01 * (m_30*m_22*m_13 + m_20*m_12*m_33 + m_10*m_32*m_23
+				- m_10*m_22*m_33 - m_20*m_32*m_13 - m_30*m_12*m_23)
+			+ m_02 * (m_10*m_22*m_33 + m_20*m_32*m_13 + m_30*m_11*m_23
+				- m_30*m_22*m_13 - m_20*m_11*m_33 - m_10*m_32*m_23)
+			+ m_03 * (m_30*m_21*m_12 + m_20*m_11*m_32 + m_10*m_31*m_22
+				- m_10*m_21*m_32 - m_20*m_31*m_12 - m_30*m_11*m_22);
+		return result;
+	}
+
+
 	// rotate around different axis
 	void rotate_x(Vector4D & i_target_vec, float angle);
 
 	void rotate_y(Vector4D & i_target_vec, float angle);
 
 	void rotate_z(Vector4D & i_target_vec, float angle);
-
-	/* create a scalling matrix
-	Matrix4x4 create_scale_mat(float i_x, float i_y, float i_z);
-
-	 create a rotating matrix
-	Matrix4x4 create_rot_mat(float i_x_angle, float i_y_angle, float i_z_angle);
-
-	 create a translation matrix
-	Matrix4x4 create_trans_mat(float i_x, float i_y, float i_z);*/
 
 	~Matrix4x4() {
 	}
@@ -164,7 +170,7 @@ private:
 		m_30, m_31, m_32, m_33;
 };
 
-inline bool operator== (Matrix4x4& i_lmat, Matrix4x4& i_rmat) {
+inline bool operator== (Matrix4x4 & i_lmat, Matrix4x4 & i_rmat) {
 	for (size_t i = 0; i < 3; i++) {
 		for (size_t j = 0; j < 3; j++) {
 			if (i_lmat[i][j] != i_rmat[i][j]) {
