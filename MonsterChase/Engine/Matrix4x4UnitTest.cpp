@@ -25,12 +25,12 @@ void test_determinant() {
 	assert(det == -8.0f);
 }
 
-void test_inversion() {
+void test_inverse() {
 	Matrix4x4 test_mat(4.0f, 0.0f, 0.0f, 0.0f,
 		0.0f, 0.0f, 2.0f, 0.0f,
 		0.0f, 1.0f, 2.0f, 0.0f,
 		1.0f, 0.0f, 0.0f, 1.0f);
-	Matrix4x4 result = test_mat.get_inversion();
+	Matrix4x4 result = test_mat.get_inverse();
 	Matrix4x4 expected(0.25f, 0.0f, 0.0f, 0.0f,
 		0.0f, -1.0f, 1.0f, 0.0f,
 		0.0f, 0.5f, 0.0f, 0.0f,
@@ -133,7 +133,7 @@ bool Matrix4x4_UnitTest() {
 
 	test_determinant();
 
-	test_inversion();
+	test_inverse();
 
 	test_transpose();
 	return true;

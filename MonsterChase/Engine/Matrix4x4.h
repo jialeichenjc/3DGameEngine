@@ -153,7 +153,7 @@ public:
 	}
 	
 	// get inversed matrix, if it exists
-	Matrix4x4 & get_inversion();
+	Matrix4x4 & get_inverse();
 
 	// rotate around different axis
 	void rotate_x(Vector4D & i_target_vec, float angle);

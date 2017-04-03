@@ -48,7 +48,7 @@ void Matrix4x4::rotate_z(Vector4D & i_target_vec, float angle) {
 	i_target_vec = (*this) * i_target_vec;
 }
 
-Matrix4x4 & Matrix4x4::get_inversion() {
+Matrix4x4 & Matrix4x4::get_inverse() {
 	Matrix4x4 result;
 	float mat_det = this->get_det();
 	if (mat_det != 0) {
