@@ -1,10 +1,16 @@
 #pragma once
+#include "Vector3D.h"
+#include "Utility.h"
+
 class Vector4D
 {
 public:
 	Vector4D() = default;
 	Vector4D(float i_x, float i_y, float i_u, float i_v) 
 		: x_coord(i_x), y_coord(i_y), u_coord(i_u), v_coord(i_v) {}
+
+	Vector4D(const Vector3D & i_vec)
+		: x_coord(i_vec.x()), y_coord(i_vec.y()), u_coord(i_vec.z()), v_coord(1.0f) {}
 
 	inline float x() const {
 		return x_coord;
@@ -89,7 +95,7 @@ private:
 
 inline bool operator ==(const Vector4D i_lvec, const Vector4D i_rvec) {
 	for (size_t i = 0; i <= 3; i++) {
-		if (i_lvec[i] != i_rvec[i]) {
+		if (! is_approx_equals(i_lvec[i], i_rvec[i], static_cast<float>(0.00001))) {
 			return false;
 		}
 	}

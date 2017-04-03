@@ -43,11 +43,27 @@ public:
 		this->z_coord = i_z;
 	}
 
-	~Vector3D();
+	// assignment operator
+	void operator = (const Vector3D&);
+
+	~Vector3D() {};
 
 private:
 	float x_coord;
 	float y_coord;
 	float z_coord;
 };
+
+inline Vector3D operator +(const Vector3D &lhs, const Vector3D &rhs) {
+	return Vector3D(lhs.x() + rhs.x(), lhs.y() + rhs.y(), lhs.z() + rhs.z());
+}
+
+inline bool operator ==(const Vector3D &lhs, const Vector3D &rhs) {
+	return is_approx_equals(lhs.x(), rhs.x(), static_cast<float>(0.00001)) && is_approx_equals(lhs.y(), rhs.y(), static_cast<float>(0.00001))
+		&& is_approx_equals(lhs.z(), rhs.z(), static_cast<float>(0.00001));
+}
+
+inline bool operator !=(const Vector3D &lhs, const Vector3D &rhs) {
+	return lhs == rhs ? false : true;
+}
 

@@ -1,5 +1,7 @@
 #pragma once
+#include <cmath>
 #include "Vector4D.h"
+
 class Matrix4x4
 {
 public:
@@ -43,7 +45,7 @@ public:
 	}; // end of proxy class
 
 	// returns a new matrix whose rows are the columns of the original
-	Matrix4x4 get_transpose() const {
+	Matrix4x4 & get_transpose() const {
 		Matrix4x4 matrix;
 		matrix.set_each_elem(
 			m_00, m_10, m_20, m_30,
@@ -133,6 +135,35 @@ public:
 		m_33 = i_33;
 	}
 
+	void scale(Vector4D & i_target_vec, Vector4D & i_scale_vec);
+	void scale(Vector3D i_scale_vec); 
+	void rotate(Vector4D & i_target_vec, Vector4D & i_rot_vec);
+	void translate(Vector4D & i_target_vec, Vector4D & i_trans_vec);
+
+	// return the determinant of a matrix4x4
+	inline float get_det() {
+		float result =
+			m_00 * (m_11*m_22*m_33 + m_21*m_32*m_13 + m_31*m_12*m_23
+				- m_31*m_22*m_13 - m_21*m_12*m_33 - m_11*m_32*m_23)
+			+ m_01 * (m_30*m_22*m_13 + m_20*m_12*m_33 + m_10*m_32*m_23
+				- m_10*m_22*m_33 - m_20*m_32*m_13 - m_30*m_12*m_23)
+			+ m_02 * (m_10*m_22*m_33 + m_20*m_32*m_13 + m_30*m_11*m_23
+				- m_30*m_22*m_13 - m_20*m_11*m_33 - m_10*m_32*m_23)
+			+ m_03 * (m_30*m_21*m_12 + m_20*m_11*m_32 + m_10*m_31*m_22
+				- m_10*m_21*m_32 - m_20*m_31*m_12 - m_30*m_11*m_22);
+		return result;
+	}
+	
+	// get inversed matrix, if it exists
+	Matrix4x4 & get_inverse();
+
+	// rotate around different axis
+	void rotate_x(Vector4D & i_target_vec, float angle);
+
+	void rotate_y(Vector4D & i_target_vec, float angle);
+
+	void rotate_z(Vector4D & i_target_vec, float angle);
+
 	~Matrix4x4() {
 	}
 
@@ -143,7 +174,7 @@ private:
 		m_30, m_31, m_32, m_33;
 };
 
-inline bool operator== (Matrix4x4& i_lmat, Matrix4x4& i_rmat) {
+inline bool operator== (Matrix4x4 & i_lmat, Matrix4x4 & i_rmat) {
 	for (size_t i = 0; i < 3; i++) {
 		for (size_t j = 0; j < 3; j++) {
 			if (i_lmat[i][j] != i_rmat[i][j]) {
