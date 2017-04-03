@@ -45,7 +45,7 @@ public:
 	}; // end of proxy class
 
 	// returns a new matrix whose rows are the columns of the original
-	Matrix4x4 get_transpose() const {
+	Matrix4x4 & get_transpose() const {
 		Matrix4x4 matrix;
 		matrix.set_each_elem(
 			m_00, m_10, m_20, m_30,
