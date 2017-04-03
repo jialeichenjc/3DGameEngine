@@ -151,7 +151,9 @@ public:
 				- m_10*m_21*m_32 - m_20*m_31*m_12 - m_30*m_11*m_22);
 		return result;
 	}
-
+	
+	// get inversed matrix, if it exists
+	Matrix4x4 & get_inversion();
 
 	// rotate around different axis
 	void rotate_x(Vector4D & i_target_vec, float angle);
