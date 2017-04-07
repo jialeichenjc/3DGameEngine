@@ -1,6 +1,6 @@
 #include "GameObject.h"
-#include "MemoryAllocator.h"
-#include "FixedSizeAllocator.h"
+#include "MemoryManager/MemoryAllocator.h"
+#include "MemoryManager/FixedSizeAllocator.h"
 bool GameObject::on_fsa_allocator = false;
 bool GameObject::on_mem_allocator = false;
 GameObject::GameObject() : position(0.0, 0.0) {

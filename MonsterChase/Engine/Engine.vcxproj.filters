@@ -1,64 +1,57 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="BitArray.cpp" />
-    <ClCompile Include="BlockDescriptor.cpp" />
-    <ClCompile Include="BlockDescriptorList.cpp" />
-    <ClCompile Include="EngineTestSuite.cpp" />
-    <ClCompile Include="FixedSizeAllocator.cpp" />
     <ClCompile Include="GameObject.cpp" />
-    <ClCompile Include="MemoryAllocator.cpp" />
-    <ClCompile Include="MemoryAllocatorTest.cpp" />
     <ClCompile Include="Utility.cpp" />
-    <ClCompile Include="Vector2D.cpp" />
     <ClCompile Include="SmartPointer.cpp" />
     <ClCompile Include="WeakPointer.cpp" />
     <ClCompile Include="ObjectManager.cpp" />
-    <ClCompile Include="SmartPointerUnitTest.cpp" />
     <ClCompile Include="StringPool.cpp" />
     <ClCompile Include="HashedString.cpp" />
     <ClCompile Include="PooledString.cpp" />
-    <ClCompile Include="StringPoolUnitTest.cpp" />
-    <ClCompile Include="Vector4D.cpp" />
-    <ClCompile Include="Matrix4x4.cpp" />
-    <ClCompile Include="MemoryAllocatorUnitTest.cpp">
-      <Filter>Unit Tests</Filter>
-    </ClCompile>
-    <ClCompile Include="Matrix4x4UnitTest.cpp" />
-    <ClCompile Include="Vector3D.cpp" />
+    <ClCompile Include="Test\Matrix4x4UnitTest.cpp" />
+    <ClCompile Include="Test\MemoryAllocatorTest.cpp" />
+    <ClCompile Include="Test\MemoryAllocatorUnitTest.cpp" />
+    <ClCompile Include="Test\SmartPointerUnitTest.cpp" />
+    <ClCompile Include="Test\StringPoolUnitTest.cpp" />
+    <ClCompile Include="MemoryManager\BitArray.cpp" />
+    <ClCompile Include="MemoryManager\BlockDescriptor.cpp" />
+    <ClCompile Include="MemoryManager\BlockDescriptorList.cpp" />
+    <ClCompile Include="MemoryManager\FixedSizeAllocator.cpp" />
+    <ClCompile Include="MemoryManager\MemoryAllocator.cpp" />
+    <ClCompile Include="Test\EngineTestSuite.cpp" />
+    <ClCompile Include="Math\Matrix4x4.cpp" />
+    <ClCompile Include="Math\Vector2D.cpp" />
+    <ClCompile Include="Math\Vector3D.cpp" />
+    <ClCompile Include="Math\Vector4D.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="BitArray.h" />
-    <ClInclude Include="BlockDescriptor.h" />
-    <ClInclude Include="BlockDescriptorList.h" />
     <ClInclude Include="Debug.h" />
-    <ClInclude Include="EngineTestSuite.h" />
-    <ClInclude Include="FixedSizeAllocator.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="IGameObjectController.h" />
-    <ClInclude Include="MemoryAllocator.h" />
-    <ClInclude Include="MemoryAllocatorTest.h" />
     <ClInclude Include="Utility.h" />
-    <ClInclude Include="Vector2D.h" />
     <ClInclude Include="Graphics.h" />
     <ClInclude Include="SmartPointer.h" />
     <ClInclude Include="WeakPointer.h" />
     <ClInclude Include="ObjectManager.h" />
-    <ClInclude Include="SmartPointerUnitTest.h" />
     <ClInclude Include="StringPool.h" />
     <ClInclude Include="HashedString.h" />
     <ClInclude Include="PooledString.h" />
-    <ClInclude Include="StringPoolUnitTest.h" />
-    <ClInclude Include="Vector4D.h" />
-    <ClInclude Include="Matrix4x4.h" />
-    <ClInclude Include="MemoryAllocatorUnitTest.h">
-      <Filter>Unit Tests</Filter>
-    </ClInclude>
-    <ClInclude Include="Matrix4x4UnitTest.h" />
-    <ClInclude Include="Vector3D.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="ReadMe.txt" />
+    <ClInclude Include="Test\Matrix4x4UnitTest.h" />
+    <ClInclude Include="Test\MemoryAllocatorTest.h" />
+    <ClInclude Include="Test\MemoryAllocatorUnitTest.h" />
+    <ClInclude Include="Test\SmartPointerUnitTest.h" />
+    <ClInclude Include="Test\StringPoolUnitTest.h" />
+    <ClInclude Include="MemoryManager\BitArray.h" />
+    <ClInclude Include="MemoryManager\BlockDescriptor.h" />
+    <ClInclude Include="MemoryManager\BlockDescriptorList.h" />
+    <ClInclude Include="MemoryManager\FixedSizeAllocator.h" />
+    <ClInclude Include="MemoryManager\MemoryAllocator.h" />
+    <ClInclude Include="Test\EngineTestSuite.h" />
+    <ClInclude Include="Math\Matrix4x4.h" />
+    <ClInclude Include="Math\Vector2D.h" />
+    <ClInclude Include="Math\Vector3D.h" />
+    <ClInclude Include="Math\Vector4D.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Unit Tests">

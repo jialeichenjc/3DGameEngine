@@ -1,7 +1,7 @@
 #pragma once
 #include "GLib.h"
-#include "MemoryAllocator.h"
-#include "FixedSizeAllocator.h"
+#include "MemoryManager/MemoryAllocator.h"
+#include "MemoryManager/FixedSizeAllocator.h"
 namespace Graphics {
 
 	void initialize(HINSTANCE i_hInstance, int i_nCmdShow) {
@@ -9,58 +9,58 @@ namespace Graphics {
 	}
 
 	void render(HINSTANCE i_hInstance, int i_nCmdShow) {
-		MemoryAllocator* test_allocator = MemoryAllocator::get_instance();
-		FixedSizeAllocator *fsa_allocator = FixedSizeAllocator::get_instance();
+		//MemoryAllocator* test_allocator = MemoryAllocator::get_instance();
+		//FixedSizeAllocator *fsa_allocator = FixedSizeAllocator::get_instance();
 
-		// Initialize GLib
-		bool bSuccess = GLib::Initialize(i_hInstance, i_nCmdShow, "GLibTest", -1, 800, 600);
-		Player *player = new Player();
-		player->init_pos();
-		player->set_name("test player");
+		//// Initialize GLib
+		//bool bSuccess = GLib::Initialize(i_hInstance, i_nCmdShow, "GLibTest", -1, 800, 600);
+		//Player *player = new Player();
+		//player->init_pos();
+		//player->set_name("test player");
 
-		Monster *monster = new Monster();
+		//Monster *monster = new Monster();
 
 
-		if (bSuccess) {
-			GLib::SetKeyStateChangeCallback(TestKeyCallback);
+		//if (bSuccess) {
+		//	GLib::SetKeyStateChangeCallback(TestKeyCallback);
 
-			GLib::Sprites::Sprite *pMonster_sprite = CreateSprite("data\\BadGuy.dds");
-			GLib::Sprites::Sprite *pPlayer_sprite = CreateSprite("data\\GoodGuy.dds");
-			player->set_sprite(pPlayer_sprite);
-			monster->set_sprite(pMonster_sprite);
+		//	GLib::Sprites::Sprite *pMonster_sprite = CreateSprite("data\\BadGuy.dds");
+		//	GLib::Sprites::Sprite *pPlayer_sprite = CreateSprite("data\\GoodGuy.dds");
+		//	player->set_sprite(pPlayer_sprite);
+		//	monster->set_sprite(pMonster_sprite);
 
-			bool bQuit = false;
+		//	bool bQuit = false;
 
-			do {
-				GLib::Service(bQuit);
+		//	do {
+		//		GLib::Service(bQuit);
 
-				if (!bQuit) {
-					GLib::BeginRendering();
-					GLib::Sprites::BeginRendering();
+		//		if (!bQuit) {
+		//			GLib::BeginRendering();
+		//			GLib::Sprites::BeginRendering();
 
-					if (player->get_sprite()) {
-						static GLib::Point2D offset = { -180.0f, -100.0f };
-						GLib::Sprites::RenderSprite(*(player->get_sprite()), offset, 0.0f);
-					}
+		//			if (player->get_sprite()) {
+		//				static GLib::Point2D offset = { -180.0f, -100.0f };
+		//				GLib::Sprites::RenderSprite(*(player->get_sprite()), offset, 0.0f);
+		//			}
 
-					if (monster->get_sprite()) {
-						static GLib::Point2D offset = { 180.0f, -100.0f };
-						GLib::Sprites::RenderSprite(*(monster->get_sprite()), offset, 0.0f);
-					}
+		//			if (monster->get_sprite()) {
+		//				static GLib::Point2D offset = { 180.0f, -100.0f };
+		//				GLib::Sprites::RenderSprite(*(monster->get_sprite()), offset, 0.0f);
+		//			}
 
-					GLib::Sprites::EndRendering();
-					GLib::EndRendering();
-				}
-			} while (bQuit == false);
+		//			GLib::Sprites::EndRendering();
+		//			GLib::EndRendering();
+		//		}
+		//	} while (bQuit == false);
 
-			if (pPlayer_sprite) {
-				GLib::Sprites::Release(pPlayer_sprite);
-			}
-			if (pMonster_sprite) {
-				GLib::Sprites::Release(pMonster_sprite);
-			}
-			GLib::Shutdown();
-		}
+		//	if (pPlayer_sprite) {
+		//		GLib::Sprites::Release(pPlayer_sprite);
+		//	}
+		//	if (pMonster_sprite) {
+		//		GLib::Sprites::Release(pMonster_sprite);
+		//	}
+		//	GLib::Shutdown();
+		//}
 	}
 
 	void TestKeyCallback(unsigned int i_VKeyID, bool bWentDown)

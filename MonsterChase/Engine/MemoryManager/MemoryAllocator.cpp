@@ -1,5 +1,5 @@
 #include "MemoryAllocator.h"
-#include "Debug.h"
+#include "../Debug.h"
 #define INCLUDE_GUARDBAND false
 #if defined(_DEBUG)
 #define INCLUDE_GUARDBAND true
