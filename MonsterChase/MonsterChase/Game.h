@@ -1,7 +1,7 @@
 #pragma once
 #define DEFAULT_MONSTER_SIZE 4
 #define DEFAULT_PLAYER_NAME "Player1"
-#include "MemoryAllocator.h"
+#include "MemoryManager/MemoryAllocator.h"
 namespace Game {
 	size_t num_monsters;
 	MonsterController monster_controller;

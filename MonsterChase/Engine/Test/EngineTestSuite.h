@@ -1,6 +1,6 @@
 #pragma once
-#include "Debug.h"
-#include "Vector2D.h"
+#include "../Debug.h"
+#include "../Math/Vector2D.h"
 class EngineTestSuite
 {
 public:

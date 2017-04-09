@@ -1,6 +1,6 @@
 #pragma once
 #include "Vector3D.h"
-#include "Utility.h"
+#include "../Utility.h"
 
 class Vector4D
 {

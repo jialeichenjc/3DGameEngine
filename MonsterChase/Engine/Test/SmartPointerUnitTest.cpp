@@ -1,8 +1,8 @@
 #include "SmartPointerUnitTest.h"
-#include "SmartPointer.h"
-#include "WeakPointer.h"
-#include "GameObject.h"
-#include "ObjectManager.h"
+#include "../SmartPointer.h"
+#include "../WeakPointer.h"
+#include "../GameObject.h"
+#include "../ObjectManager.h"
 #include <assert.h>
 using namespace std;
 

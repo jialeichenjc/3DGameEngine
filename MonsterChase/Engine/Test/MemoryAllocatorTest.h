@@ -1,6 +1,6 @@
 #pragma once
-#include "MemoryAllocator.h"
-#include "Debug.h"
+#include "../MemoryManager/MemoryAllocator.h"
+#include "../Debug.h"
 class MemoryAllocatorTest
 {
 public:
