@@ -1,13 +1,14 @@
 #pragma once
 #include <vector>
-class Collidable;
+#include "Collidable.h"
 class PhysicsWorld
 {
 public:
 	PhysicsWorld();
 	void AddToCollidables(const Collidable & i_Collidable);
 	void RemoveFromCollidables(const Collidable & i_Collidable);
-	std::vector<Collidable> & GetAllCollidables() const;
+	std::vector<Collidable> & PhysicsWorld::GetAllCollidables();
+
 	~PhysicsWorld();
 
 private:
