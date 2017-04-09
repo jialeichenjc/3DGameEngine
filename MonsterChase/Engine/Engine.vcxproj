@@ -156,6 +156,9 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Physics\OrientedBoundingBox.h" />
+    <ClInclude Include="Physics\AxisAlignedBoundingBox.h" />
+    <ClInclude Include="Physics\Collidable.h" />
     <ClInclude Include="Math\Matrix4x4.h" />
     <ClInclude Include="Math\Vector2D.h" />
     <ClInclude Include="Math\Vector3D.h" />
@@ -164,6 +167,9 @@
     <ClInclude Include="MemoryManager\BlockDescriptor.h" />
     <ClInclude Include="MemoryManager\BlockDescriptorList.h" />
     <ClInclude Include="Debug.h" />
+    <ClInclude Include="Physics\PhysicsWorld.h" />
+    <ClInclude Include="Physics\VectorMath.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="Test\EngineTestSuite.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="HashedString.h" />
@@ -181,9 +187,13 @@
     <ClInclude Include="Test\SmartPointerUnitTest.h" />
     <ClInclude Include="Test\StringPoolUnitTest.h" />
     <ClInclude Include="Utility.h" />
+    <ClInclude Include="VectorMath.h" />
     <ClInclude Include="WeakPointer.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Physics\OrientedBoundingBox.cpp" />
+    <ClCompile Include="Physics\AxisAlignedBoundingBox.cpp" />
+    <ClCompile Include="Physics\Collidable.cpp" />
     <ClCompile Include="Math\Matrix4x4.cpp" />
     <ClCompile Include="Math\Vector2D.cpp" />
     <ClCompile Include="Math\Vector3D.cpp" />
@@ -191,6 +201,7 @@
     <ClCompile Include="MemoryManager\BitArray.cpp" />
     <ClCompile Include="MemoryManager\BlockDescriptor.cpp" />
     <ClCompile Include="MemoryManager\BlockDescriptorList.cpp" />
+    <ClCompile Include="Physics\PhysicsWorld.cpp" />
     <ClCompile Include="Test\EngineTestSuite.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="HashedString.cpp" />
