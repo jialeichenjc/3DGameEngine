@@ -30,6 +30,8 @@
     <ClCompile Include="Physics\Collidable.cpp" />
     <ClCompile Include="Physics\CollisionHandler.cpp" />
     <ClCompile Include="Physics\CollisionDetector.cpp" />
+    <ClCompile Include="MessageSystem.cpp" />
+    <ClCompile Include="IActorType.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Debug.h" />
@@ -67,6 +69,8 @@
     <ClInclude Include="VectorMath.h" />
     <ClInclude Include="Physics\CollisionHandler.h" />
     <ClInclude Include="Physics\CollisionDetector.h" />
+    <ClInclude Include="MessageSystem.h" />
+    <ClInclude Include="IActorType.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Unit Tests">
