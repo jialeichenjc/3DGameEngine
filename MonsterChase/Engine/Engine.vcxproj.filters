@@ -28,7 +28,6 @@
     <ClCompile Include="Physics\OrientedBoundingBox.cpp" />
     <ClCompile Include="Physics\AxisAlignedBoundingBox.cpp" />
     <ClCompile Include="Physics\Collidable.cpp" />
-    <ClCompile Include="Physics\CollisionHandler.cpp" />
     <ClCompile Include="Physics\CollisionDetector.cpp" />
     <ClCompile Include="MessageSystem.cpp" />
     <ClCompile Include="IActorType.cpp" />
@@ -67,7 +66,6 @@
     <ClInclude Include="Physics\VectorMath.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="VectorMath.h" />
-    <ClInclude Include="Physics\CollisionHandler.h" />
     <ClInclude Include="Physics\CollisionDetector.h" />
     <ClInclude Include="MessageSystem.h" />
     <ClInclude Include="IActorType.h" />

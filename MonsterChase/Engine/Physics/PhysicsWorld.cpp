@@ -21,10 +21,9 @@ void PhysicsWorld::RemoveFromCollidables(const Collidable & i_Collidable) {
 
 }
 
-std::vector<Collidable> & PhysicsWorld::GetAllCollidables() const {
-
+std::vector<Collidable> & PhysicsWorld::GetAllCollidables() {
+	return m_CollidableObjects;
 }
-
 
 PhysicsWorld::~PhysicsWorld()
 {

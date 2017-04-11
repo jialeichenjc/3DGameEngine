@@ -2,11 +2,3 @@
 
 
 
-AxisAlignedBoundingBox::AxisAlignedBoundingBox()
-{
-}
-
-
-AxisAlignedBoundingBox::~AxisAlignedBoundingBox()
-{
-}
