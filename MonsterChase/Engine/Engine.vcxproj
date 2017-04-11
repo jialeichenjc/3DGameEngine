@@ -156,7 +156,7 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Physics\CollisionHandler.h" />
+    <ClInclude Include="Physics\CollisionDetector.h" />
     <ClInclude Include="Physics\OrientedBoundingBox.h" />
     <ClInclude Include="Physics\AxisAlignedBoundingBox.h" />
     <ClInclude Include="Physics\Collidable.h" />
@@ -192,7 +192,7 @@
     <ClInclude Include="WeakPointer.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Physics\CollisionHandler.cpp" />
+    <ClCompile Include="Physics\CollisionDetector.cpp" />
     <ClCompile Include="Physics\OrientedBoundingBox.cpp" />
     <ClCompile Include="Physics\AxisAlignedBoundingBox.cpp" />
     <ClCompile Include="Physics\Collidable.cpp" />
