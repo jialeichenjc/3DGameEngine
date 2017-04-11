@@ -25,6 +25,10 @@
     <ClCompile Include="Math\Vector3D.cpp" />
     <ClCompile Include="Math\Vector4D.cpp" />
     <ClCompile Include="Physics\PhysicsWorld.cpp" />
+    <ClCompile Include="Physics\OrientedBoundingBox.cpp" />
+    <ClCompile Include="Physics\AxisAlignedBoundingBox.cpp" />
+    <ClCompile Include="Physics\Collidable.cpp" />
+    <ClCompile Include="Physics\CollisionDetector.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Debug.h" />
@@ -54,6 +58,13 @@
     <ClInclude Include="Math\Vector3D.h" />
     <ClInclude Include="Math\Vector4D.h" />
     <ClInclude Include="Physics\PhysicsWorld.h" />
+    <ClInclude Include="Physics\OrientedBoundingBox.h" />
+    <ClInclude Include="Physics\AxisAlignedBoundingBox.h" />
+    <ClInclude Include="Physics\Collidable.h" />
+    <ClInclude Include="Physics\VectorMath.h" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="VectorMath.h" />
+    <ClInclude Include="Physics\CollisionDetector.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Unit Tests">
