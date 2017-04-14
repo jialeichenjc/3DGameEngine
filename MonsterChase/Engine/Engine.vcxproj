@@ -156,7 +156,7 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="IActorType.h" />
+    <ClInclude Include="ActorInfo.h" />
     <ClInclude Include="MessageSystem.h" />
     <ClInclude Include="Physics\CollisionDetector.h" />
     <ClInclude Include="Physics\OrientedBoundingBox.h" />
@@ -194,7 +194,7 @@
     <ClInclude Include="WeakPointer.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="IActorType.cpp" />
+    <ClCompile Include="ActorInfo.cpp" />
     <ClCompile Include="MessageSystem.cpp" />
     <ClCompile Include="Physics\CollisionDetector.cpp" />
     <ClCompile Include="Physics\OrientedBoundingBox.cpp" />

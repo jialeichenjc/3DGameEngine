@@ -1,11 +1,12 @@
 #pragma once
 #include "HashedString.h"
-#include "IActorType.h"
+#include "ActorInfo.h"
 namespace MessageSystem {
 	typedef void(*MessageHandler_t)(const HashedString & i_Message);
 	class IMessageHandler {
 	public:
-		virtual void HandleMessage(const HashedString & i_Message, IActorType * i_pDetails) = 0;
+		// Handles message pertaining to a specific actor type
+		virtual void HandleMessage(const HashedString & i_Message, ActorInfo::ActorType i_ActorType) = 0;
 		~IMessageHandler() {}
 	};
 
