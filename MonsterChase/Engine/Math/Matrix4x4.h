@@ -13,7 +13,19 @@ public:
 		: m_00(i_00), m_01(i_01), m_02(i_02), m_03(i_03),
 		m_10(i_10), m_11(i_11), m_12(i_12), m_13(i_13),
 		m_20(i_20), m_21(i_21), m_22(i_22), m_23(i_23),
-		m_30(i_30), m_31(i_31), m_32(i_32), m_33(i_33) {}
+		m_30(i_30), m_31(i_31), m_32(i_32), m_33(i_33) {
+		
+		row0 = _mm_set_ps(i_00, i_01, i_02, i_03);
+		row1 = _mm_set_ps(i_10, i_11, i_12, i_13);
+		row2 = _mm_set_ps(i_20, i_21, i_22, i_23);
+		row3 = _mm_set_ps(i_30, i_31, i_32, i_33);
+
+	}
+	
+	__m128 row0;
+	__m128 row1;
+	__m128 row2;
+	__m128 row3;
 
 	// proxy class to overload [][] operator
 	class Proxy {
