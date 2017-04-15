@@ -157,6 +157,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="ActorInfo.h" />
+    <ClInclude Include="GameMessageHandler.h" />
     <ClInclude Include="MessageSystem.h" />
     <ClInclude Include="Physics\CollisionDetector.h" />
     <ClInclude Include="Physics\OrientedBoundingBox.h" />
@@ -195,6 +196,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ActorInfo.cpp" />
+    <ClCompile Include="GameMessageHandler.cpp" />
     <ClCompile Include="MessageSystem.cpp" />
     <ClCompile Include="Physics\CollisionDetector.cpp" />
     <ClCompile Include="Physics\OrientedBoundingBox.cpp" />

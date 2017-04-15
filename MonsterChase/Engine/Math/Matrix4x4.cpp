@@ -1,5 +1,4 @@
 #include "Matrix4x4.h"
-#include <xmmintrin.h>
 #define PI 3.14159265358979
 
 void Matrix4x4::scale(Vector4D & i_target_vec, Vector4D & i_scale_vec) {

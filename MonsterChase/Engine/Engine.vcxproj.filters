@@ -31,6 +31,7 @@
     <ClCompile Include="Physics\CollisionDetector.cpp" />
     <ClCompile Include="MessageSystem.cpp" />
     <ClCompile Include="ActorInfo.cpp" />
+    <ClCompile Include="GameMessageHandler.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Debug.h" />
@@ -69,6 +70,7 @@
     <ClInclude Include="Physics\CollisionDetector.h" />
     <ClInclude Include="MessageSystem.h" />
     <ClInclude Include="ActorInfo.h" />
+    <ClInclude Include="GameMessageHandler.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Unit Tests">

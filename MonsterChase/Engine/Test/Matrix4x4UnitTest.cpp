@@ -62,7 +62,7 @@ bool Matrix4x4_UnitTest() {
 
 	// test set row
 	// set the first row to all 0.0
-	test_matrix.set_row(1, 0.0f, 0.0f, 0.0f, 0.0f);
+	test_matrix.set_row(0, 0.0f, 0.0f, 0.0f, 0.0f);
 	assert(test_matrix[0][0] == 0.0f);
 	assert(test_matrix[0][1] == 0.0f);
 	assert(test_matrix[0][2] == 0.0f);
