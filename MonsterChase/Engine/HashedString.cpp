@@ -1,5 +1,4 @@
 #include "HashedString.h"
-#include <string>
 
 HashedString::HashedString()
 {
