@@ -35,37 +35,8 @@ public:
 	__m128 row2;
 	__m128 row3;
 
-	// proxy class to overload [][] operator
-	class Proxy {
-	public:
-		Proxy(Vector4D i_vec) : vec4d(i_vec) {}
-
-		float operator[](size_t i_index) {
-			float result;
-			switch (i_index) 
-			{
-			case 1:
-				result = vec4d.x();
-				break;
-			case 2:
-				result = vec4d.y();
-				break;
-			case 3:
-				result = vec4d.u();
-				break;
-			case 4:
-				result = vec4d.v();
-				break;
-			}
-			return result;
-		} // end of operator[]
-
-	private:
-		Vector4D vec4d;
-	}; // end of proxy class
-
 	// returns a new matrix whose rows are the columns of the original
-	Matrix4x4 & get_transpose() const {
+	inline Matrix4x4 & get_transpose() const {
 		Matrix4x4 matrix;
 		matrix.set_each_elem(
 			m_00, m_10, m_20, m_30,
@@ -75,8 +46,6 @@ public:
 
 		return matrix;
 	}
-
-	void scale(Vector4D i_scale_vec);
 
 	Vector4D operator[] (const size_t i_row) const {
 		switch (i_row) {
