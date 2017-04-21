@@ -13,7 +13,7 @@ public:
 
 	inline void SetMaxPosition(const Vector3D & i_max) { m_MaxPosition = i_max; }
 	inline void SetMinPosition(const Vector3D & i_min) { m_MinPosition = i_min; }
-	~AxisAlignedBoundingBox();
+	~AxisAlignedBoundingBox() {};
 
 private:
 	Vector3D m_MaxPosition;
