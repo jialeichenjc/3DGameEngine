@@ -1,7 +1,10 @@
 #pragma once
 #define DEFAULT_MONSTER_SIZE 4
 #define DEFAULT_PLAYER_NAME "Player1"
+#define DEFAULT_COLLIDABLE_SIZE 10
 #include "MemoryManager/MemoryAllocator.h"
+#include "Physics\Collidable.h"
+
 namespace Game {
 	size_t num_monsters;
 	MonsterController monster_controller;
