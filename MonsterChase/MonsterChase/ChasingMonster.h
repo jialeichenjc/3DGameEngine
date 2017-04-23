@@ -9,9 +9,9 @@ public:
 	void set_game_object(GameObject *object) override;
 	void set_name(const char *name) override;
 	const char* get_name() const override;
-	Vector2D get_position() const override;
-	void set_position(const Vector2D &vec) override;
-	void move_chasing(const Vector2D &target_pos);
+	Vector3D get_position() const override;
+	void set_position(const Vector3D &vec) override;
+	void move_chasing(const Vector3D &target_pos);
 
 	~ChasingMonster();
 

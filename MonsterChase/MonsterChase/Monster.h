@@ -16,8 +16,8 @@ public:
 	void set_game_object(GameObject *object) override;
 	void set_name(const char *name) override;
 	const char* get_name() const override;
-	Vector2D get_position() const override;
-	void set_position(const Vector2D &vec) override;
+	Vector3D get_position() const override;
+	void set_position(const Vector3D &vec) override;
 	void move_random();
 
 	void set_sprite(const GLib::Sprites::Sprite *i_sprite);

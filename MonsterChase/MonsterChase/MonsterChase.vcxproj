@@ -169,9 +169,6 @@
     </ProjectReference>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <Text Include="ReadMe.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="ChasingMonster.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="CreateGameObject.h" />

@@ -4,10 +4,10 @@
 #include <cstdint>
 #include "Monster.h"
 #include "GameObject.h"
-const Vector2D UP = Vector2D(0.0, 1.0);
-const Vector2D DOWN = Vector2D(0.0, -1.0);
-const Vector2D LEFT = Vector2D(-1.0, 0.0);
-const Vector2D RIGHT = Vector2D(1.0, 0.0);
+const Vector3D UP = Vector3D(0.0, 1.0, 0.0);
+const Vector3D DOWN = Vector3D(0.0, -1.0, 0.0);
+const Vector3D LEFT = Vector3D(-1.0, 0.0, 0.0);
+const Vector3D RIGHT = Vector3D(1.0, 0.0, 0.0);
 
 Monster::Monster() {
 	game_object = new GameObject();
@@ -31,7 +31,7 @@ Monster::Monster(Monster &&i_monster) {
 void Monster::init_pos() {
 	float x = static_cast<float>(rand() % 100 + 1);
 	float y = static_cast<float>(rand() % 100 + 1);
-	game_object->set_position(Vector2D(x, y));
+	game_object->set_position(Vector3D(x, y, 0.0));
 }
 
 void Monster::set_game_object(GameObject *object) {
@@ -46,11 +46,11 @@ const char* Monster::get_name() const {
 	return game_object->get_name();
 }
 
-Vector2D Monster::get_position() const {
+Vector3D Monster::get_position() const {
 	return game_object->get_position();
 }
 
-void Monster::set_position(const Vector2D &vec) {
+void Monster::set_position(const Vector3D &vec) {
 	game_object->set_position(vec);
 }
 
