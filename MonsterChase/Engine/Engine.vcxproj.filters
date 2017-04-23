@@ -32,6 +32,8 @@
     <ClCompile Include="MessageSystem.cpp" />
     <ClCompile Include="ActorInfo.cpp" />
     <ClCompile Include="GameMessageHandler.cpp" />
+    <ClCompile Include="Profiler.cpp" />
+    <ClCompile Include="Accumulator.h" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Debug.h" />
@@ -71,6 +73,7 @@
     <ClInclude Include="MessageSystem.h" />
     <ClInclude Include="ActorInfo.h" />
     <ClInclude Include="GameMessageHandler.h" />
+    <ClInclude Include="Profiler.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Unit Tests">
