@@ -34,6 +34,8 @@
     <ClCompile Include="GameMessageHandler.cpp" />
     <ClCompile Include="Profiler.cpp" />
     <ClCompile Include="Accumulator.h" />
+    <ClCompile Include="ScopedTimer.cpp" />
+    <ClCompile Include="Timing.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Debug.h" />
@@ -74,6 +76,8 @@
     <ClInclude Include="ActorInfo.h" />
     <ClInclude Include="GameMessageHandler.h" />
     <ClInclude Include="Profiler.h" />
+    <ClInclude Include="ScopedTimer.h" />
+    <ClInclude Include="Timing.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Unit Tests">
