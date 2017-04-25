@@ -81,7 +81,7 @@ int WINAPI wWinMain(HINSTANCE i_hInstance, HINSTANCE i_hPrevInstance, LPWSTR i_l
 	if (bSuccess) {
 		GLib::SetKeyStateChangeCallback(TestKeyCallback);
 
-		GLib::Sprites::Sprite *pMonster_sprite = CreateSprite("Sprites\\BadGuy.dds");
+		GLib::Sprites::Sprite *pMonster_sprite = CreateSprite("Sprites\\fancy-ball.png");
 		GLib::Sprites::Sprite *pPlayer_sprite = CreateSprite("Sprites\\GoodGuy.dds");
 		player->set_sprite(pPlayer_sprite);
 		monster->set_sprite(pMonster_sprite);
