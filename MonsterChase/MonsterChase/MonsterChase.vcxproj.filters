@@ -64,7 +64,6 @@
     <Image Include="green-paddle.dds" />
     <Image Include="Sprites\BadGuy.dds" />
     <Image Include="Sprites\court.dds" />
-    <Image Include="Sprites\fancy-ball.dds" />
     <Image Include="Sprites\GoodGuy.dds" />
     <Image Include="Sprites\green-paddle.dds" />
   </ItemGroup>
