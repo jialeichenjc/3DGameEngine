@@ -81,7 +81,7 @@ int WINAPI wWinMain(HINSTANCE i_hInstance, HINSTANCE i_hPrevInstance, LPWSTR i_l
 	if (bSuccess) {
 		GLib::SetKeyStateChangeCallback(TestKeyCallback);
 
-		GLib::Sprites::Sprite *pMonster_sprite = CreateSprite("green-paddle.dds");
+		GLib::Sprites::Sprite *pMonster_sprite = CreateSprite("Sprites\\court.dds");
 		GLib::Sprites::Sprite *pPlayer_sprite = CreateSprite("Sprites\\GoodGuy.dds");
 		player->set_sprite(pPlayer_sprite);
 		monster->set_sprite(pMonster_sprite);
@@ -101,7 +101,7 @@ int WINAPI wWinMain(HINSTANCE i_hInstance, HINSTANCE i_hPrevInstance, LPWSTR i_l
 				}
 
 				if (monster->get_sprite()) {
-					static GLib::Point2D offset = { 180.0f, -100.0f };
+					static GLib::Point2D offset = { 0.0f, -300.0f };
 					GLib::Sprites::RenderSprite(*(monster->get_sprite()), offset, 0.0f);
 				}
 

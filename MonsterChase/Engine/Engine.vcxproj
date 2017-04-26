@@ -159,6 +159,10 @@
     <ClInclude Include="ActorInfo.h" />
     <ClInclude Include="GameMessageHandler.h" />
     <ClInclude Include="MessageSystem.h" />
+    <ClInclude Include="Performance\Accumulator.h" />
+    <ClInclude Include="Performance\Profiler.h" />
+    <ClInclude Include="Performance\ScopedTimer.h" />
+    <ClInclude Include="Performance\Timing.h" />
     <ClInclude Include="Physics\CollisionDetector.h" />
     <ClInclude Include="Physics\OrientedBoundingBox.h" />
     <ClInclude Include="Physics\AxisAlignedBoundingBox.h" />
@@ -173,9 +177,7 @@
     <ClInclude Include="Debug.h" />
     <ClInclude Include="Physics\PhysicsWorld.h" />
     <ClInclude Include="Physics\VectorMath.h" />
-    <ClInclude Include="Profiler.h" />
     <ClInclude Include="resource.h" />
-    <ClInclude Include="ScopedTimer.h" />
     <ClInclude Include="Test\EngineTestSuite.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="HashedString.h" />
@@ -192,16 +194,17 @@
     <ClInclude Include="Test\MemoryAllocatorUnitTest.h" />
     <ClInclude Include="Test\SmartPointerUnitTest.h" />
     <ClInclude Include="Test\StringPoolUnitTest.h" />
-    <ClInclude Include="Timing.h" />
     <ClInclude Include="Utility.h" />
     <ClInclude Include="VectorMath.h" />
     <ClInclude Include="WeakPointer.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Accumulator.h" />
     <ClCompile Include="ActorInfo.cpp" />
     <ClCompile Include="GameMessageHandler.cpp" />
     <ClCompile Include="MessageSystem.cpp" />
+    <ClCompile Include="Performance\Profiler.cpp" />
+    <ClCompile Include="Performance\ScopedTimer.cpp" />
+    <ClCompile Include="Performance\Timing.cpp" />
     <ClCompile Include="Physics\CollisionDetector.cpp" />
     <ClCompile Include="Physics\OrientedBoundingBox.cpp" />
     <ClCompile Include="Physics\AxisAlignedBoundingBox.cpp" />
@@ -214,8 +217,6 @@
     <ClCompile Include="MemoryManager\BlockDescriptor.cpp" />
     <ClCompile Include="MemoryManager\BlockDescriptorList.cpp" />
     <ClCompile Include="Physics\PhysicsWorld.cpp" />
-    <ClCompile Include="Profiler.cpp" />
-    <ClCompile Include="ScopedTimer.cpp" />
     <ClCompile Include="Test\EngineTestSuite.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="HashedString.cpp" />
@@ -230,7 +231,6 @@
     <ClCompile Include="Test\MemoryAllocatorUnitTest.cpp" />
     <ClCompile Include="Test\SmartPointerUnitTest.cpp" />
     <ClCompile Include="Test\StringPoolUnitTest.cpp" />
-    <ClCompile Include="Timing.cpp" />
     <ClCompile Include="Utility.cpp" />
     <ClCompile Include="WeakPointer.cpp" />
   </ItemGroup>

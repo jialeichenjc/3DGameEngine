@@ -32,10 +32,9 @@
     <ClCompile Include="MessageSystem.cpp" />
     <ClCompile Include="ActorInfo.cpp" />
     <ClCompile Include="GameMessageHandler.cpp" />
-    <ClCompile Include="Profiler.cpp" />
-    <ClCompile Include="Accumulator.h" />
-    <ClCompile Include="ScopedTimer.cpp" />
-    <ClCompile Include="Timing.cpp" />
+    <ClCompile Include="Performance\Profiler.cpp" />
+    <ClCompile Include="Performance\ScopedTimer.cpp" />
+    <ClCompile Include="Performance\Timing.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Debug.h" />
@@ -75,9 +74,10 @@
     <ClInclude Include="MessageSystem.h" />
     <ClInclude Include="ActorInfo.h" />
     <ClInclude Include="GameMessageHandler.h" />
-    <ClInclude Include="Profiler.h" />
-    <ClInclude Include="ScopedTimer.h" />
-    <ClInclude Include="Timing.h" />
+    <ClInclude Include="Performance\Accumulator.h" />
+    <ClInclude Include="Performance\Profiler.h" />
+    <ClInclude Include="Performance\ScopedTimer.h" />
+    <ClInclude Include="Performance\Timing.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Unit Tests">
