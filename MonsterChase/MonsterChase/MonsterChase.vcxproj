@@ -192,6 +192,15 @@
       <Project>{1d1b8b1f-c41f-4f80-9c8d-e3d0cfd0e516}</Project>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="GoodGuy.dds" />
+    <Image Include="green-paddle.dds" />
+    <Image Include="Sprites\BadGuy.dds" />
+    <Image Include="Sprites\court.dds" />
+    <Image Include="Sprites\fancy-ball.dds" />
+    <Image Include="Sprites\GoodGuy.dds" />
+    <Image Include="Sprites\green-paddle.dds" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
