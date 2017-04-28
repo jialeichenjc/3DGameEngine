@@ -8,11 +8,11 @@ class FixedSizeAllocator;
 class GameObject {
 public:
 	GameObject();
-	void set_name(const char* name);
-	const char* get_name() const;
-	Vector3D get_position() const;
-	void set_position(const Vector3D &vec);
-	void move_next(const Vector3D &delta_vec); // move game object by delta_x and delta_y
+	void SetName(const char * name);
+	const char* GetName() const;
+	Vector3D GetPosition() const;
+	void SetPosition(const Vector3D &vec);
+	void Move(const Vector3D &delta_vec); // move game object by delta_x and delta_y
 
 	void* operator new(const size_t size);
 	void* operator new(const size_t size, const size_t alignment_size);
@@ -36,22 +36,22 @@ private:
 	static bool on_fsa_allocator; // true if game object is allocated through fsa allocator
 };
 
-inline void GameObject::set_name(const char* name) {
+inline void GameObject::SetName(const char * name) {
 	this->name = name;
 }
 
-inline const char* GameObject::get_name() const {
+inline const char* GameObject::GetName() const {
 	return name;
 }
 
-inline Vector3D GameObject::get_position() const {
+inline Vector3D GameObject::GetPosition() const {
 	return position;
 }
 
-inline void GameObject::set_position(const Vector3D &vec) {
+inline void GameObject::SetPosition(const Vector3D &vec) {
 	this->position = vec;
 }
 
-inline void GameObject::move_next(const Vector3D &delta_vec) {
+inline void GameObject::Move(const Vector3D &delta_vec) {
 	position = position + delta_vec;
 }

@@ -72,19 +72,19 @@ int WINAPI wWinMain(HINSTANCE i_hInstance, HINSTANCE i_hPrevInstance, LPWSTR i_l
 
 	// Initialize GLib
 	bool bSuccess = GLib::Initialize(i_hInstance, i_nCmdShow, "GLibTest", -1, 800, 600);
-	Player *player = new Player();
-	player->init_pos();
-	player->set_name("test player");
+	//Player *player = new Player();
+	//player->init_pos();
+	//player->set_name("test player");
 
-	Monster *monster = new Monster();
+	//Monster *monster = new Monster();
 
 	if (bSuccess) {
 		GLib::SetKeyStateChangeCallback(TestKeyCallback);
 
 		GLib::Sprites::Sprite *pMonster_sprite = CreateSprite("Sprites\\court.dds");
 		GLib::Sprites::Sprite *pPlayer_sprite = CreateSprite("Sprites\\blue-paddle.dds");
-		player->set_sprite(pPlayer_sprite);
-		monster->set_sprite(pMonster_sprite);
+		/*player->set_sprite(pPlayer_sprite);
+		monster->set_sprite(pMonster_sprite);*/
 
 		bool bQuit = false;
 
@@ -95,7 +95,7 @@ int WINAPI wWinMain(HINSTANCE i_hInstance, HINSTANCE i_hPrevInstance, LPWSTR i_l
 				GLib::BeginRendering();
 				GLib::Sprites::BeginRendering();
 
-				if (player->get_sprite()) {
+			/*	if (player->get_sprite()) {
 					static GLib::Point2D offset = { -180.0f, -100.0f };
 					GLib::Sprites::RenderSprite(*(player->get_sprite()), offset, 0.0f);
 				}
@@ -103,7 +103,7 @@ int WINAPI wWinMain(HINSTANCE i_hInstance, HINSTANCE i_hPrevInstance, LPWSTR i_l
 				if (monster->get_sprite()) {
 					static GLib::Point2D offset = { 0.0f, -300.0f };
 					GLib::Sprites::RenderSprite(*(monster->get_sprite()), offset, 0.0f);
-				}
+				}*/
 
 				GLib::Sprites::EndRendering();
 				GLib::EndRendering();
@@ -118,8 +118,8 @@ int WINAPI wWinMain(HINSTANCE i_hInstance, HINSTANCE i_hPrevInstance, LPWSTR i_l
 		}
 		GLib::Shutdown();
 	}
-	delete player;
-	delete monster;
+	//delete player;
+	//delete monster;
 
 	fsa_allocator->destroy_instance();
 	test_allocator->destroy_instance();
