@@ -47,9 +47,17 @@ void TestKeyCallback(unsigned int i_VKeyID, bool bWentDown)
 	const size_t	lenBuffer = 65;
 	char			Buffer[lenBuffer];
 
+	//sprintf_s(Buffer, lenBuffer, "VKey 0x%04x went %s\n", i_VKeyID, bWentDown ? "down" : "up");
+	//OutputDebugStringA(Buffer);
+#endif // __DEBUG
+}
+
+void GetKeyCallBack(unsigned int i_VKeyID, bool bWentDown) {\
+	const size_t	lenBuffer = 65;
+	char			Buffer[lenBuffer];
+
 	sprintf_s(Buffer, lenBuffer, "VKey 0x%04x went %s\n", i_VKeyID, bWentDown ? "down" : "up");
 	OutputDebugStringA(Buffer);
-#endif // __DEBUG
 }
 
 int WINAPI wWinMain(HINSTANCE i_hInstance, HINSTANCE i_hPrevInstance, LPWSTR i_lpCmdLine, int i_nCmdShow) {
@@ -70,6 +78,7 @@ int WINAPI wWinMain(HINSTANCE i_hInstance, HINSTANCE i_hPrevInstance, LPWSTR i_l
 
 	MemoryAllocator* test_allocator = MemoryAllocator::get_instance();
 	FixedSizeAllocator *fsa_allocator = FixedSizeAllocator::get_instance();
+	//PaddlePlayer test_paddle;
 
 	auto start = std::chrono::high_resolution_clock::now();
 
@@ -83,7 +92,14 @@ int WINAPI wWinMain(HINSTANCE i_hInstance, HINSTANCE i_hPrevInstance, LPWSTR i_l
 	//Monster *monster = new Monster();
 
 	if (bSuccess) {
-		GLib::SetKeyStateChangeCallback(TestKeyCallback);
+		//GLib::SetKeyStateChangeCallback(TestKeyCallback);
+
+		const size_t	lenBuffer = 65;
+		char			Buffer[lenBuffer];
+
+		unsigned int input_key = 0;
+		bool pressed = false;
+		TestKeyCallback(input_key, pressed);
 
 		GLib::Sprites::Sprite *pBluePaddleSprite = CreateSprite("Sprites\\blue-paddle.dds");
 		GLib::Sprites::Sprite *pGreenPaddleSprite = CreateSprite("Sprites\\green-paddle.dds");
@@ -101,6 +117,11 @@ int WINAPI wWinMain(HINSTANCE i_hInstance, HINSTANCE i_hPrevInstance, LPWSTR i_l
 				static GLib::Point2D CourtOffset = { 0.0f, -300.0f };
 				GLib::Sprites::RenderSprite(*pCourtSprite, CourtOffset, 0.0f);
 
+				TestKeyCallback(input_key, pressed);
+				if (input_key == 0x57) {
+					sprintf_s(Buffer, lenBuffer, "what????");
+					//test_paddle.MoveByPlayer('w');
+				}
 			/*	if (player->get_sprite()) {
 					static GLib::Point2D offset = { -180.0f, -100.0f };
 					GLib::Sprites::RenderSprite(*(player->get_sprite()), offset, 0.0f);
