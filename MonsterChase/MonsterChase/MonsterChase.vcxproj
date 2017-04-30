@@ -171,6 +171,7 @@
   <ItemGroup>
     <ClInclude Include="Game.h" />
     <ClInclude Include="CreateGameObject.h" />
+    <ClInclude Include="Input.h" />
     <ClInclude Include="Monster.h" />
     <ClInclude Include="MonsterController.h" />
     <ClInclude Include="PaddleAI.h" />
@@ -181,6 +182,7 @@
   <ItemGroup>
     <ClCompile Include="CreateGameObject.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Input.cpp" />
     <ClCompile Include="Monster.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MonsterController.cpp" />

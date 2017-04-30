@@ -34,6 +34,11 @@
 //	player->set_name(player_name);
 //}
 //
+
+void Game::run(){
+
+}
+
 //void Game::shut_down() {
 //	delete player;
 //
