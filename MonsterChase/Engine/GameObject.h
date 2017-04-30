@@ -3,6 +3,8 @@
 #include "Math/Vector3D.h"
 #include "MemoryManager/FixedSizeAllocator.h"
 #include "lua.hpp"
+#include "GLib.h"
+
 class MemoryAllocator;
 class FixedSizeAllocator;
 class GameObject {
@@ -13,6 +15,10 @@ public:
 	Vector3D GetPosition() const;
 	void SetPosition(const Vector3D &vec);
 	void Move(const Vector3D &delta_vec); // move game object by delta_x and delta_y
+
+	// sprite rendering
+	void SetSprite(const GLib::Sprites::Sprite *i_sprite);
+	const GLib::Sprites::Sprite* GetSprite() const;
 
 	void* operator new(const size_t size);
 	void* operator new(const size_t size, const size_t alignment_size);
@@ -32,6 +38,7 @@ protected:
 	Vector3D position; // a 2D vector representing the position {x_coord, y_coord}
 private:
 	const char *name;
+	const GLib::Sprites::Sprite * m_pSprite;
 	static bool on_mem_allocator; // true if game object is allocated through memory allocator
 	static bool on_fsa_allocator; // true if game object is allocated through fsa allocator
 };

@@ -16,8 +16,8 @@ public:
 	void SetGameObject(GameObject *game_object) override;
 	void MoveByPlayer(uint8_t input); // player controlled movement
 
-	void SetSprite(const GLib::Sprites::Sprite *i_sprite);
-	const GLib::Sprites::Sprite* GetSprite() const;
+	void SetSprite(const GLib::Sprites::Sprite *i_sprite) override;
+	const GLib::Sprites::Sprite* GetSprite() const override;
 
 	~PaddlePlayer();
 

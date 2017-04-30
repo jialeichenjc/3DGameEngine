@@ -46,6 +46,7 @@ void TestKeyCallback(unsigned int i_VKeyID, bool bWentDown)
 #ifdef _DEBUG
 	const size_t	lenBuffer = 65;
 	char			Buffer[lenBuffer];
+	
 
 	//sprintf_s(Buffer, lenBuffer, "VKey 0x%04x went %s\n", i_VKeyID, bWentDown ? "down" : "up");
 	//OutputDebugStringA(Buffer);
@@ -60,6 +61,14 @@ void GetKeyCallBack(unsigned int i_VKeyID, bool bWentDown) {\
 	OutputDebugStringA(Buffer);
 }
 
+void TestMovePaddle(PaddlePlayer * i_Player) {
+	int i = 0;
+	while (i < 50) {
+		i_Player->MoveByPlayer('W');
+		i++;
+	}
+}
+
 int WINAPI wWinMain(HINSTANCE i_hInstance, HINSTANCE i_hPrevInstance, LPWSTR i_lpCmdLine, int i_nCmdShow) {
 #if defined _DEBUG
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
@@ -71,14 +80,14 @@ int WINAPI wWinMain(HINSTANCE i_hInstance, HINSTANCE i_hPrevInstance, LPWSTR i_l
 	Matrix4x4_UnitTest();
 
 	Game::init();
-	Game::shut_down();
+	//Game::shut_down();
 	//Game::monster_count++;
 	// TODO: the following lua call is disabled to fix memory leaks, NEED INVESTIGATION
 	//create_game_object("Player.lua");
 
 	MemoryAllocator* test_allocator = MemoryAllocator::get_instance();
 	FixedSizeAllocator *fsa_allocator = FixedSizeAllocator::get_instance();
-	//PaddlePlayer test_paddle;
+	PaddlePlayer * pTestPaddle = new PaddlePlayer();
 
 	auto start = std::chrono::high_resolution_clock::now();
 
@@ -105,6 +114,7 @@ int WINAPI wWinMain(HINSTANCE i_hInstance, HINSTANCE i_hPrevInstance, LPWSTR i_l
 		GLib::Sprites::Sprite *pGreenPaddleSprite = CreateSprite("Sprites\\green-paddle.dds");
 		GLib::Sprites::Sprite *pBallSprite = CreateSprite("Sprites\\ball.dds");
 		GLib::Sprites::Sprite *pCourtSprite = CreateSprite("Sprites\\court.dds");
+		pTestPaddle->SetSprite(pGreenPaddleSprite);
 
 		bool bQuit = false;
 
@@ -162,6 +172,8 @@ int WINAPI wWinMain(HINSTANCE i_hInstance, HINSTANCE i_hPrevInstance, LPWSTR i_l
 		//	GLib::Sprites::Release(pMonster_sprite);
 		//}
 		GLib::Shutdown();
+		Game::shut_down();
+		delete pTestPaddle;
 	}
 	//delete player;
 	//delete monster;

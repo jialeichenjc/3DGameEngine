@@ -12,26 +12,13 @@ namespace Game {
 	MonsterController monster_controller;
 	std::vector<Monster*> monsters;
 	Player *player;*/
-
+/*
 	MemoryAllocator* allocator;
-	FixedSizeAllocator *fsa_allocator;
+	FixedSizeAllocator *fsa_allocator;*/
 	// testing, to be deleted
-	size_t monster_count;
+	/*size_t monster_count;*/
 
 	void init();
 	void run();
 	void shut_down();
-
-	void init() {
-		allocator = MemoryAllocator::get_instance();
-		fsa_allocator = FixedSizeAllocator::get_instance();
-
-		srand((unsigned int)time(NULL));
-		
-	}
-
-	void shut_down() {
-		//fsa_allocator->destroy_instance();
-		//allocator->destroy_instance();
-	}
 }

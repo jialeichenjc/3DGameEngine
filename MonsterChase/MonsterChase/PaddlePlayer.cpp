@@ -58,10 +58,10 @@ void PaddlePlayer::MoveByPlayer(uint8_t input) {
 }
 
 void PaddlePlayer::SetSprite(const GLib::Sprites::Sprite *i_sprite) {
-	m_pSprite = i_sprite;
+	m_pGameObject->SetSprite(i_sprite);
 }
 const GLib::Sprites::Sprite * PaddlePlayer::GetSprite() const {
-	return m_pSprite;
+	return m_pGameObject->GetSprite();
 }
 
 PaddlePlayer::~PaddlePlayer() {

@@ -9,6 +9,13 @@ GameObject::GameObject() : position(0.0, 0.0, 0.0) {
 
 };
 
+void GameObject::SetSprite(const GLib::Sprites::Sprite *i_sprite) {
+	m_pSprite = i_sprite;
+}
+const GLib::Sprites::Sprite * GameObject::GetSprite() const {
+	return m_pSprite;
+}
+
 void* GameObject::operator new(const size_t size) {
 	MemoryAllocator *allocator = MemoryAllocator::get_instance();
 	FixedSizeAllocator *fsa_allocator = FixedSizeAllocator::get_instance();
