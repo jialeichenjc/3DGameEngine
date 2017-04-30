@@ -9,8 +9,8 @@ public:
 	Collidable() = default;
 	Collidable(GameObject * i_GameObject, const float i_SizeX, const float i_SizeY, const float i_SizeZ) 
 		: m_GameObject(i_GameObject), m_SizeX(i_SizeX), m_SizeY(i_SizeY), m_SizeZ(i_SizeZ) {
-		m_Name = i_GameObject->get_name();
-		m_Position = i_GameObject->get_position();
+		m_Name = i_GameObject->GetName();
+		m_Position = i_GameObject->GetPosition();
 		InitAABB();
 	}
 

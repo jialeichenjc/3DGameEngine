@@ -169,21 +169,23 @@
     </ProjectReference>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="ChasingMonster.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="CreateGameObject.h" />
     <ClInclude Include="Monster.h" />
     <ClInclude Include="MonsterController.h" />
+    <ClInclude Include="PaddleAI.h" />
+    <ClInclude Include="PaddlePlayer.h" />
     <ClInclude Include="Play.h" />
     <ClInclude Include="Player.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ChasingMonster.cpp" />
     <ClCompile Include="CreateGameObject.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Monster.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MonsterController.cpp" />
+    <ClCompile Include="PaddleAI.cpp" />
+    <ClCompile Include="PaddlePlayer.cpp" />
     <ClCompile Include="Play.cpp" />
     <ClCompile Include="Player.cpp" />
   </ItemGroup>

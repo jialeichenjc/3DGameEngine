@@ -30,6 +30,9 @@
 #include "GLib.h"
 #include "Game.h"
 #include "SmartPointer.h"
+#include "PaddleAI.h"
+#include "PaddleAI.h"
+
 //typedef std::chrono::high_resolution_clock clock;
 
 void printList(BlockDescriptorList);
@@ -72,6 +75,7 @@ int WINAPI wWinMain(HINSTANCE i_hInstance, HINSTANCE i_hPrevInstance, LPWSTR i_l
 
 	// Initialize GLib
 	bool bSuccess = GLib::Initialize(i_hInstance, i_nCmdShow, "GLibTest", -1, 800, 600);
+	
 	//Player *player = new Player();
 	//player->init_pos();
 	//player->set_name("test player");
@@ -81,10 +85,10 @@ int WINAPI wWinMain(HINSTANCE i_hInstance, HINSTANCE i_hPrevInstance, LPWSTR i_l
 	if (bSuccess) {
 		GLib::SetKeyStateChangeCallback(TestKeyCallback);
 
-		GLib::Sprites::Sprite *pMonster_sprite = CreateSprite("Sprites\\court.dds");
-		GLib::Sprites::Sprite *pPlayer_sprite = CreateSprite("Sprites\\blue-paddle.dds");
-		/*player->set_sprite(pPlayer_sprite);
-		monster->set_sprite(pMonster_sprite);*/
+		GLib::Sprites::Sprite *pBluePaddleSprite = CreateSprite("Sprites\\blue-paddle.dds");
+		GLib::Sprites::Sprite *pGreenPaddleSprite = CreateSprite("Sprites\\green-paddle.dds");
+		GLib::Sprites::Sprite *pBallSprite = CreateSprite("Sprites\\ball.dds");
+		GLib::Sprites::Sprite *pCourtSprite = CreateSprite("Sprites\\court.dds");
 
 		bool bQuit = false;
 
@@ -94,6 +98,8 @@ int WINAPI wWinMain(HINSTANCE i_hInstance, HINSTANCE i_hPrevInstance, LPWSTR i_l
 			if (!bQuit) {
 				GLib::BeginRendering();
 				GLib::Sprites::BeginRendering();
+				static GLib::Point2D CourtOffset = { 0.0f, -300.0f };
+				GLib::Sprites::RenderSprite(*pCourtSprite, CourtOffset, 0.0f);
 
 			/*	if (player->get_sprite()) {
 					static GLib::Point2D offset = { -180.0f, -100.0f };
@@ -109,13 +115,31 @@ int WINAPI wWinMain(HINSTANCE i_hInstance, HINSTANCE i_hPrevInstance, LPWSTR i_l
 				GLib::EndRendering();
 			}
 		} while (bQuit == false);
-		
-		if (pPlayer_sprite) {
-			GLib::Sprites::Release(pPlayer_sprite);
+
+		// release all the sprites
+		if (pBluePaddleSprite) {
+			GLib::Sprites::Release(pBluePaddleSprite);
 		}
-		if (pMonster_sprite) {
-			GLib::Sprites::Release(pMonster_sprite);
+
+		if (pGreenPaddleSprite) {
+			GLib::Sprites::Release(pGreenPaddleSprite);
 		}
+
+		if (pCourtSprite) {
+			GLib::Sprites::Release(pCourtSprite);
+		}
+
+		if (pBallSprite) {
+			GLib::Sprites::Release(pBallSprite);
+		}
+
+		//
+		//if (pPlayer_sprite) {
+		//	GLib::Sprites::Release(pPlayer_sprite);
+		//}
+		//if (pMonster_sprite) {
+		//	GLib::Sprites::Release(pMonster_sprite);
+		//}
 		GLib::Shutdown();
 	}
 	//delete player;
