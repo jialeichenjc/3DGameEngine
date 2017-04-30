@@ -9,7 +9,7 @@
 //#include "MemoryAllocatorUnitTest.h"
 //#include "FixedSizeAllocator.h"
 //#include "time.h"
-//#include "Game.h"
+#include "Game.h"
 //using namespace Game;
 
 //void Game::init() {
