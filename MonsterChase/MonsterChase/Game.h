@@ -19,6 +19,7 @@ namespace Game {
 	/*size_t monster_count;*/
 
 	void init();
+	void render(GameObject *);
 	void run();
 	void shut_down();
 }

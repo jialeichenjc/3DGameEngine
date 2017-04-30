@@ -201,6 +201,7 @@
   <ItemGroup>
     <ClCompile Include="ActorInfo.cpp" />
     <ClCompile Include="GameMessageHandler.cpp" />
+    <ClCompile Include="Graphics.cpp" />
     <ClCompile Include="MessageSystem.cpp" />
     <ClCompile Include="Performance\Profiler.cpp" />
     <ClCompile Include="Performance\ScopedTimer.cpp" />
