@@ -67,6 +67,7 @@ void TestMovePaddle(PaddlePlayer * i_Player) {
 	while (i < 50) {
 		i_Player->MoveByPlayer('W');
 		i++;
+		Sleep(500);
 	}
 }
 
@@ -81,74 +82,55 @@ int WINAPI wWinMain(HINSTANCE i_hInstance, HINSTANCE i_hPrevInstance, LPWSTR i_l
 	Matrix4x4_UnitTest();
 
 	Game::init();
-	//Game::shut_down();
-	//Game::monster_count++;
-	// TODO: the following lua call is disabled to fix memory leaks, NEED INVESTIGATION
-	//create_game_object("Player.lua");
 
 	MemoryAllocator* test_allocator = MemoryAllocator::get_instance();
 	FixedSizeAllocator *fsa_allocator = FixedSizeAllocator::get_instance();
 	PaddlePlayer * pTestPaddle = new PaddlePlayer();
+	PaddleAI * pTestPaddleAI = new PaddleAI();
+	GameObject * pCourt = new GameObject();
+	pCourt->SetPosition(Vector3D(0.0f, -300.0f, 0.0f));
+	pTestPaddle->SetPosition(Vector3D(380.0f, -100.0f, 0.0f));
+	pTestPaddleAI->SetPosition(Vector3D(-380.0f, -100.0f, 0.0f));
+
 
 	auto start = std::chrono::high_resolution_clock::now();
 
 	// Initialize GLib
 	bool bSuccess = GLib::Initialize(i_hInstance, i_nCmdShow, "GLibTest", -1, 800, 600);
-	
-	//Player *player = new Player();
-	//player->init_pos();
-	//player->set_name("test player");
-
-	//Monster *monster = new Monster();
 
 	if (bSuccess) {
-		//GLib::SetKeyStateChangeCallback(TestKeyCallback);
+		GLib::SetKeyStateChangeCallback(TestKeyCallback);
 
 		const size_t	lenBuffer = 65;
 		char			Buffer[lenBuffer];
 
 		unsigned int input_key = 0;
-		bool pressed = false;
-		TestKeyCallback(input_key, pressed);
+		TestKeyCallback(input_key, true);
 
 		GLib::Sprites::Sprite *pBluePaddleSprite = CreateSprite("Sprites\\blue-paddle.dds");
 		GLib::Sprites::Sprite *pGreenPaddleSprite = CreateSprite("Sprites\\green-paddle.dds");
 		GLib::Sprites::Sprite *pBallSprite = CreateSprite("Sprites\\ball.dds");
 		GLib::Sprites::Sprite *pCourtSprite = CreateSprite("Sprites\\court.dds");
 		pTestPaddle->SetSprite(pGreenPaddleSprite);
+		pTestPaddleAI->SetSprite(pBluePaddleSprite);
+		pCourt->SetSprite(pCourtSprite);
 
 		bool bQuit = false;
 
 		do {
 			GLib::Service(bQuit);
-
 			if (!bQuit) {
-				GLib::BeginRendering();
-				GLib::Sprites::BeginRendering();
-				static GLib::Point2D CourtOffset = { 0.0f, -300.0f };
-				GLib::Sprites::RenderSprite(*pCourtSprite, CourtOffset, 0.0f);
-
+				Graphics::BeginRendering();
 
 				Graphics::Render(pTestPaddle->GetGameObject());
+				Graphics::Render(pTestPaddleAI->GetGameObject());
+				Graphics::Render(pCourt);
+			//	TestMovePaddle(pTestPaddle);
+				pTestPaddle->MoveByPlayer('W');
+				Graphics::EndRendering();
+				/*GLib::Sprites::EndRendering();
+				GLib::EndRendering();*/
 
-				TestKeyCallback(input_key, pressed);
-				if (input_key == 0x57) {
-					sprintf_s(Buffer, lenBuffer, "what????");
-					//test_paddle.MoveByPlayer('w');
-				}
-			/*	if (player->get_sprite()) {
-					static GLib::Point2D offset = { -180.0f, -100.0f };
-					GLib::Sprites::RenderSprite(*(player->get_sprite()), offset, 0.0f);
-				}
-
-				if (monster->get_sprite()) {
-					static GLib::Point2D offset = { 0.0f, -300.0f };
-					GLib::Sprites::RenderSprite(*(monster->get_sprite()), offset, 0.0f);
-				}*/
-				TestMovePaddle(pTestPaddle);
-
-				GLib::Sprites::EndRendering();
-				GLib::EndRendering();
 			}
 		} while (bQuit == false);
 
@@ -179,6 +161,8 @@ int WINAPI wWinMain(HINSTANCE i_hInstance, HINSTANCE i_hPrevInstance, LPWSTR i_l
 		GLib::Shutdown();
 		Game::shut_down();
 		delete pTestPaddle;
+		delete pTestPaddleAI;
+		delete pCourt;
 	}
 	//delete player;
 	//delete monster;
