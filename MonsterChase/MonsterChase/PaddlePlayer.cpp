@@ -37,6 +37,10 @@ void PaddlePlayer::SetGameObject(GameObject *game_object) {
 	m_pGameObject = game_object;
 }
 
+GameObject * PaddlePlayer::GetGameObject() const {
+	return m_pGameObject;
+}
+
 void PaddlePlayer::MoveByPlayer(uint8_t input) {
 	//int input = toupper(_getch());
 	switch (input) {

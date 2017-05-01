@@ -11,6 +11,7 @@ public:
 	virtual void SetPosition(const Vector3D &vec) = 0;
 	virtual void SetInitPosition() = 0; // set the initial posiion for the character
 	virtual void SetGameObject(GameObject *game_object) = 0;
+	virtual GameObject * GetGameObject() const = 0;
 	virtual void SetSprite(const GLib::Sprites::Sprite *i_sprite) = 0;
 	virtual const GLib::Sprites::Sprite * GetSprite() const = 0;
 };

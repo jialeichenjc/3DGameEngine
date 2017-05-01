@@ -5,8 +5,10 @@
 #include "MemoryManager/FixedSizeAllocator.h"
 namespace Graphics {
 
-	void initialize(HINSTANCE i_hInstance, int i_nCmdShow);
+	void BeginRendering();
 
-	void render(GameObject *);
+	void Render(GameObject *);
+
+	void EndRendering();
 
 }

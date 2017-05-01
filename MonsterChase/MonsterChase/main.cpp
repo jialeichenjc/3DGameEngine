@@ -32,6 +32,7 @@
 #include "SmartPointer.h"
 #include "PaddleAI.h"
 #include "PaddleAI.h"
+#include "Graphics.h"
 
 //typedef std::chrono::high_resolution_clock clock;
 
@@ -127,6 +128,9 @@ int WINAPI wWinMain(HINSTANCE i_hInstance, HINSTANCE i_hPrevInstance, LPWSTR i_l
 				static GLib::Point2D CourtOffset = { 0.0f, -300.0f };
 				GLib::Sprites::RenderSprite(*pCourtSprite, CourtOffset, 0.0f);
 
+
+				Graphics::Render(pTestPaddle->GetGameObject());
+
 				TestKeyCallback(input_key, pressed);
 				if (input_key == 0x57) {
 					sprintf_s(Buffer, lenBuffer, "what????");
@@ -141,6 +145,7 @@ int WINAPI wWinMain(HINSTANCE i_hInstance, HINSTANCE i_hPrevInstance, LPWSTR i_l
 					static GLib::Point2D offset = { 0.0f, -300.0f };
 					GLib::Sprites::RenderSprite(*(monster->get_sprite()), offset, 0.0f);
 				}*/
+				TestMovePaddle(pTestPaddle);
 
 				GLib::Sprites::EndRendering();
 				GLib::EndRendering();
