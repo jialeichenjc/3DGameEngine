@@ -1,12 +1,7 @@
-#include "CollisionDetector.h"
+#include "Collision.h"
 
 
-
-CollisionDetector::CollisionDetector()
-{
-}
-
-bool CollisionDetector::CheckCollision(AxisAlignedBoundingBox & i_AABB_1, AxisAlignedBoundingBox & i_AABB_2) {
+bool Collision::CheckCollision(AxisAlignedBoundingBox & i_AABB_1, AxisAlignedBoundingBox & i_AABB_2) {
 	Vector3D l_max = i_AABB_1.GetMaxPosition();
 	Vector3D l_min = i_AABB_1.GetMinPosition();
 	Vector3D r_max = i_AABB_2.GetMaxPosition();
@@ -26,8 +21,4 @@ bool CollisionDetector::CheckCollision(AxisAlignedBoundingBox & i_AABB_1, AxisAl
 
 	return false;
 
-}
-
-CollisionDetector::~CollisionDetector()
-{
 }
