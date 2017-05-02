@@ -6,20 +6,14 @@
 #include "Physics\Collidable.h"
 #include "PaddleAI.h"
 #include "PaddlePlayer.h"
+#include <stdint.h>
 
 namespace Game {
-	/*size_t num_monsters;
-	MonsterController monster_controller;
-	std::vector<Monster*> monsters;
-	Player *player;*/
-/*
-	MemoryAllocator* allocator;
-	FixedSizeAllocator *fsa_allocator;*/
-	// testing, to be deleted
-	/*size_t monster_count;*/
+
 
 	void init();
 	void render(GameObject *);
 	void run();
-	void shut_down();
+	void ShutDown();
+	void TestKeyCallback(unsigned int i_VKeyID, bool bWentDown);
 }

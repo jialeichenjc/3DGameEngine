@@ -10,56 +10,110 @@
 //#include "FixedSizeAllocator.h"
 //#include "time.h"
 #include "Game.h"
-//using namespace Game;
+#include "Graphics.h"
+#include "GLib.h"
 
-//void Game::init() {
-//	MemoryAllocator* allocator = MemoryAllocator::get_instance();
-//	FixedSizeAllocator* fsa_allocator = FixedSizeAllocator::get_instance();
-//	size_t monster_count = 10;
-//	srand((unsigned int)time(NULL));
-//	std::vector<Monster*> monsters;
-//	for (size_t i = 0; i < DEFAULT_MONSTER_SIZE; i++) {
-//		Monster *monster = new Monster();
-//		monster->init_pos();
-//		const char *monster_name = monster->get_name();
-//		printf("Please enter your name for monster number %zu: ", i);
-//		scanf_s("%s", monster_name, 20);
-//		monster->set_name(monster_name);
-//		monsters.push_back(monster);
-//	}
-//
-//	Player* player = new Player();
-//	player->init_pos();
-//	char* player_name = DEFAULT_PLAYER_NAME;
-//	player->set_name(player_name);
-//}
-//
-
-void Game::run(){
-
-}
-
+MemoryAllocator* test_allocator;
+FixedSizeAllocator *fsa_allocator;
+PaddlePlayer * pTestPaddle;
+PaddleAI * pTestPaddleAI;
+GameObject * pCourt;
+uint8_t PlayerMove;
 
 void Game::init() {
-	/*allocator = MemoryAllocator::get_instance();
+	test_allocator = MemoryAllocator::get_instance();
 	fsa_allocator = FixedSizeAllocator::get_instance();
-*/
-	//srand((unsigned int)time(NULL));
+	pTestPaddle = new PaddlePlayer();
+	pTestPaddleAI = new PaddleAI();
+	pCourt = new GameObject();
+
+	pCourt->SetPosition(Vector3D(0.0f, -300.0f, 0.0f));
+	pTestPaddle->SetPosition(Vector3D(380.0f, -100.0f, 0.0f));
+	pTestPaddleAI->SetPosition(Vector3D(-380.0f, -100.0f, 0.0f));
+}
+
+void Game::run(){
+	const size_t	lenBuffer = 65;
+	char			Buffer[lenBuffer];
+
+	unsigned int input_key = 0;
+	TestKeyCallback(input_key, true);
+
+	GLib::Sprites::Sprite *pBluePaddleSprite = Graphics::CreateSprite("Sprites\\blue-paddle.dds");
+	GLib::Sprites::Sprite *pGreenPaddleSprite = Graphics::CreateSprite("Sprites\\green-paddle.dds");
+	GLib::Sprites::Sprite *pBallSprite = Graphics::CreateSprite("Sprites\\ball.dds");
+	GLib::Sprites::Sprite *pCourtSprite = Graphics::CreateSprite("Sprites\\court.dds");
+	pTestPaddle->SetSprite(pGreenPaddleSprite);
+	pTestPaddleAI->SetSprite(pBluePaddleSprite);
+	pCourt->SetSprite(pCourtSprite);
+
+	bool bQuit = false;
+
+	do {
+		GLib::Service(bQuit);
+		if (!bQuit) {
+			GLib::SetKeyStateChangeCallback(TestKeyCallback);
+			Graphics::BeginRendering();
+
+			Graphics::Render(pTestPaddle->GetGameObject());
+			Graphics::Render(pTestPaddleAI->GetGameObject());
+			Graphics::Render(pCourt);
+
+			pTestPaddle->MoveByPlayer(PlayerMove);
+
+			Graphics::EndRendering();
+
+		}
+	} while (bQuit == false);
+
+	// release all the sprites
+	if (pBluePaddleSprite) {
+		GLib::Sprites::Release(pBluePaddleSprite);
+	}
+
+	if (pGreenPaddleSprite) {
+		GLib::Sprites::Release(pGreenPaddleSprite);
+	}
+
+	if (pCourtSprite) {
+		GLib::Sprites::Release(pCourtSprite);
+	}
+
+	if (pBallSprite) {
+		GLib::Sprites::Release(pBallSprite);
+	}
 
 }
 
-void Game::shut_down() {
-	//fsa_allocator->destroy_instance();
-	//allocator->destroy_instance();
+void Game::ShutDown() {
+	
+	if(pTestPaddle) delete pTestPaddle;
+	if(pTestPaddleAI) delete pTestPaddleAI;
+	if(pCourt) delete pCourt;
+
+	fsa_allocator->destroy_instance();
+	test_allocator->destroy_instance();
+
 }
 
-//void Game::shut_down() {
-//	delete player;
-//
-//	for (size_t i = 0; i < num_monsters; i++)
-//	{
-//		delete monsters[i];
-//	}
-//	fsa_allocator->destroy_instance();
-//	allocator->destroy_instance();
-//}
+void Game::TestKeyCallback(unsigned int i_VKeyID, bool bWentDown) {
+#ifdef _DEBUG
+	const size_t	lenBuffer = 65;
+	char			Buffer[lenBuffer];
+
+	if (i_VKeyID == 0x57 && bWentDown) {
+		PlayerMove = 'W';
+		sprintf_s(Buffer, lenBuffer, "VKey 0x%04x went %s\n", i_VKeyID, bWentDown ? "down" : "up");
+	}
+	else if (i_VKeyID == 0x53 && bWentDown) {
+		PlayerMove = 'S';
+		sprintf_s(Buffer, lenBuffer, "VKey 0x%04x went %s\n", i_VKeyID, bWentDown ? "down" : "up");
+	}
+	else {
+		PlayerMove = 0;
+	}
+
+	sprintf_s(Buffer, lenBuffer, "VKey 0x%04x went %s\n", i_VKeyID, bWentDown ? "down" : "up");
+	OutputDebugStringA(Buffer);
+#endif // __DEBUG
+}
