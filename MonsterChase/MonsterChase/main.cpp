@@ -42,15 +42,25 @@ void print_bit_array(uint8_t*, size_t);
 void * LoadFile(const char * i_pFilename, size_t & o_sizeFile);
 GLib::Sprites::Sprite * CreateSprite(const char * i_pFilename);
 
+uint8_t PlayerMove = 0;
 void TestKeyCallback(unsigned int i_VKeyID, bool bWentDown)
 {
 #ifdef _DEBUG
 	const size_t	lenBuffer = 65;
 	char			Buffer[lenBuffer];
 	
-
+	switch (i_VKeyID)
+	{
+		case 0x57:
+			PlayerMove = 'W';
+			sprintf_s(Buffer, lenBuffer, "VKey 0x%04x went %s\n", i_VKeyID, bWentDown ? "down" : "up");
+		case 0x53:
+			PlayerMove = 'S';
+		default:
+			break;
+	}
 	//sprintf_s(Buffer, lenBuffer, "VKey 0x%04x went %s\n", i_VKeyID, bWentDown ? "down" : "up");
-	//OutputDebugStringA(Buffer);
+	OutputDebugStringA(Buffer);
 #endif // __DEBUG
 }
 
@@ -99,7 +109,7 @@ int WINAPI wWinMain(HINSTANCE i_hInstance, HINSTANCE i_hPrevInstance, LPWSTR i_l
 	bool bSuccess = GLib::Initialize(i_hInstance, i_nCmdShow, "GLibTest", -1, 800, 600);
 
 	if (bSuccess) {
-		GLib::SetKeyStateChangeCallback(TestKeyCallback);
+		
 
 		const size_t	lenBuffer = 65;
 		char			Buffer[lenBuffer];
@@ -120,13 +130,16 @@ int WINAPI wWinMain(HINSTANCE i_hInstance, HINSTANCE i_hPrevInstance, LPWSTR i_l
 		do {
 			GLib::Service(bQuit);
 			if (!bQuit) {
+				GLib::SetKeyStateChangeCallback(TestKeyCallback);
 				Graphics::BeginRendering();
 
 				Graphics::Render(pTestPaddle->GetGameObject());
 				Graphics::Render(pTestPaddleAI->GetGameObject());
 				Graphics::Render(pCourt);
+
+				pTestPaddle->MoveByPlayer(PlayerMove);
 			//	TestMovePaddle(pTestPaddle);
-				pTestPaddle->MoveByPlayer('W');
+				//pTestPaddle->MoveByPlayer('W');
 				Graphics::EndRendering();
 				/*GLib::Sprites::EndRendering();
 				GLib::EndRendering();*/
