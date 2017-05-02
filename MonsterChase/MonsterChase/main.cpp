@@ -49,28 +49,23 @@ void TestKeyCallback(unsigned int i_VKeyID, bool bWentDown)
 	const size_t	lenBuffer = 65;
 	char			Buffer[lenBuffer];
 	
-	switch (i_VKeyID)
-	{
-		case 0x57:
-			PlayerMove = 'W';
-			sprintf_s(Buffer, lenBuffer, "VKey 0x%04x went %s\n", i_VKeyID, bWentDown ? "down" : "up");
-		case 0x53:
-			PlayerMove = 'S';
-		default:
-			break;
+	if (i_VKeyID == 0x57 && bWentDown) {
+		PlayerMove = 'W';
+		sprintf_s(Buffer, lenBuffer, "VKey 0x%04x went %s\n", i_VKeyID, bWentDown ? "down" : "up");
 	}
-	//sprintf_s(Buffer, lenBuffer, "VKey 0x%04x went %s\n", i_VKeyID, bWentDown ? "down" : "up");
+	else if (i_VKeyID == 0x53 && bWentDown) {
+		PlayerMove = 'S';
+		sprintf_s(Buffer, lenBuffer, "VKey 0x%04x went %s\n", i_VKeyID, bWentDown ? "down" : "up");
+	}
+	else {
+		PlayerMove = 0;
+	}
+	
+	sprintf_s(Buffer, lenBuffer, "VKey 0x%04x went %s\n", i_VKeyID, bWentDown ? "down" : "up");
 	OutputDebugStringA(Buffer);
 #endif // __DEBUG
 }
 
-void GetKeyCallBack(unsigned int i_VKeyID, bool bWentDown) {\
-	const size_t	lenBuffer = 65;
-	char			Buffer[lenBuffer];
-
-	sprintf_s(Buffer, lenBuffer, "VKey 0x%04x went %s\n", i_VKeyID, bWentDown ? "down" : "up");
-	OutputDebugStringA(Buffer);
-}
 
 void TestMovePaddle(PaddlePlayer * i_Player) {
 	int i = 0;

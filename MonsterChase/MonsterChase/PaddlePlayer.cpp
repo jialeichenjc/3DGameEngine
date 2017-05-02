@@ -3,10 +3,10 @@
 #include <ctype.h>
 #define DEFAULT_PLAYER_NAME "Player1"
 
-const Vector3D UP = Vector3D(0.0, 1.0, 0.0);
-const Vector3D DOWN = Vector3D(0.0, -1.0, 0.0);
-const Vector3D LEFT = Vector3D(-1.0, 0.0, 0.0);
-const Vector3D RIGHT = Vector3D(1.0, 0.0, 0.0);
+const Vector3D UP = Vector3D(0.0, 0.1, 0.0);
+const Vector3D DOWN = Vector3D(0.0, -0.1, 0.0);
+const Vector3D LEFT = Vector3D(-0.1, 0.0, 0.0);
+const Vector3D RIGHT = Vector3D(0.1, 0.0, 0.0);
 
 PaddlePlayer::PaddlePlayer()
 {
