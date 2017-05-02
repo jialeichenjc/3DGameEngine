@@ -6,6 +6,7 @@
 #include "Physics\Collidable.h"
 #include "PaddleAI.h"
 #include "PaddlePlayer.h"
+#include "Ball.h"
 #include <stdint.h>
 
 namespace Game {

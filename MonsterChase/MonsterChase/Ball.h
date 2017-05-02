@@ -18,12 +18,12 @@ public:
 
 	void SetSprite(const GLib::Sprites::Sprite *i_sprite) override;
 	const GLib::Sprites::Sprite* GetSprite() const override;
+
+	~Ball();
 	
 private:
 	GameObject * m_pGameObject;
 	const GLib::Sprites::Sprite * m_pSprite;
 
-
-	~Ball();
 };
 

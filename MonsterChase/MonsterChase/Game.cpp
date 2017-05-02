@@ -17,6 +17,8 @@ MemoryAllocator* test_allocator;
 FixedSizeAllocator *fsa_allocator;
 PaddlePlayer * pTestPaddle;
 PaddleAI * pTestPaddleAI;
+Ball * pBall;
+
 GameObject * pCourt;
 uint8_t PlayerMove;
 
@@ -25,11 +27,14 @@ void Game::init() {
 	fsa_allocator = FixedSizeAllocator::get_instance();
 	pTestPaddle = new PaddlePlayer();
 	pTestPaddleAI = new PaddleAI();
+	pBall = new Ball();
 	pCourt = new GameObject();
 
 	pCourt->SetPosition(Vector3D(0.0f, -300.0f, 0.0f));
+
 	pTestPaddle->SetPosition(Vector3D(380.0f, -100.0f, 0.0f));
 	pTestPaddleAI->SetPosition(Vector3D(-380.0f, -100.0f, 0.0f));
+	pBall->SetPosition(Vector3D(0.0f, -80.0f, 0.0f));
 }
 
 void Game::run(){
@@ -46,6 +51,7 @@ void Game::run(){
 	pTestPaddle->SetSprite(pGreenPaddleSprite);
 	pTestPaddleAI->SetSprite(pBluePaddleSprite);
 	pCourt->SetSprite(pCourtSprite);
+	pBall->SetSprite(pBallSprite);
 
 	bool bQuit = false;
 
@@ -57,6 +63,8 @@ void Game::run(){
 
 			Graphics::Render(pTestPaddle->GetGameObject());
 			Graphics::Render(pTestPaddleAI->GetGameObject());
+			Graphics::Render(pBall->GetGameObject());
+
 			Graphics::Render(pCourt);
 
 			pTestPaddle->MoveByPlayer(PlayerMove);
@@ -87,9 +95,10 @@ void Game::run(){
 
 void Game::ShutDown() {
 	
-	if(pTestPaddle) delete pTestPaddle;
-	if(pTestPaddleAI) delete pTestPaddleAI;
-	if(pCourt) delete pCourt;
+	if (pTestPaddle) delete pTestPaddle;
+	if (pTestPaddleAI) delete pTestPaddleAI;
+	if (pCourt) delete pCourt;
+	if (pBall) delete pBall;
 
 	fsa_allocator->destroy_instance();
 	test_allocator->destroy_instance();
