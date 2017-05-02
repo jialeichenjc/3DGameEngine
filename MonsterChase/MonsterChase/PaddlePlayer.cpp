@@ -8,12 +8,11 @@ const Vector3D DOWN = Vector3D(0.0, -0.1, 0.0);
 const Vector3D LEFT = Vector3D(-0.1, 0.0, 0.0);
 const Vector3D RIGHT = Vector3D(0.1, 0.0, 0.0);
 
-PaddlePlayer::PaddlePlayer()
-{
+PaddlePlayer::PaddlePlayer() {
 	m_pGameObject = new GameObject();
 }
 
-void PaddlePlayer::SetName(const char* i_name) {
+void PaddlePlayer::SetName(const char * i_name) {
 	m_pGameObject->SetName(DEFAULT_PLAYER_NAME);
 }
 
