@@ -1,4 +1,6 @@
 #include "Collidable.h"
+#include "Collision.h"
+
 void Collidable::InitAABB() {
 	float MaxX = m_Position.x() + m_SizeX / 2.0f;
 	float MaxY = m_Position.y() + m_SizeY / 2.0f;
@@ -16,4 +18,10 @@ void Collidable::InitAABB() {
 	m_MinPosition.set_z(MinZ);
 
 	m_AABB = AxisAlignedBoundingBox(m_MaxPosition, m_MinPosition);
+}
+
+bool CheckCollision(Collidable & i_Collidable_1, Collidable & i_Collidable_2)
+{
+	
+	return false;
 }

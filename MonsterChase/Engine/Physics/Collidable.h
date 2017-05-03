@@ -18,6 +18,7 @@ public:
 	inline std::string GetName() const { return m_Name; }
 	inline std::string SetName(const std::string & i_str) { m_Name = i_str; }
 	inline bool operator == (const Collidable & i_col) { return this->m_Name == i_col.GetName(); }
+
 	~Collidable() {};
 
 private:
@@ -33,3 +34,4 @@ private:
 	std::string m_Name;
 };
 
+bool CheckCollision(Collidable & i_Collidable_1, Collidable & i_Collidable_2);
