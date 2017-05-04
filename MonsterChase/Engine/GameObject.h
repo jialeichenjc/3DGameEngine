@@ -20,6 +20,11 @@ public:
 	void SetSprite(const GLib::Sprites::Sprite *i_sprite);
 	const GLib::Sprites::Sprite* GetSprite() const;
 
+	// physics velocity
+	void SetVelocity(const Vector3D & i_vec);
+	Vector3D GetVelocity();
+	void MoveWithVelocity();
+
 	void* operator new(const size_t size);
 	void* operator new(const size_t size, const size_t alignment_size);
 	void operator delete(void* ptr);
@@ -35,7 +40,9 @@ public:
 	};
 
 protected:
-	Vector3D position; // a 2D vector representing the position {x_coord, y_coord}
+	Vector3D position; // a 3D vector representing the position {x_coord, y_coord}
+	Vector3D m_Velocity;
+
 private:
 	const char *name;
 	const GLib::Sprites::Sprite * m_pSprite;
@@ -61,4 +68,16 @@ inline void GameObject::SetPosition(const Vector3D &vec) {
 
 inline void GameObject::Move(const Vector3D &delta_vec) {
 	position = position + delta_vec;
+}
+
+inline void GameObject::SetVelocity(const Vector3D & i_vec) {
+	m_Velocity = i_vec;
+}
+
+inline Vector3D GameObject::GetVelocity() {
+	return m_Velocity;
+}
+
+inline void GameObject::MoveWithVelocity() {
+	Move(m_Velocity);
 }

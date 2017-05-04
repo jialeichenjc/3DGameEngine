@@ -3,7 +3,7 @@
 #include "MemoryManager/FixedSizeAllocator.h"
 bool GameObject::on_fsa_allocator = false;
 bool GameObject::on_mem_allocator = false;
-GameObject::GameObject() : position(0.0, 0.0, 0.0) {
+GameObject::GameObject() : position(0.0, 0.0, 0.0), m_Velocity(0.0f, 0.0f, 0.0f) {
 	MemoryAllocator *allocator = MemoryAllocator::get_instance();
 	name = (char*)allocator->alloc_mem(20);
 
