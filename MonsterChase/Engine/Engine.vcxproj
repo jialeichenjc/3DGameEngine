@@ -158,6 +158,7 @@
   <ItemGroup>
     <ClInclude Include="ActorInfo.h" />
     <ClInclude Include="GameMessageHandler.h" />
+    <ClInclude Include="GamePhysics.h" />
     <ClInclude Include="MessageSystem.h" />
     <ClInclude Include="Performance\Accumulator.h" />
     <ClInclude Include="Performance\Profiler.h" />

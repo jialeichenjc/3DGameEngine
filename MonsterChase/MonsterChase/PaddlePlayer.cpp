@@ -67,6 +67,16 @@ const GLib::Sprites::Sprite * PaddlePlayer::GetSprite() const {
 	return m_pGameObject->GetSprite();
 }
 
+void PaddlePlayer::InitCollidable() {
+	m_Collidable = Collidable(m_pGameObject, m_SizeX, m_SizeY, m_SizeZ);
+}
+
+void PaddlePlayer::SetSpriteSize(float i_SizeX, float i_SizeY, float i_SizeZ) {
+	m_SizeX = i_SizeX;
+	m_SizeY = i_SizeY;
+	m_SizeZ = i_SizeZ;
+}
+
 PaddlePlayer::~PaddlePlayer() {
 	delete m_pGameObject;
 }

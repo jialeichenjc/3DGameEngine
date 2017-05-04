@@ -79,6 +79,7 @@
     <ClInclude Include="Performance\ScopedTimer.h" />
     <ClInclude Include="Performance\Timing.h" />
     <ClInclude Include="Physics\Collision.h" />
+    <ClInclude Include="GamePhysics.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Unit Tests">

@@ -19,3 +19,7 @@ void Collidable::InitAABB() {
 
 	m_AABB = AxisAlignedBoundingBox(m_MaxPosition, m_MinPosition);
 }
+
+Vector3D Collidable::GetPosition() {
+	return m_pGameObject->GetPosition();
+}
