@@ -44,6 +44,17 @@ void PaddleAI::MoveByAI() {
 
 }
 
+Vector3D PaddleAI::GetVelocity() const {
+	return m_pGameObject->GetVelocity();
+}
+void PaddleAI::SetVelocity(const Vector3D & i_vec) {
+	m_pGameObject->SetVelocity(i_vec);
+}
+void PaddleAI::MoveWithVelocity() {
+	m_pGameObject->MoveWithVelocity();
+}
+
+
 void PaddleAI::SetSprite(const GLib::Sprites::Sprite *i_sprite) {
 	m_pGameObject->SetSprite(i_sprite);
 }

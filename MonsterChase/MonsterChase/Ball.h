@@ -16,6 +16,10 @@ public:
 	GameObject * GetGameObject() const override;
 	void Move(Vector3D & i_vec); // player controlled movement
 
+	Vector3D GetVelocity() const override;
+	void SetVelocity(const Vector3D & i_vec) override;
+	void MoveWithVelocity() override;
+
 	void SetSprite(const GLib::Sprites::Sprite *i_sprite) override;
 	const GLib::Sprites::Sprite* GetSprite() const override;
 

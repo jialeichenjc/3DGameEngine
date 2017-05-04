@@ -77,6 +77,16 @@ void PaddlePlayer::SetSpriteSize(float i_SizeX, float i_SizeY, float i_SizeZ) {
 	m_SizeZ = i_SizeZ;
 }
 
+Vector3D PaddlePlayer::GetVelocity() const {
+	return m_pGameObject->GetVelocity();
+}
+void PaddlePlayer::SetVelocity(const Vector3D & i_vec) {
+	m_pGameObject->SetVelocity(i_vec);
+}
+void PaddlePlayer::MoveWithVelocity() {
+	m_pGameObject->MoveWithVelocity();
+}
+
 PaddlePlayer::~PaddlePlayer() {
 	delete m_pGameObject;
 }

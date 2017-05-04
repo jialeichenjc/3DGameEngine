@@ -22,7 +22,7 @@ public:
 
 	// physics velocity
 	void SetVelocity(const Vector3D & i_vec);
-	Vector3D GetVelocity();
+	Vector3D GetVelocity() const;
 	void MoveWithVelocity();
 
 	void* operator new(const size_t size);
@@ -74,7 +74,7 @@ inline void GameObject::SetVelocity(const Vector3D & i_vec) {
 	m_Velocity = i_vec;
 }
 
-inline Vector3D GameObject::GetVelocity() {
+inline Vector3D GameObject::GetVelocity() const {
 	return m_Velocity;
 }
 

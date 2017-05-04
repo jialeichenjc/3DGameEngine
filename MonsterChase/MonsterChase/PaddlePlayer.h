@@ -22,6 +22,10 @@ public:
 	void SetSprite(const GLib::Sprites::Sprite *i_sprite) override;
 	const GLib::Sprites::Sprite* GetSprite() const override;
 
+	Vector3D GetVelocity() const override;
+	void SetVelocity(const Vector3D & i_vec) override;
+	void MoveWithVelocity() override;
+
 	void InitCollidable();
 
 	void SetSpriteSize(float i_SizeX, float i_SizeY, float i_SizeZ);

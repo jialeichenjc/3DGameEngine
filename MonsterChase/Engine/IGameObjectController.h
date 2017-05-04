@@ -14,5 +14,8 @@ public:
 	virtual GameObject * GetGameObject() const = 0;
 	virtual void SetSprite(const GLib::Sprites::Sprite *i_sprite) = 0;
 	virtual const GLib::Sprites::Sprite * GetSprite() const = 0;
+	virtual Vector3D GetVelocity() const = 0;
+	virtual void SetVelocity(const Vector3D & i_vec) = 0;
+	virtual void MoveWithVelocity() = 0;
 };
 

@@ -46,6 +46,16 @@ void Ball::Move(Vector3D & i_vec) {
 	m_pGameObject->Move(i_vec);
 }
 
+Vector3D Ball::GetVelocity() const {
+	return m_pGameObject->GetVelocity();
+}
+void Ball::SetVelocity(const Vector3D & i_vec) {
+	m_pGameObject->SetVelocity(i_vec);
+}
+void Ball::MoveWithVelocity() {
+	m_pGameObject->MoveWithVelocity();
+}
+
 Ball::~Ball() {
 	delete m_pGameObject;
 }
