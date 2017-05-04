@@ -22,6 +22,7 @@ public:
 
 	// physics velocity
 	void SetVelocity(const Vector3D & i_vec);
+	void SetVelocity(float i_x, float i_y, float i_z);
 	Vector3D GetVelocity() const;
 	void MoveWithVelocity();
 
@@ -72,6 +73,10 @@ inline void GameObject::Move(const Vector3D &delta_vec) {
 
 inline void GameObject::SetVelocity(const Vector3D & i_vec) {
 	m_Velocity = i_vec;
+}
+
+inline void GameObject::SetVelocity(float i_x, float i_y, float i_z) {
+	m_Velocity = Vector3D(i_x, i_y, i_z);
 }
 
 inline Vector3D GameObject::GetVelocity() const {

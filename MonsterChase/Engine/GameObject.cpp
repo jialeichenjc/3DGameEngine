@@ -12,6 +12,7 @@ GameObject::GameObject() : position(0.0, 0.0, 0.0), m_Velocity(0.0f, 0.0f, 0.0f)
 void GameObject::SetSprite(const GLib::Sprites::Sprite *i_sprite) {
 	m_pSprite = i_sprite;
 }
+
 const GLib::Sprites::Sprite * GameObject::GetSprite() const {
 	return m_pSprite;
 }

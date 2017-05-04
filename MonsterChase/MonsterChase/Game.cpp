@@ -12,6 +12,7 @@
 #include "Game.h"
 #include "Graphics.h"
 #include "GLib.h"
+#include "GamePhysics.h"
 
 MemoryAllocator* test_allocator;
 FixedSizeAllocator *fsa_allocator;
@@ -56,6 +57,9 @@ void Game::run(){
 
 	pTestPaddle->SetSpriteSize(32.0f, 128.0f, 0.0f);
 	pBall->SetSpriteSize(32.0f, 32.0f, 0.0f);
+
+	pTestPaddle->InitCollidable();
+	pBall->InitCollidable();
 	
 	bool bQuit = false;
 

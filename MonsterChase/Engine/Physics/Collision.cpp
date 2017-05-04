@@ -19,6 +19,7 @@ bool Collision::CheckCollision(AxisAlignedBoundingBox & i_AABB_1, AxisAlignedBou
 		return false;
 	}
 	// if no separating axis were found
+	// collision detected
 	else if (   
 		(l_max.x() >= r_min.x() && l_min.x() <= r_min.x())
 		|| (r_max.x() >= l_min.x() && r_min.x() <= l_min.x())
@@ -29,6 +30,7 @@ bool Collision::CheckCollision(AxisAlignedBoundingBox & i_AABB_1, AxisAlignedBou
 		return true;
 	}
 
+	// collision detected
 	else if (
 		(r_max.y() >= l_min.y() && r_min.y() <= l_min.y()) 
 		|| (l_max.y() >= r_min.y() && l_min.y() <= r_min.y())
@@ -39,6 +41,7 @@ bool Collision::CheckCollision(AxisAlignedBoundingBox & i_AABB_1, AxisAlignedBou
 		return true;
 	}
 
+	// collision detected
 	else if (
 		(r_max.z() >= l_min.z() && r_min.z() <= l_min.z())
 		|| (l_max.z() >= r_min.z() && l_min.z() <= r_min.z())
@@ -50,4 +53,19 @@ bool Collision::CheckCollision(AxisAlignedBoundingBox & i_AABB_1, AxisAlignedBou
 	}
 	return false;
 
+}
+
+bool Collision::CheckCollision(const Collidable & i_Collidable_1, const Collidable & i_Collidable_2) {
+	return CheckCollision(i_Collidable_1.GetAABB(), i_Collidable_2.GetAABB());
+}
+
+void Collision::OnCollision(Collidable & i_Collidable_1, Collidable & i_Collidable_2) {
+	i_Collidable_1.ChangeVelocityDirection(i_Collidable_1.GetAABB().GetCollidingVec());
+	i_Collidable_2.ChangeVelocityDirection(i_Collidable_2.GetAABB().GetCollidingVec());
+}
+
+void Collision::HandleCollision(Collidable & i_Collidable_1, Collidable & i_Collidable_2) {
+	if (CheckCollision(i_Collidable_1, i_Collidable_2)) {
+		OnCollision(i_Collidable_1, i_Collidable_2);
+	}
 }
