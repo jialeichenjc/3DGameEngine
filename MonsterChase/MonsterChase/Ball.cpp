@@ -56,6 +56,16 @@ void Ball::MoveWithVelocity() {
 	m_pGameObject->MoveWithVelocity();
 }
 
+void Ball::InitCollidable() {
+	m_Collidable = Collidable(m_pGameObject, m_SizeX, m_SizeY, m_SizeZ);
+}
+
+void Ball::SetSpriteSize(float i_SizeX, float i_SizeY, float i_SizeZ) {
+	m_SizeX = i_SizeX;
+	m_SizeY = i_SizeY;
+	m_SizeZ = i_SizeZ;
+}
+
 Ball::~Ball() {
 	delete m_pGameObject;
 }

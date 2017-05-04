@@ -2,6 +2,7 @@
 #include "IGameObjectController.h"
 #include <stdint.h>
 #include "GLib.h"
+#include "GamePhysics.h"
 class GameObject;
 class Ball : public IGameObjectController
 {
@@ -23,11 +24,20 @@ public:
 	void SetSprite(const GLib::Sprites::Sprite *i_sprite) override;
 	const GLib::Sprites::Sprite* GetSprite() const override;
 
+	void InitCollidable();
+	void SetSpriteSize(float i_SizeX, float i_SizeY, float i_SizeZ);
+
 	~Ball();
 	
 private:
 	GameObject * m_pGameObject;
 	const GLib::Sprites::Sprite * m_pSprite;
+	Collidable m_Collidable;
+	Vector3D m_SpriteSize;
+
+	float m_SizeX = 0.0f;
+	float m_SizeY = 0.0f;
+	float m_SizeZ = 0.0f;
 
 };
 

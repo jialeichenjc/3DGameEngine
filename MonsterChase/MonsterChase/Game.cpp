@@ -35,6 +35,7 @@ void Game::init() {
 	pTestPaddle->SetPosition(Vector3D(380.0f, -100.0f, 0.0f));
 	pTestPaddleAI->SetPosition(Vector3D(-380.0f, -100.0f, 0.0f));
 	pBall->SetPosition(Vector3D(0.0f, -80.0f, 0.0f));
+	pBall->SetVelocity(Vector3D(0.1f, 0.0f, 0.0f));
 }
 
 void Game::run(){
@@ -53,6 +54,9 @@ void Game::run(){
 	pCourt->SetSprite(pCourtSprite);
 	pBall->SetSprite(pBallSprite);
 
+	pTestPaddle->SetSpriteSize(32.0f, 128.0f, 0.0f);
+	pBall->SetSpriteSize(32.0f, 32.0f, 0.0f);
+	
 	bool bQuit = false;
 
 	do {
@@ -68,6 +72,7 @@ void Game::run(){
 			Graphics::Render(pCourt);
 
 			pTestPaddle->MoveByPlayer(PlayerMove);
+			pBall->MoveWithVelocity();
 
 			Graphics::EndRendering();
 

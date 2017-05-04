@@ -11,7 +11,6 @@
 
 namespace Game {
 
-
 	void init();
 	void render(GameObject *);
 	void run();
