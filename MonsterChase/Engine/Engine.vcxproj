@@ -163,7 +163,7 @@
     <ClInclude Include="Performance\Profiler.h" />
     <ClInclude Include="Performance\ScopedTimer.h" />
     <ClInclude Include="Performance\Timing.h" />
-    <ClInclude Include="Physics\CollisionDetector.h" />
+    <ClInclude Include="Physics\Collision.h" />
     <ClInclude Include="Physics\OrientedBoundingBox.h" />
     <ClInclude Include="Physics\AxisAlignedBoundingBox.h" />
     <ClInclude Include="Physics\Collidable.h" />
@@ -206,7 +206,7 @@
     <ClCompile Include="Performance\Profiler.cpp" />
     <ClCompile Include="Performance\ScopedTimer.cpp" />
     <ClCompile Include="Performance\Timing.cpp" />
-    <ClCompile Include="Physics\CollisionDetector.cpp" />
+    <ClCompile Include="Physics\Collision.cpp" />
     <ClCompile Include="Physics\OrientedBoundingBox.cpp" />
     <ClCompile Include="Physics\AxisAlignedBoundingBox.cpp" />
     <ClCompile Include="Physics\Collidable.cpp" />

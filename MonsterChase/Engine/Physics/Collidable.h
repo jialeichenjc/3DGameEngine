@@ -18,12 +18,16 @@ public:
 	inline std::string GetName() const { return m_Name; }
 	inline std::string SetName(const std::string & i_str) { m_Name = i_str; }
 	inline bool operator == (const Collidable & i_col) { return this->m_Name == i_col.GetName(); }
-
+	inline AxisAlignedBoundingBox GetAABB() { return m_AABB; }
+	inline bool IsBouncy() { return m_ShouldBounceOff; }
+	inline Vector3D GetVelocity() { return m_Velocity; }
 	~Collidable() {};
 
 private:
 	GameObject * m_GameObject;
 	AxisAlignedBoundingBox m_AABB;
+	bool m_ShouldBounceOff; // if the object should bounce off upon collision
+
 	Vector3D m_Position;
 	float m_SizeX; // size of the collision box (AABB / OBB)
 	float m_SizeY;
@@ -31,7 +35,7 @@ private:
 	Vector3D m_MinPosition;
 	Vector3D m_MaxPosition;
 
+	Vector3D m_Velocity;
+
 	std::string m_Name;
 };
-
-bool CheckCollision(Collidable & i_Collidable_1, Collidable & i_Collidable_2);

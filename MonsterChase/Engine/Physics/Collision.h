@@ -1,6 +1,7 @@
 #pragma once
 #include "AxisAlignedBoundingBox.h"
 #include "OrientedBoundingBox.h"
+#include "Collidable.h"
 namespace Collision
 {
 
@@ -9,6 +10,12 @@ namespace Collision
 
 	bool CheckCollision(AxisAlignedBoundingBox & i_AABB, OrientedBoundingBox & i_OBB);
 	bool CheckCollision(OrientedBoundingBox & i_OBB_1, OrientedBoundingBox & i_OBB_2);
+
+	void CollisionHandler(Collidable & i_Collidable_1, Collidable & i_Collidable_2) {
+		if (i_Collidable_1.IsBouncy()) {
+			
+		}
+	}
 
 };
 

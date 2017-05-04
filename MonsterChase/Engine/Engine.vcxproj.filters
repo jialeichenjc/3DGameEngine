@@ -28,7 +28,6 @@
     <ClCompile Include="Physics\OrientedBoundingBox.cpp" />
     <ClCompile Include="Physics\AxisAlignedBoundingBox.cpp" />
     <ClCompile Include="Physics\Collidable.cpp" />
-    <ClCompile Include="Physics\CollisionDetector.cpp" />
     <ClCompile Include="MessageSystem.cpp" />
     <ClCompile Include="ActorInfo.cpp" />
     <ClCompile Include="GameMessageHandler.cpp" />
@@ -36,6 +35,7 @@
     <ClCompile Include="Performance\ScopedTimer.cpp" />
     <ClCompile Include="Performance\Timing.cpp" />
     <ClCompile Include="Graphics.cpp" />
+    <ClCompile Include="Physics\Collision.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Debug.h" />
@@ -71,7 +71,6 @@
     <ClInclude Include="Physics\VectorMath.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="VectorMath.h" />
-    <ClInclude Include="Physics\CollisionDetector.h" />
     <ClInclude Include="MessageSystem.h" />
     <ClInclude Include="ActorInfo.h" />
     <ClInclude Include="GameMessageHandler.h" />
@@ -79,6 +78,7 @@
     <ClInclude Include="Performance\Profiler.h" />
     <ClInclude Include="Performance\ScopedTimer.h" />
     <ClInclude Include="Performance\Timing.h" />
+    <ClInclude Include="Physics\Collision.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Unit Tests">

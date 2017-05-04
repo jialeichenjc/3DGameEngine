@@ -13,6 +13,9 @@ public:
 
 	inline void SetMaxPosition(const Vector3D & i_max) { m_MaxPosition = i_max; }
 	inline void SetMinPosition(const Vector3D & i_min) { m_MinPosition = i_min; }
+	inline Vector3D GetCollidingVec() { return m_CollidingVec; }
+	inline void SetCollidingVec(const Vector3D & i_vec) { m_CollidingVec = i_vec; }
+
 	~AxisAlignedBoundingBox() {};
 
 private:
@@ -23,5 +26,7 @@ private:
 	//Vector3D m_MinPosition_x;
 	//Vector3D m_MinPosition_y;
 	Vector3D m_MinPosition;
+
+	Vector3D m_CollidingVec; // Handles collision on all three axis
 };
 

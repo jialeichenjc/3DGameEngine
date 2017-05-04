@@ -19,9 +19,3 @@ void Collidable::InitAABB() {
 
 	m_AABB = AxisAlignedBoundingBox(m_MaxPosition, m_MinPosition);
 }
-
-bool CheckCollision(Collidable & i_Collidable_1, Collidable & i_Collidable_2)
-{
-	
-	return false;
-}
