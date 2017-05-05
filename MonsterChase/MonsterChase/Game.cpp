@@ -26,9 +26,13 @@ GameObject * pUpperBoundary;
 GameObject * pLowerBoundary;
 Collidable UpperBound;
 Collidable LowerBound;
+CollisionHandler Handler1;
+CollisionHandler Handler2;
+CollisionHandler Handler3;
+CollisionHandler Handler4;
 
 uint8_t PlayerMove;
-Vector3D PlayerVelocity;
+Vector3D PlayerVelocityRight;
 
 void Game::init() {
 	test_allocator = MemoryAllocator::get_instance();
@@ -42,8 +46,8 @@ void Game::init() {
 	pLowerBoundary = new GameObject();
 
 	pCourt->SetPosition(Vector3D(0.0f, -300.0f, 0.0f));
-	pUpperBoundary->SetPosition(Vector3D(0.0f, 175.0f, 0.0f));
-	pLowerBoundary->SetPosition(Vector3D(0.0f, -175.0f, 0.0f));
+	pUpperBoundary->SetPosition(Vector3D(0.0f, 270.0f, 0.0f));
+	pLowerBoundary->SetPosition(Vector3D(0.0f, -270.0f, 0.0f));
 	UpperBound.SetGameObject(pUpperBoundary);
 	LowerBound.SetGameObject(pLowerBoundary);
 
@@ -54,7 +58,7 @@ void Game::init() {
 	pTestPaddleLeft->SetPosition(Vector3D(-380.0f, -100.0f, 0.0f));
 
 	pBall->SetPosition(Vector3D(100.0f, -80.0f, 0.0f));
-	pBall->SetVelocity(Vector3D(0.0f, -0.1f, 0.0f));
+	pBall->SetVelocity(Vector3D(0.1f, 0.05f, 0.0f));
 }
 
 void Game::run(){
@@ -112,11 +116,11 @@ void Game::run(){
 			pTestPaddle->SetVelocity(PlayerVelocity);
 			pTestPaddle->MoveByPlayer();
 			pBall->MoveWithVelocity();
-			Collision::HandleCollision(pBall->GetCollidable(), pTestPaddle->GetCollidable());
-			//Collision::HandleCollision(pTestPaddleLeft->GetCollidable(), pBall->GetCollidable());
-			//Collision::HandleCollision(pTestPaddle->GetCollidable(), UpperBound);
-			Collision::HandleCollision(pBall->GetCollidable(), UpperBound);
-			Collision::HandleCollision(pBall->GetCollidable(), LowerBound);
+
+			Handler1.HandleCollision(pBall->GetCollidable(), LowerBound);
+			Handler2.HandleCollision(pBall->GetCollidable(), UpperBound);
+			Handler3.HandleCollision(pTestPaddle->GetCollidable(), pBall->GetCollidable());
+			Handler4.HandleCollision(pTestPaddleLeft->GetCollidable(), pBall->GetCollidable());
 			Graphics::EndRendering();
 
 		}
