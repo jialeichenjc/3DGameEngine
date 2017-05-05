@@ -1,4 +1,7 @@
 #include "Collision.h"
+bool XSeparated = false;
+bool YSeparated = false;
+bool ZSeparated = false;
 
 bool Collision::CheckCollision(AxisAlignedBoundingBox & i_AABB_1, AxisAlignedBoundingBox & i_AABB_2) {
 	Vector3D l_max = i_AABB_1.GetMaxPosition();
@@ -10,48 +13,57 @@ bool Collision::CheckCollision(AxisAlignedBoundingBox & i_AABB_1, AxisAlignedBou
 	// to see if there's any axis along which the projection does not overlap
 	// Separating axis parallel to Y 
 	if (l_max.x() < r_min.x() || r_max.x() < l_min.x()) {
-		return false; 
-	}
-	else if (l_max.y() < r_min.y() || r_max.y() < l_min.y()) {
+		YSeparated = true;
 		return false;
 	}
-	else if (l_max.z() < r_min.z() || r_max.z() < l_min.z()) {
+	if (l_max.y() < r_min.y() || r_max.y() < l_min.y()) {
+		XSeparated = true;
 		return false;
 	}
+	/*if (l_max.z() < r_min.z() || r_max.z() < l_min.z()) {
+	ZSeparated = true;;
+	return false;
+	}*/
+	//if (XSeparated || YSeparated || ZSeparated) { return false; }
 	// if no separating axis were found
 	// collision detected
-	else if (   
+
+	if (
 		(l_max.x() >= r_min.x() && l_min.x() <= r_min.x())
 		|| (r_max.x() >= l_min.x() && r_min.x() <= l_min.x())
+		&& YSeparated
 		) {
-		// collision occurs on the x-axis of AABB's
+		//l_max.x() == r_min.x() || r_max.x() == l_min.x()) {
+		// collision occurs on the y-axis of AABB's
 		i_AABB_1.SetCollidingVec(Vector3D(-1.0f, 1.0f, 1.0f));
 		i_AABB_2.SetCollidingVec(Vector3D(-1.0f, 1.0f, 1.0f));
+		YSeparated = false;
 		return true;
 	}
 
 	// collision detected
 	else if (
-		(r_max.y() >= l_min.y() && r_min.y() <= l_min.y()) 
+		(r_max.y() >= l_min.y() && r_min.y() <= l_min.y())
 		|| (l_max.y() >= r_min.y() && l_min.y() <= r_min.y())
+		&& XSeparated
 		) {
-		// collision occurs on the y-axis of AABB's
+		// collision occurs on the x-axis of AABB's
 		i_AABB_1.SetCollidingVec(Vector3D(1.0f, -1.0f, 1.0f));
 		i_AABB_2.SetCollidingVec(Vector3D(1.0f, -1.0f, 1.0f));
+		XSeparated = false;
 		return true;
 	}
 
 	// collision detected
-	else if (
-		(r_max.z() >= l_min.z() && r_min.z() <= l_min.z())
-		|| (l_max.z() >= r_min.z() && l_min.z() <= r_min.z())
-		) {
-		// collision occurs on the z-axis of AABB's
-		i_AABB_1.SetCollidingVec(Vector3D(1.0f, 1.0f, -1.0f));
-		i_AABB_2.SetCollidingVec(Vector3D(1.0f, 1.0f, -1.0f));
-		return true;
-	}
-	return false;
+	//else if (
+	//	(r_max.z() >= l_min.z() && r_min.z() <= l_min.z())
+	//	|| (l_max.z() >= r_min.z() && l_min.z() <= r_min.z())
+	//	) {
+	//	// collision occurs on the z-axis of AABB's
+	//	i_AABB_1.SetCollidingVec(Vector3D(1.0f, 1.0f, -1.0f));
+	//	i_AABB_2.SetCollidingVec(Vector3D(1.0f, 1.0f, -1.0f));
+	//	return true;
+	//}
 
 }
 
@@ -73,8 +85,9 @@ void Collision::OnCollision(Collidable & i_Collidable_1, Collidable & i_Collidab
 	else {
 		i_Collidable_2.ChangeVelocityDirection(Vector3D(0.0f, 0.0f, 0.0f));
 	}
-	
-//	i_Collidable_2.SetVelocity(-0.1f, 0.0f, 0.0f);
+
+	YSeparated = true;
+	XSeparated = true;
 }
 
 void Collision::HandleCollision(Collidable & i_Collidable_1, Collidable & i_Collidable_2) {
