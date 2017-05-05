@@ -54,6 +54,7 @@ void Ball::SetVelocity(const Vector3D & i_vec) {
 }
 void Ball::MoveWithVelocity() {
 	m_pGameObject->MoveWithVelocity();
+	m_Collidable.MoveWithVelocity();
 }
 
 void Ball::InitCollidable() {

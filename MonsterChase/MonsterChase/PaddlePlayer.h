@@ -27,6 +27,7 @@ public:
 	void MoveWithVelocity() override;
 
 	void InitCollidable();
+	inline Collidable GetCollidable() { return m_Collidable; }
 
 	void SetSpriteSize(float i_SizeX, float i_SizeY, float i_SizeZ);
 

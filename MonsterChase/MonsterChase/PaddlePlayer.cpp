@@ -44,16 +44,20 @@ void PaddlePlayer::MoveByPlayer(uint8_t input) {
 	//int input = toupper(_getch());
 	switch (input) {
 	case 'W': // move up
-		m_pGameObject->Move(UP);
+		SetVelocity(Vector3D(0.0f, 0.1f, 0.0f));
+		MoveWithVelocity();
 		break;
 	case 'S': // move down
-		m_pGameObject->Move(DOWN);
+		SetVelocity(Vector3D(0.0f, -0.1f, 0.0f));
+		MoveWithVelocity();
 		break;
 	case 'A': // move left
-		m_pGameObject->Move(LEFT);
+		SetVelocity(Vector3D(-0.1f, 0.0f, 0.0f));
+		MoveWithVelocity();
 		break;
 	case 'D': // move right
-		m_pGameObject->Move(RIGHT);
+		SetVelocity(Vector3D(0.1f, 0.0f, 0.0f));
+		MoveWithVelocity();
 		break;
 	default:
 		break;
@@ -85,6 +89,7 @@ void PaddlePlayer::SetVelocity(const Vector3D & i_vec) {
 }
 void PaddlePlayer::MoveWithVelocity() {
 	m_pGameObject->MoveWithVelocity();
+	m_Collidable.MoveWithVelocity();
 }
 
 PaddlePlayer::~PaddlePlayer() {

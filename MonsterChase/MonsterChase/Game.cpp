@@ -17,6 +17,7 @@
 MemoryAllocator* test_allocator;
 FixedSizeAllocator *fsa_allocator;
 PaddlePlayer * pTestPaddle;
+PaddlePlayer * pTestPaddleLeft;
 PaddleAI * pTestPaddleAI;
 Ball * pBall;
 
@@ -27,6 +28,7 @@ void Game::init() {
 	test_allocator = MemoryAllocator::get_instance();
 	fsa_allocator = FixedSizeAllocator::get_instance();
 	pTestPaddle = new PaddlePlayer();
+	pTestPaddleLeft = new PaddlePlayer();
 	pTestPaddleAI = new PaddleAI();
 	pBall = new Ball();
 	pCourt = new GameObject();
@@ -35,8 +37,9 @@ void Game::init() {
 
 	pTestPaddle->SetPosition(Vector3D(380.0f, -100.0f, 0.0f));
 	pTestPaddleAI->SetPosition(Vector3D(-380.0f, -100.0f, 0.0f));
+	pTestPaddleLeft->SetPosition(Vector3D(-380.0f, -100.0f, 0.0f));
 	pBall->SetPosition(Vector3D(0.0f, -80.0f, 0.0f));
-	pBall->SetVelocity(Vector3D(0.1f, 0.0f, 0.0f));
+	pBall->SetVelocity(Vector3D(0.1f, -0.05f, 0.0f));
 }
 
 void Game::run(){
@@ -51,14 +54,17 @@ void Game::run(){
 	GLib::Sprites::Sprite *pBallSprite = Graphics::CreateSprite("Sprites\\ball.dds");
 	GLib::Sprites::Sprite *pCourtSprite = Graphics::CreateSprite("Sprites\\court.dds");
 	pTestPaddle->SetSprite(pGreenPaddleSprite);
-	pTestPaddleAI->SetSprite(pBluePaddleSprite);
+	pTestPaddleLeft->SetSprite(pBluePaddleSprite);
+	//pTestPaddleAI->SetSprite(pBluePaddleSprite);
 	pCourt->SetSprite(pCourtSprite);
 	pBall->SetSprite(pBallSprite);
 
 	pTestPaddle->SetSpriteSize(32.0f, 128.0f, 0.0f);
+	pTestPaddleLeft->SetSpriteSize(32.0f, 128.0f, 0.0f);
 	pBall->SetSpriteSize(32.0f, 32.0f, 0.0f);
 
 	pTestPaddle->InitCollidable();
+	pTestPaddleLeft->InitCollidable();
 	pBall->InitCollidable();
 	
 	bool bQuit = false;
@@ -70,13 +76,16 @@ void Game::run(){
 			Graphics::BeginRendering();
 
 			Graphics::Render(pTestPaddle->GetGameObject());
-			Graphics::Render(pTestPaddleAI->GetGameObject());
+			//Graphics::Render(pTestPaddleAI->GetGameObject());
+			Graphics::Render(pTestPaddleLeft->GetGameObject());
 			Graphics::Render(pBall->GetGameObject());
 
 			Graphics::Render(pCourt);
 
 			pTestPaddle->MoveByPlayer(PlayerMove);
 			pBall->MoveWithVelocity();
+			Collision::HandleCollision(pTestPaddle->GetCollidable(), pBall->GetCollidable());
+			Collision::HandleCollision(pTestPaddleLeft->GetCollidable(), pBall->GetCollidable());
 
 			Graphics::EndRendering();
 
@@ -105,6 +114,7 @@ void Game::run(){
 void Game::ShutDown() {
 	
 	if (pTestPaddle) delete pTestPaddle;
+	if (pTestPaddleLeft) delete pTestPaddleLeft;
 	if (pTestPaddleAI) delete pTestPaddleAI;
 	if (pCourt) delete pCourt;
 	if (pBall) delete pBall;

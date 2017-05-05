@@ -55,13 +55,15 @@ bool Collision::CheckCollision(AxisAlignedBoundingBox & i_AABB_1, AxisAlignedBou
 
 }
 
-bool Collision::CheckCollision(const Collidable & i_Collidable_1, const Collidable & i_Collidable_2) {
+bool Collision::CheckCollision(Collidable & i_Collidable_1, Collidable & i_Collidable_2) {
 	return CheckCollision(i_Collidable_1.GetAABB(), i_Collidable_2.GetAABB());
 }
 
 void Collision::OnCollision(Collidable & i_Collidable_1, Collidable & i_Collidable_2) {
 	i_Collidable_1.ChangeVelocityDirection(i_Collidable_1.GetAABB().GetCollidingVec());
 	i_Collidable_2.ChangeVelocityDirection(i_Collidable_2.GetAABB().GetCollidingVec());
+
+//	i_Collidable_2.SetVelocity(-0.1f, 0.0f, 0.0f);
 }
 
 void Collision::HandleCollision(Collidable & i_Collidable_1, Collidable & i_Collidable_2) {
