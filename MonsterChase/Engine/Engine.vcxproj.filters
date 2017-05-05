@@ -36,6 +36,7 @@
     <ClCompile Include="Performance\Timing.cpp" />
     <ClCompile Include="Graphics.cpp" />
     <ClCompile Include="Physics\Collision.cpp" />
+    <ClCompile Include="Physics\CollisionHandler.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Debug.h" />
@@ -80,6 +81,7 @@
     <ClInclude Include="Performance\Timing.h" />
     <ClInclude Include="Physics\Collision.h" />
     <ClInclude Include="GamePhysics.h" />
+    <ClInclude Include="Physics\CollisionHandler.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Unit Tests">

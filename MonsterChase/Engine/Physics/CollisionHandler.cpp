@@ -1,9 +1,6 @@
-#include "Collision.h"
-bool XSeparated = false;
-bool YSeparated = false;
-bool ZSeparated = false;
+#include "CollisionHandler.h"
 
-bool Collision::CheckCollision(AxisAlignedBoundingBox & i_AABB_1, AxisAlignedBoundingBox & i_AABB_2) {
+bool CollisionHandler::CheckCollision(AxisAlignedBoundingBox & i_AABB_1, AxisAlignedBoundingBox & i_AABB_2) {
 	Vector3D l_max = i_AABB_1.GetMaxPosition();
 	Vector3D l_min = i_AABB_1.GetMinPosition();
 	Vector3D r_max = i_AABB_2.GetMaxPosition();
@@ -20,13 +17,6 @@ bool Collision::CheckCollision(AxisAlignedBoundingBox & i_AABB_1, AxisAlignedBou
 		XSeparated = true;
 		return false;
 	}
-	/*if (l_max.z() < r_min.z() || r_max.z() < l_min.z()) {
-	ZSeparated = true;;
-	return false;
-	}*/
-	//if (XSeparated || YSeparated || ZSeparated) { return false; }
-	// if no separating axis were found
-	// collision detected
 
 	if (
 		(l_max.x() >= r_min.x() && l_min.x() <= r_min.x())
@@ -53,25 +43,13 @@ bool Collision::CheckCollision(AxisAlignedBoundingBox & i_AABB_1, AxisAlignedBou
 		XSeparated = false;
 		return true;
 	}
-
-	// collision detected
-	//else if (
-	//	(r_max.z() >= l_min.z() && r_min.z() <= l_min.z())
-	//	|| (l_max.z() >= r_min.z() && l_min.z() <= r_min.z())
-	//	) {
-	//	// collision occurs on the z-axis of AABB's
-	//	i_AABB_1.SetCollidingVec(Vector3D(1.0f, 1.0f, -1.0f));
-	//	i_AABB_2.SetCollidingVec(Vector3D(1.0f, 1.0f, -1.0f));
-	//	return true;
-	//}
-
 }
 
-bool Collision::CheckCollision(Collidable & i_Collidable_1, Collidable & i_Collidable_2) {
+bool CollisionHandler::CheckCollision(Collidable & i_Collidable_1, Collidable & i_Collidable_2) {
 	return CheckCollision(i_Collidable_1.GetAABB(), i_Collidable_2.GetAABB());
 }
 
-void Collision::OnCollision(Collidable & i_Collidable_1, Collidable & i_Collidable_2) {
+void CollisionHandler::OnCollision(Collidable & i_Collidable_1, Collidable & i_Collidable_2) {
 	if (i_Collidable_1.IsBouncy()) {
 		i_Collidable_1.ChangeVelocityDirection(i_Collidable_1.GetAABB().GetCollidingVec());
 	}
@@ -90,7 +68,7 @@ void Collision::OnCollision(Collidable & i_Collidable_1, Collidable & i_Collidab
 	XSeparated = false;
 }
 
-void Collision::HandleCollision(Collidable & i_Collidable_1, Collidable & i_Collidable_2) {
+void CollisionHandler::HandleCollision(Collidable & i_Collidable_1, Collidable & i_Collidable_2) {
 	if (CheckCollision(i_Collidable_1, i_Collidable_2)) {
 		OnCollision(i_Collidable_1, i_Collidable_2);
 	}

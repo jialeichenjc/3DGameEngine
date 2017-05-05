@@ -43,6 +43,7 @@ void Game::init() {
 
 	pCourt->SetPosition(Vector3D(0.0f, -300.0f, 0.0f));
 	pUpperBoundary->SetPosition(Vector3D(0.0f, 175.0f, 0.0f));
+	pLowerBoundary->SetPosition(Vector3D(0.0f, -175.0f, 0.0f));
 	UpperBound.SetGameObject(pUpperBoundary);
 	LowerBound.SetGameObject(pLowerBoundary);
 
@@ -53,7 +54,7 @@ void Game::init() {
 	pTestPaddleLeft->SetPosition(Vector3D(-380.0f, -100.0f, 0.0f));
 
 	pBall->SetPosition(Vector3D(100.0f, -80.0f, 0.0f));
-	pBall->SetVelocity(Vector3D(0.05f, 0.1f, 0.0f));
+	pBall->SetVelocity(Vector3D(0.0f, -0.1f, 0.0f));
 }
 
 void Game::run(){
@@ -80,6 +81,8 @@ void Game::run(){
 	pBall->SetSpriteSize(32.0f, 32.0f, 0.0f);
 	UpperBound.SetSize(800.0f, 10.0f, 0.0f);
 	UpperBound.InitAABB();
+	LowerBound.SetSize(800.0f, 10.0f, 0.0f);
+	LowerBound.InitAABB();
 
 	pTestPaddle->InitCollidable();
 	pTestPaddle->SetBouncy(false);
@@ -109,11 +112,11 @@ void Game::run(){
 			pTestPaddle->SetVelocity(PlayerVelocity);
 			pTestPaddle->MoveByPlayer();
 			pBall->MoveWithVelocity();
-			//Collision::HandleCollision(pBall->GetCollidable(), pTestPaddle->GetCollidable());
+			Collision::HandleCollision(pBall->GetCollidable(), pTestPaddle->GetCollidable());
 			//Collision::HandleCollision(pTestPaddleLeft->GetCollidable(), pBall->GetCollidable());
 			//Collision::HandleCollision(pTestPaddle->GetCollidable(), UpperBound);
 			Collision::HandleCollision(pBall->GetCollidable(), UpperBound);
-
+			Collision::HandleCollision(pBall->GetCollidable(), LowerBound);
 			Graphics::EndRendering();
 
 		}

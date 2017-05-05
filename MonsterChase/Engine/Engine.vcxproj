@@ -157,6 +157,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="ActorInfo.h" />
+    <ClInclude Include="Physics\CollisionHandler.h" />
     <ClInclude Include="GameMessageHandler.h" />
     <ClInclude Include="GamePhysics.h" />
     <ClInclude Include="MessageSystem.h" />
@@ -201,6 +202,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ActorInfo.cpp" />
+    <ClCompile Include="Physics\CollisionHandler.cpp" />
     <ClCompile Include="GameMessageHandler.cpp" />
     <ClCompile Include="Graphics.cpp" />
     <ClCompile Include="MessageSystem.cpp" />
