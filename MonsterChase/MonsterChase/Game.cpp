@@ -33,6 +33,7 @@ CollisionHandler Handler4;
 
 uint8_t PlayerMove;
 Vector3D PlayerVelocityRight;
+Vector3D PlayerVelocityLeft;
 
 void Game::init() {
 	test_allocator = MemoryAllocator::get_instance();
@@ -52,10 +53,12 @@ void Game::init() {
 	LowerBound.SetGameObject(pLowerBoundary);
 
 	pTestPaddle->SetPosition(Vector3D(380.0f, -64.0f, 0.0f));
-	pTestPaddle->SetVelocity(PlayerVelocity);
+	pTestPaddle->SetVelocity(PlayerVelocityRight);
 
 	pTestPaddleAI->SetPosition(Vector3D(-380.0f, -100.0f, 0.0f));
+
 	pTestPaddleLeft->SetPosition(Vector3D(-380.0f, -100.0f, 0.0f));
+	pTestPaddleLeft->SetVelocity(PlayerVelocityLeft);
 
 	pBall->SetPosition(Vector3D(100.0f, -80.0f, 0.0f));
 	pBall->SetVelocity(Vector3D(0.1f, 0.05f, 0.0f));
@@ -109,12 +112,16 @@ void Game::run(){
 			//Graphics::Render(pTestPaddleAI->GetGameObject());
 			Graphics::Render(pTestPaddleLeft->GetGameObject());
 			Graphics::Render(pBall->GetGameObject());
-			Graphics::Render(pUpperBoundary);
+			//Graphics::Render(pUpperBoundary);
 
 			Graphics::Render(pCourt);
 		
-			pTestPaddle->SetVelocity(PlayerVelocity);
+			pTestPaddle->SetVelocity(PlayerVelocityRight);
 			pTestPaddle->MoveByPlayer();
+
+			pTestPaddleLeft->SetVelocity(PlayerVelocityLeft);
+			pTestPaddleLeft->MoveByPlayer();
+
 			pBall->MoveWithVelocity();
 
 			Handler1.HandleCollision(pBall->GetCollidable(), LowerBound);
@@ -170,15 +177,22 @@ void Game::TestKeyCallback(unsigned int i_VKeyID, bool bWentDown) {
 
 	if (i_VKeyID == 0x57 && bWentDown) {
 		//PlayerMove = 'W';
-		PlayerVelocity = Vector3D(0.0f, 0.1f, 0.0f);
+		PlayerVelocityLeft = Vector3D(0.0f, 0.1f, 0.0f);
 		sprintf_s(Buffer, lenBuffer, "VKey 0x%04x went %s\n", i_VKeyID, bWentDown ? "down" : "up");
 	}
 	else if (i_VKeyID == 0x53 && bWentDown) {
-		PlayerVelocity = Vector3D(0.0f, -0.1f, 0.0f);
+		PlayerVelocityLeft = Vector3D(0.0f, -0.1f, 0.0f);
 		sprintf_s(Buffer, lenBuffer, "VKey 0x%04x went %s\n", i_VKeyID, bWentDown ? "down" : "up");
 	}
+	else if (i_VKeyID == 0x4f && bWentDown) {
+		PlayerVelocityRight = Vector3D(0.0f, 0.1f, 0.0f);
+	}
+	else if (i_VKeyID == 0x4b && bWentDown) {
+		PlayerVelocityRight = Vector3D(0.0f, -0.1f, 0.0f);
+	}
 	else {
-		PlayerVelocity = Vector3D(0.0f, 0.0f, 0.0f);
+		PlayerVelocityRight = Vector3D(0.0f, 0.0f, 0.0f);
+		PlayerVelocityLeft = Vector3D(0.0f, 0.0f, 0.0f);
 	}
 
 	sprintf_s(Buffer, lenBuffer, "VKey 0x%04x went %s\n", i_VKeyID, bWentDown ? "down" : "up");

@@ -41,27 +41,6 @@ GameObject * PaddlePlayer::GetGameObject() const {
 }
 
 void PaddlePlayer::MoveByPlayer() {
-	//int input = toupper(_getch());
-	//switch (input) {
-	//case 'W': // move up
-	//	SetVelocity(Vector3D(0.0f, 0.1f, 0.0f));
-	//	MoveWithVelocity();
-	//	break;
-	//case 'S': // move down
-	//	SetVelocity(Vector3D(0.0f, -0.1f, 0.0f));
-	//	MoveWithVelocity();
-	//	break;
-	//case 'A': // move left
-	//	SetVelocity(Vector3D(-0.1f, 0.0f, 0.0f));
-	//	MoveWithVelocity();
-	//	break;
-	//case 'D': // move right
-	//	SetVelocity(Vector3D(0.1f, 0.0f, 0.0f));
-	//	MoveWithVelocity();
-	//	break;
-	//default:
-	//	break;
-	//}
 	MoveWithVelocity();
 }
 
