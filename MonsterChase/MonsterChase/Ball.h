@@ -26,6 +26,7 @@ public:
 
 	void InitCollidable();
 	inline Collidable GetCollidable() { return m_Collidable; }
+	void SetBouncy(bool i_bShouldBounce);
 
 	void SetSpriteSize(float i_SizeX, float i_SizeY, float i_SizeZ);
 

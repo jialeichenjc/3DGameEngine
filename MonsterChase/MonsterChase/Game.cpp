@@ -28,6 +28,7 @@ Collidable UpperBound;
 Collidable LowerBound;
 
 uint8_t PlayerMove;
+Vector3D PlayerVelocity;
 
 void Game::init() {
 	test_allocator = MemoryAllocator::get_instance();
@@ -46,11 +47,13 @@ void Game::init() {
 	LowerBound.SetGameObject(pLowerBoundary);
 
 	pTestPaddle->SetPosition(Vector3D(380.0f, -100.0f, 0.0f));
+	pTestPaddle->SetVelocity(PlayerVelocity);
+
 	pTestPaddleAI->SetPosition(Vector3D(-380.0f, -100.0f, 0.0f));
 	pTestPaddleLeft->SetPosition(Vector3D(-380.0f, -100.0f, 0.0f));
 
 	pBall->SetPosition(Vector3D(0.0f, -80.0f, 0.0f));
-	pBall->SetVelocity(Vector3D(0.1f, -0.05f, 0.0f));
+	//pBall->SetVelocity(Vector3D(0.1f, -0.05f, 0.0f));
 }
 
 void Game::run(){
@@ -79,8 +82,13 @@ void Game::run(){
 	UpperBound.InitAABB();
 
 	pTestPaddle->InitCollidable();
+	pTestPaddle->SetBouncy(false);
+
 	pTestPaddleLeft->InitCollidable();
+	pTestPaddleLeft->SetBouncy(false);
+
 	pBall->InitCollidable();
+	pBall->SetBouncy(true);
 	
 	bool bQuit = false;
 
@@ -98,8 +106,8 @@ void Game::run(){
 
 			Graphics::Render(pCourt);
 		
-
-			pTestPaddle->MoveByPlayer(PlayerMove);
+			pTestPaddle->SetVelocity(PlayerVelocity);
+			pTestPaddle->MoveByPlayer();
 			pBall->MoveWithVelocity();
 			Collision::HandleCollision(pTestPaddle->GetCollidable(), pBall->GetCollidable());
 			Collision::HandleCollision(pTestPaddleLeft->GetCollidable(), pBall->GetCollidable());
@@ -153,11 +161,12 @@ void Game::TestKeyCallback(unsigned int i_VKeyID, bool bWentDown) {
 	char			Buffer[lenBuffer];
 
 	if (i_VKeyID == 0x57 && bWentDown) {
-		PlayerMove = 'W';
+		//PlayerMove = 'W';
+		PlayerVelocity = Vector3D(0.0f, 0.1f, 0.0f);
 		sprintf_s(Buffer, lenBuffer, "VKey 0x%04x went %s\n", i_VKeyID, bWentDown ? "down" : "up");
 	}
 	else if (i_VKeyID == 0x53 && bWentDown) {
-		PlayerMove = 'S';
+		PlayerVelocity = Vector3D(0.0f, -0.1f, 0.0f);
 		sprintf_s(Buffer, lenBuffer, "VKey 0x%04x went %s\n", i_VKeyID, bWentDown ? "down" : "up");
 	}
 	else {

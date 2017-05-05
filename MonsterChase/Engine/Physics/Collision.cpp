@@ -60,9 +60,20 @@ bool Collision::CheckCollision(Collidable & i_Collidable_1, Collidable & i_Colli
 }
 
 void Collision::OnCollision(Collidable & i_Collidable_1, Collidable & i_Collidable_2) {
-	i_Collidable_1.ChangeVelocityDirection(i_Collidable_1.GetAABB().GetCollidingVec());
-	i_Collidable_2.ChangeVelocityDirection(i_Collidable_2.GetAABB().GetCollidingVec());
+	if (i_Collidable_1.IsBouncy()) {
+		i_Collidable_1.ChangeVelocityDirection(i_Collidable_1.GetAABB().GetCollidingVec());
+	}
+	else {
+		i_Collidable_1.ChangeVelocityDirection(Vector3D(0.0f, 0.0f, 0.0f));
+	}
 
+	if (i_Collidable_2.IsBouncy()) {
+		i_Collidable_2.ChangeVelocityDirection(i_Collidable_2.GetAABB().GetCollidingVec());
+	}
+	else {
+		i_Collidable_2.ChangeVelocityDirection(Vector3D(0.0f, 0.0f, 0.0f));
+	}
+	
 //	i_Collidable_2.SetVelocity(-0.1f, 0.0f, 0.0f);
 }
 

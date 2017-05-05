@@ -17,7 +17,7 @@ public:
 	void SetInitPosition() override; // set the initial posiion for the character
 	void SetGameObject(GameObject *game_object) override;
 	GameObject * GetGameObject() const override;
-	void MoveByPlayer(uint8_t input); // player controlled movement
+	void MoveByPlayer(); // player controlled movement
 
 	void SetSprite(const GLib::Sprites::Sprite *i_sprite) override;
 	const GLib::Sprites::Sprite* GetSprite() const override;
@@ -28,6 +28,7 @@ public:
 
 	void InitCollidable();
 	inline Collidable GetCollidable() { return m_Collidable; }
+	void SetBouncy(bool i_bShouldBounce);
 
 	void SetSpriteSize(float i_SizeX, float i_SizeY, float i_SizeZ);
 
@@ -40,6 +41,8 @@ protected:
 private:
 	GameObject * m_pGameObject;
 	const GLib::Sprites::Sprite * m_pSprite;
+
+	bool m_IsBouncy;
 	float m_SizeX = 0.0f;
 	float m_SizeY = 0.0f;
 	float m_SizeZ = 0.0f;

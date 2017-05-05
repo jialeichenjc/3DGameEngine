@@ -40,28 +40,29 @@ GameObject * PaddlePlayer::GetGameObject() const {
 	return m_pGameObject;
 }
 
-void PaddlePlayer::MoveByPlayer(uint8_t input) {
+void PaddlePlayer::MoveByPlayer() {
 	//int input = toupper(_getch());
-	switch (input) {
-	case 'W': // move up
-		SetVelocity(Vector3D(0.0f, 0.1f, 0.0f));
-		MoveWithVelocity();
-		break;
-	case 'S': // move down
-		SetVelocity(Vector3D(0.0f, -0.1f, 0.0f));
-		MoveWithVelocity();
-		break;
-	case 'A': // move left
-		SetVelocity(Vector3D(-0.1f, 0.0f, 0.0f));
-		MoveWithVelocity();
-		break;
-	case 'D': // move right
-		SetVelocity(Vector3D(0.1f, 0.0f, 0.0f));
-		MoveWithVelocity();
-		break;
-	default:
-		break;
-	}
+	//switch (input) {
+	//case 'W': // move up
+	//	SetVelocity(Vector3D(0.0f, 0.1f, 0.0f));
+	//	MoveWithVelocity();
+	//	break;
+	//case 'S': // move down
+	//	SetVelocity(Vector3D(0.0f, -0.1f, 0.0f));
+	//	MoveWithVelocity();
+	//	break;
+	//case 'A': // move left
+	//	SetVelocity(Vector3D(-0.1f, 0.0f, 0.0f));
+	//	MoveWithVelocity();
+	//	break;
+	//case 'D': // move right
+	//	SetVelocity(Vector3D(0.1f, 0.0f, 0.0f));
+	//	MoveWithVelocity();
+	//	break;
+	//default:
+	//	break;
+	//}
+	MoveWithVelocity();
 }
 
 void PaddlePlayer::SetSprite(const GLib::Sprites::Sprite *i_sprite) {
@@ -90,6 +91,10 @@ void PaddlePlayer::SetVelocity(const Vector3D & i_vec) {
 void PaddlePlayer::MoveWithVelocity() {
 	m_pGameObject->MoveWithVelocity();
 	m_Collidable.MoveWithVelocity();
+}
+
+void PaddlePlayer::SetBouncy(bool i_bShouldBounce) {
+	m_Collidable.SetBouncy(i_bShouldBounce);
 }
 
 PaddlePlayer::~PaddlePlayer() {

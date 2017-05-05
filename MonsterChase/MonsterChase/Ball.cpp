@@ -67,6 +67,10 @@ void Ball::SetSpriteSize(float i_SizeX, float i_SizeY, float i_SizeZ) {
 	m_SizeZ = i_SizeZ;
 }
 
+void Ball::SetBouncy(bool i_bShouldBounce) {
+	m_Collidable.SetBouncy(i_bShouldBounce);
+}
+
 Ball::~Ball() {
 	delete m_pGameObject;
 }
