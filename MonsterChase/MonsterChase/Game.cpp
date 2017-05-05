@@ -22,6 +22,11 @@ PaddleAI * pTestPaddleAI;
 Ball * pBall;
 
 GameObject * pCourt;
+GameObject * pUpperBoundary;
+GameObject * pLowerBoundary;
+Collidable UpperBound;
+Collidable LowerBound;
+
 uint8_t PlayerMove;
 
 void Game::init() {
@@ -32,12 +37,18 @@ void Game::init() {
 	pTestPaddleAI = new PaddleAI();
 	pBall = new Ball();
 	pCourt = new GameObject();
+	pUpperBoundary = new GameObject();
+	pLowerBoundary = new GameObject();
 
 	pCourt->SetPosition(Vector3D(0.0f, -300.0f, 0.0f));
+	pUpperBoundary->SetPosition(Vector3D(0.0f, 175.0f, 0.0f));
+	UpperBound.SetGameObject(pUpperBoundary);
+	LowerBound.SetGameObject(pLowerBoundary);
 
 	pTestPaddle->SetPosition(Vector3D(380.0f, -100.0f, 0.0f));
 	pTestPaddleAI->SetPosition(Vector3D(-380.0f, -100.0f, 0.0f));
 	pTestPaddleLeft->SetPosition(Vector3D(-380.0f, -100.0f, 0.0f));
+
 	pBall->SetPosition(Vector3D(0.0f, -80.0f, 0.0f));
 	pBall->SetVelocity(Vector3D(0.1f, -0.05f, 0.0f));
 }
@@ -53,15 +64,19 @@ void Game::run(){
 	GLib::Sprites::Sprite *pGreenPaddleSprite = Graphics::CreateSprite("Sprites\\green-paddle.dds");
 	GLib::Sprites::Sprite *pBallSprite = Graphics::CreateSprite("Sprites\\ball.dds");
 	GLib::Sprites::Sprite *pCourtSprite = Graphics::CreateSprite("Sprites\\court.dds");
+	GLib::Sprites::Sprite *pUpperBoundSprite = Graphics::CreateSprite("Sprites\\blue-paddle.dds");
+
 	pTestPaddle->SetSprite(pGreenPaddleSprite);
 	pTestPaddleLeft->SetSprite(pBluePaddleSprite);
-	//pTestPaddleAI->SetSprite(pBluePaddleSprite);
+	pUpperBoundary->SetSprite(pUpperBoundSprite);
 	pCourt->SetSprite(pCourtSprite);
 	pBall->SetSprite(pBallSprite);
 
 	pTestPaddle->SetSpriteSize(32.0f, 128.0f, 0.0f);
 	pTestPaddleLeft->SetSpriteSize(32.0f, 128.0f, 0.0f);
 	pBall->SetSpriteSize(32.0f, 32.0f, 0.0f);
+	UpperBound.SetSize(800.0f, 10.0f, 0.0f);
+	UpperBound.InitAABB();
 
 	pTestPaddle->InitCollidable();
 	pTestPaddleLeft->InitCollidable();
@@ -79,13 +94,16 @@ void Game::run(){
 			//Graphics::Render(pTestPaddleAI->GetGameObject());
 			Graphics::Render(pTestPaddleLeft->GetGameObject());
 			Graphics::Render(pBall->GetGameObject());
+			Graphics::Render(pUpperBoundary);
 
 			Graphics::Render(pCourt);
+		
 
 			pTestPaddle->MoveByPlayer(PlayerMove);
 			pBall->MoveWithVelocity();
 			Collision::HandleCollision(pTestPaddle->GetCollidable(), pBall->GetCollidable());
 			Collision::HandleCollision(pTestPaddleLeft->GetCollidable(), pBall->GetCollidable());
+			Collision::HandleCollision(pTestPaddle->GetCollidable(), UpperBound);
 
 			Graphics::EndRendering();
 
@@ -109,6 +127,10 @@ void Game::run(){
 		GLib::Sprites::Release(pBallSprite);
 	}
 
+	if (pUpperBoundSprite) {
+		GLib::Sprites::Release(pUpperBoundSprite);
+	}
+
 }
 
 void Game::ShutDown() {
@@ -118,6 +140,7 @@ void Game::ShutDown() {
 	if (pTestPaddleAI) delete pTestPaddleAI;
 	if (pCourt) delete pCourt;
 	if (pBall) delete pBall;
+	if (pUpperBoundary) delete pUpperBoundary;
 
 	fsa_allocator->destroy_instance();
 	test_allocator->destroy_instance();

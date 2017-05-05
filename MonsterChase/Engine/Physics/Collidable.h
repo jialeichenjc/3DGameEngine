@@ -28,6 +28,14 @@ public:
 	inline void SetSizeX(float i_SizeX) { m_SizeX = i_SizeX; }
 	inline void SetSizeY(float i_SizeY) { m_SizeY = i_SizeY; }
 	inline void SetSizeZ(float i_SizeZ) { m_SizeZ = i_SizeZ; }
+	inline void SetSize(float i_SizeX, float i_SizeY, float i_SizeZ) {
+		m_SizeX = i_SizeX;
+		m_SizeY = i_SizeY;
+		m_SizeZ = i_SizeZ;
+	}
+
+	inline void SetGameObject(GameObject * i_pGameObject) { m_pGameObject = i_pGameObject; }
+	inline GameObject * GetGameObject() { return m_pGameObject; }
 
 	inline Vector3D GetVelocity() { return m_pGameObject->GetVelocity(); }
 	void SetVelocity(float i_VeloX, float i_VeloY, float i_VeloZ);
