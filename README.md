@@ -19,9 +19,12 @@ Restart Game: Space
 Resume Game: Space
 
 If either player scores a point, the game is paused
+
 Press space to resume
 
 ## Win condition
 Who ever scores 5 points first wins
+
 Game is reset after either player wins
+
 Press space to play again 
