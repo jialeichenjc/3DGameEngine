@@ -41,5 +41,6 @@ void Collidable::ChangeVelocityDirection(const Vector3D & i_DeltaVec) {
 
 void Collidable::MoveWithVelocity() {
 	//m_pGameObject->MoveWithVelocity();
+	//m_Position = m_pGameObject->GetPosition();
 	UpdateAABB();
 }

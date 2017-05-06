@@ -20,6 +20,11 @@ void Graphics::Render(GameObject * i_pGameObject) {
 	GLib::Sprites::RenderSprite(*i_pGameObject->GetSprite(), Offset, 0.0f);
 }
 
+void Graphics::Render(GLib::Sprites::Sprite * i_Sprite, float i_x, float i_y) {
+	GLib::Point2D Offset = { i_x, i_y };
+	GLib::Sprites::RenderSprite(*i_Sprite, Offset, 0.0f);
+}
+
 GLib::Sprites::Sprite * Graphics::CreateSprite(const char * i_pFilename)
 {
 	//assert(i_pFilename);

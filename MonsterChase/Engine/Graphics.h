@@ -8,6 +8,7 @@ namespace Graphics {
 	void BeginRendering();
 
 	void Render(GameObject *);
+	void Render(GLib::Sprites::Sprite *, float i_x, float i_y);
 
 	void EndRendering();
 

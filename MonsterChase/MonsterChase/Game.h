@@ -15,5 +15,11 @@ namespace Game {
 	void render(GameObject *);
 	void run();
 	void ShutDown();
+	void UpdateScore();
+	void Reset();
+	void Pause();
+	void Restart();
+	void RenderScore();
+	void GameOverCheck();
 	void TestKeyCallback(unsigned int i_VKeyID, bool bWentDown);
 }

@@ -13,6 +13,8 @@
 #include "Graphics.h"
 #include "GLib.h"
 #include "GamePhysics.h"
+#define RIGHT_BORDER 400.0f
+#define LEFT_BORDER -400.0f
 
 MemoryAllocator* test_allocator;
 FixedSizeAllocator *fsa_allocator;
@@ -24,6 +26,21 @@ Ball * pBall;
 GameObject * pCourt;
 GameObject * pUpperBoundary;
 GameObject * pLowerBoundary;
+
+// Scores
+GameObject * pScoreLeft1;
+GameObject * pScoreLeft2;
+GameObject * pScoreLeft3;
+GameObject * pScoreLeft4;
+GameObject * pScoreLeft5;
+GameObject * pScoreRight1;
+GameObject * pScoreRight2;
+GameObject * pScoreRight3;
+GameObject * pScoreRight4;
+GameObject * pScoreRight5;
+Vector3D LeftInitPos = Vector3D(-350.0f, 250.0f, 0.0f);
+Vector3D RightInitPos = Vector3D(220.0f, 250.0f, 0.0f);
+
 Collidable UpperBound;
 Collidable LowerBound;
 CollisionHandler Handler1;
@@ -35,9 +52,20 @@ uint8_t PlayerMove;
 Vector3D PlayerVelocityRight;
 Vector3D PlayerVelocityLeft;
 
+uint8_t PlayerScoreRight = 0;
+uint8_t PlayerScoreLeft = 0;
+
+GLib::Sprites::Sprite *pBluePaddleSprite;
+GLib::Sprites::Sprite *pGreenPaddleSprite;
+GLib::Sprites::Sprite *pBallSprite;
+GLib::Sprites::Sprite *pCourtSprite;
+GLib::Sprites::Sprite *pUpperBoundSprite;
+
+
 void Game::init() {
 	test_allocator = MemoryAllocator::get_instance();
 	fsa_allocator = FixedSizeAllocator::get_instance();
+
 	pTestPaddle = new PaddlePlayer();
 	pTestPaddleLeft = new PaddlePlayer();
 	pTestPaddleAI = new PaddleAI();
@@ -45,6 +73,10 @@ void Game::init() {
 	pCourt = new GameObject();
 	pUpperBoundary = new GameObject();
 	pLowerBoundary = new GameObject();
+
+	// scores
+	pScoreLeft1 = new GameObject();
+	pScoreRight1 = new GameObject();
 
 	pCourt->SetPosition(Vector3D(0.0f, -300.0f, 0.0f));
 	pUpperBoundary->SetPosition(Vector3D(0.0f, 270.0f, 0.0f));
@@ -61,7 +93,12 @@ void Game::init() {
 	pTestPaddleLeft->SetVelocity(PlayerVelocityLeft);
 
 	pBall->SetPosition(Vector3D(100.0f, -80.0f, 0.0f));
-	pBall->SetVelocity(Vector3D(0.1f, 0.05f, 0.0f));
+	pBall->SetVelocity(Vector3D(0.1f, -0.05f, 0.0f));
+
+	// score
+	pScoreLeft1->SetPosition(LeftInitPos);
+	pScoreRight1->SetPosition(RightInitPos);
+
 }
 
 void Game::run(){
@@ -71,11 +108,12 @@ void Game::run(){
 	unsigned int input_key = 0;
 	TestKeyCallback(input_key, true);
 
-	GLib::Sprites::Sprite *pBluePaddleSprite = Graphics::CreateSprite("Sprites\\blue-paddle.dds");
-	GLib::Sprites::Sprite *pGreenPaddleSprite = Graphics::CreateSprite("Sprites\\green-paddle.dds");
-	GLib::Sprites::Sprite *pBallSprite = Graphics::CreateSprite("Sprites\\ball.dds");
-	GLib::Sprites::Sprite *pCourtSprite = Graphics::CreateSprite("Sprites\\court.dds");
-	GLib::Sprites::Sprite *pUpperBoundSprite = Graphics::CreateSprite("Sprites\\blue-paddle.dds");
+	pBluePaddleSprite = Graphics::CreateSprite("Sprites\\blue-paddle.dds");
+	pGreenPaddleSprite = Graphics::CreateSprite("Sprites\\green-paddle.dds");
+	pBallSprite = Graphics::CreateSprite("Sprites\\ball.dds");
+	pCourtSprite = Graphics::CreateSprite("Sprites\\court.dds");
+	pUpperBoundSprite = Graphics::CreateSprite("Sprites\\blue-paddle.dds");
+
 
 	pTestPaddle->SetSprite(pGreenPaddleSprite);
 	pTestPaddleLeft->SetSprite(pBluePaddleSprite);
@@ -99,7 +137,10 @@ void Game::run(){
 
 	pBall->InitCollidable();
 	pBall->SetBouncy(true);
-	
+
+	pScoreLeft1->SetSprite(pBallSprite);
+	pScoreRight1->SetSprite(pBallSprite);
+
 	bool bQuit = false;
 
 	do {
@@ -108,12 +149,12 @@ void Game::run(){
 			GLib::SetKeyStateChangeCallback(TestKeyCallback);
 			Graphics::BeginRendering();
 
+			RenderScore();
+			UpdateScore();
+			GameOverCheck();
 			Graphics::Render(pTestPaddle->GetGameObject());
-			//Graphics::Render(pTestPaddleAI->GetGameObject());
 			Graphics::Render(pTestPaddleLeft->GetGameObject());
 			Graphics::Render(pBall->GetGameObject());
-			//Graphics::Render(pUpperBoundary);
-
 			Graphics::Render(pCourt);
 		
 			pTestPaddle->SetVelocity(PlayerVelocityRight);
@@ -128,6 +169,7 @@ void Game::run(){
 			Handler2.HandleCollision(pBall->GetCollidable(), UpperBound);
 			Handler3.HandleCollision(pTestPaddle->GetCollidable(), pBall->GetCollidable());
 			Handler4.HandleCollision(pTestPaddleLeft->GetCollidable(), pBall->GetCollidable());
+
 			Graphics::EndRendering();
 
 		}
@@ -156,6 +198,52 @@ void Game::run(){
 
 }
 
+void Game::GameOverCheck() {
+	if (PlayerScoreLeft == 5 || PlayerScoreRight == 5) {
+		Reset();
+	}
+}
+void Game::UpdateScore() {
+
+	if (pBall->GetPosition().x() > RIGHT_BORDER) {		
+		PlayerScoreLeft++;
+		Pause();
+	}
+
+	else if (pBall->GetPosition().x() < LEFT_BORDER) {
+		PlayerScoreRight++;
+		Pause();
+	}
+}
+
+void Game::RenderScore() {
+	for (uint8_t i = 0; i < PlayerScoreLeft; i++) {
+		Graphics::Render(pBallSprite, LeftInitPos.x() + i * 40.0f, LeftInitPos.y());
+	}
+
+	for (uint8_t i = 0; i < PlayerScoreRight; i++) {
+		Graphics::Render(pBallSprite, RightInitPos.x() + i * 40.0f, RightInitPos.y());
+	}
+}
+
+void Game::Pause() {
+	pBall->SetPosition(Vector3D(0.0f, -80.0f, 0.0f));
+	pBall->SetVelocity(Vector3D(0.0f, 0.0f, 0.0f));
+}
+
+// reset game after game over
+void Game::Reset() {
+	Pause();
+	pTestPaddle->SetPosition(Vector3D(380.0f, -64.0f, 0.0f));
+	pTestPaddleLeft->SetPosition(Vector3D(-380.0f, -100.0f, 0.0f));
+	PlayerScoreLeft = 0;
+	PlayerScoreRight = 0;
+}
+
+// restart from pause
+void Game::Restart() {
+	pBall->SetVelocity(Vector3D(0.1f, 0.05f, 0.0f));
+}
 void Game::ShutDown() {
 	
 	if (pTestPaddle) delete pTestPaddle;
@@ -164,7 +252,7 @@ void Game::ShutDown() {
 	if (pCourt) delete pCourt;
 	if (pBall) delete pBall;
 	if (pUpperBoundary) delete pUpperBoundary;
-
+	if (pScoreLeft1) delete pScoreLeft1;
 	fsa_allocator->destroy_instance();
 	test_allocator->destroy_instance();
 
@@ -193,6 +281,10 @@ void Game::TestKeyCallback(unsigned int i_VKeyID, bool bWentDown) {
 	else {
 		PlayerVelocityRight = Vector3D(0.0f, 0.0f, 0.0f);
 		PlayerVelocityLeft = Vector3D(0.0f, 0.0f, 0.0f);
+	}
+
+	if (i_VKeyID == 0x20 && bWentDown) {
+		Restart();
 	}
 
 	sprintf_s(Buffer, lenBuffer, "VKey 0x%04x went %s\n", i_VKeyID, bWentDown ? "down" : "up");
