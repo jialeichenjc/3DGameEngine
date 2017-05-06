@@ -27,17 +27,6 @@ GameObject * pCourt;
 GameObject * pUpperBoundary;
 GameObject * pLowerBoundary;
 
-// Scores
-GameObject * pScoreLeft1;
-GameObject * pScoreLeft2;
-GameObject * pScoreLeft3;
-GameObject * pScoreLeft4;
-GameObject * pScoreLeft5;
-GameObject * pScoreRight1;
-GameObject * pScoreRight2;
-GameObject * pScoreRight3;
-GameObject * pScoreRight4;
-GameObject * pScoreRight5;
 Vector3D LeftInitPos = Vector3D(-350.0f, 250.0f, 0.0f);
 Vector3D RightInitPos = Vector3D(220.0f, 250.0f, 0.0f);
 
@@ -74,10 +63,6 @@ void Game::init() {
 	pUpperBoundary = new GameObject();
 	pLowerBoundary = new GameObject();
 
-	// scores
-	pScoreLeft1 = new GameObject();
-	pScoreRight1 = new GameObject();
-
 	pCourt->SetPosition(Vector3D(0.0f, -300.0f, 0.0f));
 	pUpperBoundary->SetPosition(Vector3D(0.0f, 270.0f, 0.0f));
 	pLowerBoundary->SetPosition(Vector3D(0.0f, -270.0f, 0.0f));
@@ -94,10 +79,6 @@ void Game::init() {
 
 	pBall->SetPosition(Vector3D(100.0f, -80.0f, 0.0f));
 	pBall->SetVelocity(Vector3D(0.1f, -0.05f, 0.0f));
-
-	// score
-	pScoreLeft1->SetPosition(LeftInitPos);
-	pScoreRight1->SetPosition(RightInitPos);
 
 }
 
@@ -137,9 +118,6 @@ void Game::run(){
 
 	pBall->InitCollidable();
 	pBall->SetBouncy(true);
-
-	pScoreLeft1->SetSprite(pBallSprite);
-	pScoreRight1->SetSprite(pBallSprite);
 
 	bool bQuit = false;
 
@@ -252,7 +230,6 @@ void Game::ShutDown() {
 	if (pCourt) delete pCourt;
 	if (pBall) delete pBall;
 	if (pUpperBoundary) delete pUpperBoundary;
-	if (pScoreLeft1) delete pScoreLeft1;
 	fsa_allocator->destroy_instance();
 	test_allocator->destroy_instance();
 

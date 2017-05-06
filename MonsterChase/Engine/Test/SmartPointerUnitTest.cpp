@@ -1,6 +1,6 @@
 #include "SmartPointerUnitTest.h"
-#include "../SmartPointer.h"
-#include "../WeakPointer.h"
+#include "../Utility/SmartPointer.h"
+#include "../Utility/WeakPointer.h"
 #include "../GameObject.h"
 #include "../ObjectManager.h"
 #include <assert.h>

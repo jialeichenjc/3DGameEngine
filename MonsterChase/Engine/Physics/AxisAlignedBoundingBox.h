@@ -20,11 +20,6 @@ public:
 
 private:
 	Vector3D m_MaxPosition;
-	//Vector3D m_MaxPosition_y;
-	//Vector3D m_MaxPosition_z;
-
-	//Vector3D m_MinPosition_x;
-	//Vector3D m_MinPosition_y;
 	Vector3D m_MinPosition;
 
 	Vector3D m_CollidingVec; // Handles collision on all three axis

@@ -3,12 +3,7 @@
   <ItemGroup>
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="Utility.cpp" />
-    <ClCompile Include="SmartPointer.cpp" />
-    <ClCompile Include="WeakPointer.cpp" />
     <ClCompile Include="ObjectManager.cpp" />
-    <ClCompile Include="StringPool.cpp" />
-    <ClCompile Include="HashedString.cpp" />
-    <ClCompile Include="PooledString.cpp" />
     <ClCompile Include="Test\Matrix4x4UnitTest.cpp" />
     <ClCompile Include="Test\MemoryAllocatorTest.cpp" />
     <ClCompile Include="Test\MemoryAllocatorUnitTest.cpp" />
@@ -28,15 +23,21 @@
     <ClCompile Include="Physics\OrientedBoundingBox.cpp" />
     <ClCompile Include="Physics\AxisAlignedBoundingBox.cpp" />
     <ClCompile Include="Physics\Collidable.cpp" />
-    <ClCompile Include="MessageSystem.cpp" />
-    <ClCompile Include="ActorInfo.cpp" />
-    <ClCompile Include="GameMessageHandler.cpp" />
     <ClCompile Include="Performance\Profiler.cpp" />
     <ClCompile Include="Performance\ScopedTimer.cpp" />
     <ClCompile Include="Performance\Timing.cpp" />
     <ClCompile Include="Graphics.cpp" />
     <ClCompile Include="Physics\Collision.cpp" />
     <ClCompile Include="Physics\CollisionHandler.cpp" />
+    <ClCompile Include="Utility\ActorInfo.cpp" />
+    <ClCompile Include="Utility\GameMessageHandler.cpp" />
+    <ClCompile Include="Utility\MessageSystem.cpp" />
+    <ClCompile Include="Utility\WeakPointer.cpp" />
+    <ClCompile Include="Utility\SmartPointer.cpp" />
+    <ClCompile Include="Utility\HashedString.cpp" />
+    <ClCompile Include="StringPoolUnitTest.cpp" />
+    <ClCompile Include="Utility\PooledString.cpp" />
+    <ClCompile Include="Utility\StringPool.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Debug.h" />
@@ -44,12 +45,7 @@
     <ClInclude Include="IGameObjectController.h" />
     <ClInclude Include="Utility.h" />
     <ClInclude Include="Graphics.h" />
-    <ClInclude Include="SmartPointer.h" />
-    <ClInclude Include="WeakPointer.h" />
     <ClInclude Include="ObjectManager.h" />
-    <ClInclude Include="StringPool.h" />
-    <ClInclude Include="HashedString.h" />
-    <ClInclude Include="PooledString.h" />
     <ClInclude Include="Test\Matrix4x4UnitTest.h" />
     <ClInclude Include="Test\MemoryAllocatorTest.h" />
     <ClInclude Include="Test\MemoryAllocatorUnitTest.h" />
@@ -72,9 +68,6 @@
     <ClInclude Include="Physics\VectorMath.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="VectorMath.h" />
-    <ClInclude Include="MessageSystem.h" />
-    <ClInclude Include="ActorInfo.h" />
-    <ClInclude Include="GameMessageHandler.h" />
     <ClInclude Include="Performance\Accumulator.h" />
     <ClInclude Include="Performance\Profiler.h" />
     <ClInclude Include="Performance\ScopedTimer.h" />
@@ -82,6 +75,14 @@
     <ClInclude Include="Physics\Collision.h" />
     <ClInclude Include="GamePhysics.h" />
     <ClInclude Include="Physics\CollisionHandler.h" />
+    <ClInclude Include="Utility\ActorInfo.h" />
+    <ClInclude Include="Utility\GameMessageHandler.h" />
+    <ClInclude Include="Utility\MessageSystem.h" />
+    <ClInclude Include="Utility\WeakPointer.h" />
+    <ClInclude Include="Utility\SmartPointer.h" />
+    <ClInclude Include="Utility\HashedString.h" />
+    <ClInclude Include="Utility\PooledString.h" />
+    <ClInclude Include="Utility\StringPool.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Unit Tests">

@@ -1,6 +1,6 @@
 #pragma once
 #include <stdint.h>
-#include "ObjectManager.h"
+#include "../ObjectManager.h"
 using namespace std;
 template <class T>
 class SmartPointer

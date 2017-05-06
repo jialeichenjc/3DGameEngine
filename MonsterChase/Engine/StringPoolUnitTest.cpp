@@ -1,6 +1,6 @@
 #include "StringPoolUnitTest.h"
-#include "../Utility/StringPool.h"
-#include "../Utility/PooledString.h"
+#include "../StringPool.h"
+#include "../PooledString.h"
 #include "../Utility/HashedString.h"
 #include <assert.h>
 #define TEST_POOL_SIZE 128

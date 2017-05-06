@@ -156,11 +156,11 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="ActorInfo.h" />
+    <ClInclude Include="Utility\ActorInfo.h" />
     <ClInclude Include="Physics\CollisionHandler.h" />
-    <ClInclude Include="GameMessageHandler.h" />
+    <ClInclude Include="Utility\GameMessageHandler.h" />
     <ClInclude Include="GamePhysics.h" />
-    <ClInclude Include="MessageSystem.h" />
+    <ClInclude Include="Utility\MessageSystem.h" />
     <ClInclude Include="Performance\Accumulator.h" />
     <ClInclude Include="Performance\Profiler.h" />
     <ClInclude Include="Performance\ScopedTimer.h" />
@@ -182,15 +182,15 @@
     <ClInclude Include="resource.h" />
     <ClInclude Include="Test\EngineTestSuite.h" />
     <ClInclude Include="GameObject.h" />
-    <ClInclude Include="HashedString.h" />
+    <ClInclude Include="Utility\HashedString.h" />
     <ClInclude Include="IGameObjectController.h" />
     <ClInclude Include="Graphics.h" />
     <ClInclude Include="MemoryManager\FixedSizeAllocator.h" />
     <ClInclude Include="MemoryManager\MemoryAllocator.h" />
     <ClInclude Include="ObjectManager.h" />
-    <ClInclude Include="PooledString.h" />
-    <ClInclude Include="SmartPointer.h" />
-    <ClInclude Include="StringPool.h" />
+    <ClInclude Include="Utility\PooledString.h" />
+    <ClInclude Include="Utility\SmartPointer.h" />
+    <ClInclude Include="Utility\StringPool.h" />
     <ClInclude Include="Test\Matrix4x4UnitTest.h" />
     <ClInclude Include="Test\MemoryAllocatorTest.h" />
     <ClInclude Include="Test\MemoryAllocatorUnitTest.h" />
@@ -198,14 +198,15 @@
     <ClInclude Include="Test\StringPoolUnitTest.h" />
     <ClInclude Include="Utility.h" />
     <ClInclude Include="VectorMath.h" />
-    <ClInclude Include="WeakPointer.h" />
+    <ClInclude Include="Utility\WeakPointer.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ActorInfo.cpp" />
+    <ClCompile Include="StringPoolUnitTest.cpp" />
+    <ClCompile Include="Utility\ActorInfo.cpp" />
     <ClCompile Include="Physics\CollisionHandler.cpp" />
-    <ClCompile Include="GameMessageHandler.cpp" />
+    <ClCompile Include="Utility\GameMessageHandler.cpp" />
     <ClCompile Include="Graphics.cpp" />
-    <ClCompile Include="MessageSystem.cpp" />
+    <ClCompile Include="Utility\MessageSystem.cpp" />
     <ClCompile Include="Performance\Profiler.cpp" />
     <ClCompile Include="Performance\ScopedTimer.cpp" />
     <ClCompile Include="Performance\Timing.cpp" />
@@ -223,20 +224,20 @@
     <ClCompile Include="Physics\PhysicsWorld.cpp" />
     <ClCompile Include="Test\EngineTestSuite.cpp" />
     <ClCompile Include="GameObject.cpp" />
-    <ClCompile Include="HashedString.cpp" />
+    <ClCompile Include="Utility\HashedString.cpp" />
     <ClCompile Include="MemoryManager\FixedSizeAllocator.cpp" />
     <ClCompile Include="MemoryManager\MemoryAllocator.cpp" />
     <ClCompile Include="ObjectManager.cpp" />
-    <ClCompile Include="PooledString.cpp" />
-    <ClCompile Include="SmartPointer.cpp" />
-    <ClCompile Include="StringPool.cpp" />
+    <ClCompile Include="Utility\PooledString.cpp" />
+    <ClCompile Include="Utility\SmartPointer.cpp" />
+    <ClCompile Include="Utility\StringPool.cpp" />
     <ClCompile Include="Test\Matrix4x4UnitTest.cpp" />
     <ClCompile Include="Test\MemoryAllocatorTest.cpp" />
     <ClCompile Include="Test\MemoryAllocatorUnitTest.cpp" />
     <ClCompile Include="Test\SmartPointerUnitTest.cpp" />
     <ClCompile Include="Test\StringPoolUnitTest.cpp" />
     <ClCompile Include="Utility.cpp" />
-    <ClCompile Include="WeakPointer.cpp" />
+    <ClCompile Include="Utility\WeakPointer.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

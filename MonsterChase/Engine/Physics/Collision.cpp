@@ -20,20 +20,12 @@ bool Collision::CheckCollision(AxisAlignedBoundingBox & i_AABB_1, AxisAlignedBou
 		XSeparated = true;
 		return false;
 	}
-	/*if (l_max.z() < r_min.z() || r_max.z() < l_min.z()) {
-	ZSeparated = true;;
-	return false;
-	}*/
-	//if (XSeparated || YSeparated || ZSeparated) { return false; }
-	// if no separating axis were found
-	// collision detected
 
 	if (
 		(l_max.x() >= r_min.x() && l_min.x() <= r_min.x())
 		|| (r_max.x() >= l_min.x() && r_min.x() <= l_min.x())
 		&& YSeparated
 		) {
-		//l_max.x() == r_min.x() || r_max.x() == l_min.x()) {
 		// collision occurs on the y-axis of AABB's
 		i_AABB_1.SetCollidingVec(Vector3D(-1.0f, 1.0f, 1.0f));
 		i_AABB_2.SetCollidingVec(Vector3D(-1.0f, 1.0f, 1.0f));

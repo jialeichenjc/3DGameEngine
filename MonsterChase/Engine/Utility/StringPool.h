@@ -1,6 +1,6 @@
 #pragma once
 #include <stdint.h>
-#include "MemoryManager/MemoryAllocator.h"
+#include "../MemoryManager/MemoryAllocator.h"
 // singleton class storing strings
 class StringPool
 {
