@@ -69,7 +69,7 @@ void PaddlePlayer::SetVelocity(const Vector3D & i_vec) {
 }
 void PaddlePlayer::MoveWithVelocity() {
 	m_pGameObject->MoveWithVelocity();
-	m_Collidable.MoveWithVelocity();
+	m_Collidable.MoveWithVelocity();	
 }
 
 void PaddlePlayer::SetBouncy(bool i_bShouldBounce) {

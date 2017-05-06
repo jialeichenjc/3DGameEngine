@@ -64,8 +64,8 @@ void CollisionHandler::OnCollision(Collidable & i_Collidable_1, Collidable & i_C
 		i_Collidable_2.ChangeVelocityDirection(Vector3D(0.0f, 0.0f, 0.0f));
 	}
 
-	YSeparated = false;
-	XSeparated = false;
+	//YSeparated = true;
+	//XSeparated = true;
 }
 
 void CollisionHandler::HandleCollision(Collidable & i_Collidable_1, Collidable & i_Collidable_2) {

@@ -84,5 +84,6 @@
     <Image Include="Sprites\court.dds" />
     <Image Include="Sprites\GoodGuy.dds" />
     <Image Include="Sprites\green-paddle.dds" />
+    <Image Include="Sprites\heart.dds" />
   </ItemGroup>
 </Project>
