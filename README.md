@@ -18,5 +18,5 @@ S Key: Down
 Restart Game: Space
 Resume Game: Space
 
-## Win condition:
+## Win condition
 Who ever scores 5 points first wins
