@@ -1,6 +1,21 @@
-# Game Engineering Final
-Joyce Chen (u1086833)
+# Game Engine with Pong Game 
+
+## Author
+Joyce Chen 
 superbrainchen@gmail.com
+
+# Game Engine
+Tiny game engine developed in grad school
+
+## Platform
+Windows
+
+## Physics
+AABB collision testing
+(may add more if I continute to develop this engine)
+
+## Graphics
+DirectX
 
 # Pong Game
 Follows the same flow as the classic pong game
